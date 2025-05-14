@@ -20,9 +20,11 @@
 
 - En Windows:
 
+
     venv\Scrips\activate
       
 - En Mac/Linux:
+
 
     source venv/bin/activate
       
