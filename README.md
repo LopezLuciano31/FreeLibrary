@@ -1,4 +1,4 @@
-# Proyecto Django
+# Proyecto Django - FreeLibriary
 
 ## Requisitos
 
@@ -6,14 +6,30 @@
 
 # Instalacion para el entorno virtual
 
-## Dentro del repositorio del proyecto (FreeLibriary)
+## Dentro del repositorio del proyecto
+    
+    - En Windows:
+      ```
+      python -m venv venv
+      ```
+    
+    - En Mac/Linux:
+      ```
+      python3 -m venv venv
+      ```
 
--> python -m virtualenv venv
+## Activar el entorno virtual:
 
-## Activar el entorno virtual, ejecutando la siguiente linea
-
--> venv/Scripts/activate
+    - En Windows:
+      ```
+      venv\Scrips\activate
+      ```
+    
+    - En Mac/Linux:
+      ```
+      source venv/bin/activate
+      ```
 
 ## instalar django con requeriments.txt
 
--> pip install -r requeriments.txt
+    pip install -r requeriments.txt
