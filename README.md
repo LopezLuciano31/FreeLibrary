@@ -8,26 +8,19 @@
 
 ## Dentro del repositorio del proyecto
     
-    - En Windows:
+- En Windows:
+    python -m venv venv
       
-      python -m venv venv
+- En Mac/Linux:
+    python3 -m venv venv
       
-    
-    - En Mac/Linux:
-      
-      python3 -m venv venv
-      
-
 ## Activar el entorno virtual:
 
-    - En Windows:
+- En Windows:
+    venv\Scrips\activate
       
-      venv\Scrips\activate
-      
-    
-    - En Mac/Linux:
-      
-      source venv/bin/activate
+- En Mac/Linux:
+    source venv/bin/activate
       
 
 ## instalar django con requeriments
