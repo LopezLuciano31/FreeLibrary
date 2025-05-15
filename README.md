@@ -1,4 +1,4 @@
-# Proyecto Django - FreeLibriary
+# Proyecto Django - FreeLibrary
 
 ## Requisitos
 
