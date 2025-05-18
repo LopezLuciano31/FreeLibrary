@@ -126,9 +126,9 @@ a {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: white;
+    background-color: beige;
     border: 1px solid #ccc;
-    width: 100%;
+    width: 300px;
     z-index: 999;
     /* Muy por encima */
 }
@@ -148,6 +148,8 @@ a {
 .custom-select ul li {
     padding: 8px;
     cursor: pointer;
+    border: 1px solid gray;
+    transition: background-color 0.2s ease;
 }
 
 .custom-select ul li:hover {
