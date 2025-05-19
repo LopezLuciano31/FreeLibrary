@@ -1,0 +1,157 @@
+/*Estilos para los select*/
+.colorIdioma .select select {
+    background-color: #2f2f2f;
+    color: white;
+    border: 1px solid white;
+}
+
+.colorIdioma .select select:focus {
+    border-color: white;
+    box-shadow: none;
+}
+
+.colorCategoria .select select {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+
+.colorCategoria .select select:focus {
+    border-color: black;
+    box-shadow: none;
+}
+
+.colorInput input {
+    background-color: white;
+    color: black;
+}
+
+.colorBoton {
+    border: 1px solid black;
+    height: 2.5em;
+}
+
+/*Estilos por identificador*/
+#up {
+    background-color: #2f2f2f;
+}
+
+#down {
+    background-color: white;
+}
+
+html {
+    background-color: beige;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+/*Estilos para los componetes*/
+.superior {
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.superiorbajo {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.medio {
+    width: 100%;
+    height: 3560px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bajo{
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.interior {
+    width: 1000px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*Estilos Auxiliares*/
+.botonDonar,
+.botonIdioma,
+
+.izquierda {
+    margin: 0;
+}
+
+.derecha {
+    display: flex;
+    gap: 10px;
+    /* espacio entre botón y selector */
+    align-items: center;
+}
+
+/*Estilos para listas*/
+.custom-select {
+    position: relative;
+    width: 100px;
+    z-index: 10;
+    /* Asegura que esté encima */
+}
+
+.custom-select details {
+    color: black;
+    position: relative;
+    background-color: transparent;
+    font-family: sans-serif;
+}
+
+.custom-select details[open] ul {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: beige;
+    border: 1px solid #ccc;
+    width: 300px;
+    z-index: 999;
+    /* Muy por encima */
+}
+
+.custom-select summary {
+    cursor: pointer;
+    padding: 8px;
+}
+
+.custom-select ul {
+    display: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.custom-select ul li {
+    padding: 8px;
+    cursor: pointer;
+    border: 1px solid gray;
+    transition: background-color 0.2s ease;
+}
+
+.custom-select ul li:hover {
+    background-color: white;
+}
