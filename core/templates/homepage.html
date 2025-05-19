@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +8,8 @@
     <title>Free Library</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="visual.css">
+    <link rel="stylesheet" href="{% static 'css/visual.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/HTML.png' %}" type="image/x-icon">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@latest/dist/cdn.min.js"></script>
 </head>
 
@@ -17,7 +19,7 @@
         <div class="interior">
             <!--Aqui va el algo a la izquierda-->
             <div class="izquierda">
-                <img src="HTML.png">
+                <img src="{% static 'img/fcfmyn.png' %} " style="width: 200px; height: 50px">
             </div>
             <!--Aqui esta el boton de donar y el de seleccionar el idioma-->
             <div class="derecha">
@@ -25,7 +27,7 @@
                     <div class="field">
                         <div class="control">
                             <button class="button is-danger is-outlined is-small">
-                                <span>Donate</span>
+                                <span>Donar</span>
                                 <span class="icon">
                                     <i class="fas fa-heart"></i>
                                 </span>
@@ -53,7 +55,7 @@
     <div class="superiorbajo">
         <div class="interior">
             <div class="izquierda">
-                <img src="HTML.png">
+                <img src="{% static 'img/HTML.png' %} " style="width: 100px; height: 50px;">
             </div>
             <div class="derecha">
                 <div class="botonDonar" style="width: 120px; color: black;">
