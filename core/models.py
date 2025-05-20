@@ -7,6 +7,7 @@ class Book(models.Model):
     description = models.CharField(max_length=1250)
     publicationDate =  models.DateTimeField()
     genres= models.CharField(max_length=50)
+    author = models.ForeignKey(Autor)
 
 
 class Credential(models.Model):
@@ -30,8 +31,9 @@ class Edition(models.Model):
     place= models.CharField(max_length=70)
     cover= models.CharField(max_length=100)
     file= models.CharField(max_length=100)
+    of = models.ForeignKey(Book)
 
-class Autor(models.Model):
+class Author(models.Model):
     name= models.CharField(max_length=35)
     lastName= models.CharField(max_length=35)
     bio= models.CharField(max_length=1250)
