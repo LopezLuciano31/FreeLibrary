@@ -1,14 +1,22 @@
 from django.db import models
 
 # Create your models here.
+class Autor(models.Model):
+    name= models.CharField(max_length=35)
+    lastName= models.CharField(max_length=35)
+    bio= models.CharField(max_length=1250)
+    birth= models.DateTimeField()
+    death= models.DateTimeField()
+    prof= models.CharField(max_length=35)
+    portrait= models.CharField(max_length=100)
+
 class Book(models.Model):
     id= models.IntegerField(primary_key=True)
     name = models.CharField(max_length=70)
     description = models.CharField(max_length=1250)
     publicationDate =  models.DateTimeField()
     genres= models.CharField(max_length=50)
-    author = models.ForeignKey(Autor)
-
+    autor = models.ForeignKey(Autor)
 
 class Credential(models.Model):
     User = models.CharField(max_length=35)
@@ -18,7 +26,6 @@ class Credential(models.Model):
 class User(Credential):
     nick = models.CharField(max_length=35)
     joinDate = models.DateTimeField()
-
  
 class Edition(models.Model):
     id= models.IntegerField(primary_key=True)
@@ -32,12 +39,3 @@ class Edition(models.Model):
     cover= models.CharField(max_length=100)
     file= models.CharField(max_length=100)
     of = models.ForeignKey(Book)
-
-class Author(models.Model):
-    name= models.CharField(max_length=35)
-    lastName= models.CharField(max_length=35)
-    bio= models.CharField(max_length=1250)
-    birth= models.DateTimeField()
-    death= models.DateTimeField()
-    prof= models.CharField(max_length=35)
-    portrait= models.CharField(max_length=100)
