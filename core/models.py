@@ -16,7 +16,7 @@ class Book(models.Model):
     description = models.CharField(max_length=1250)
     publicationDate =  models.DateTimeField()
     genres= models.CharField(max_length=50)
-    autor = models.ForeignKey(Autor)
+    autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
 
 class Credential(models.Model):
     User = models.CharField(max_length=35)
@@ -38,4 +38,4 @@ class Edition(models.Model):
     place= models.CharField(max_length=70)
     cover= models.CharField(max_length=100)
     file= models.CharField(max_length=100)
-    of = models.ForeignKey(Book)
+    of = models.ForeignKey(Book, on_delete=models.CASCADE)
