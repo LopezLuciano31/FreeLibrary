@@ -41,7 +41,7 @@
 }
 
 html {
-    background-color: beige;
+    background-color: 	#E0D9B7;
 }
 
 a {
@@ -69,10 +69,10 @@ a {
 
 .medio {
     width: 100%;
-    height: 3560px;
+    height: 2200px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .bajo{
@@ -83,12 +83,100 @@ a {
     align-items: center;
 }
 
-.interior {
+.bajo .interior {
     width: 1000px;
     height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.superiorbajo .interior {
+    width: 1000px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.superior .interior {
+    width: 1000px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.medio .interior{
+    width: 1000px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.carousel-header {
+    color: grey;
+}
+
+.carousel-container {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.carousel-container-block {
+    width: 860px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-book{
+    width: 1000px;
+    height: 320px;
+}
+
+.carousel-header{
+    width: 100%;
+    height: 50px;
+    padding-left: 25px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.carousel-book .carousel-section{
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-book .carousel-section .carousel-container {
+    width: 1000px;
+    height: 270px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: 	#EBE5CB; /*#E0D9B7*/
+}
+
+.carousel-container-block .slash {
+    width: 30px;
+    height: 100%;
+}
+
+.carousel-block {
+    width: 400px;
+    height: 100%;
+}
+
+.carousel-section{
+    width: 1000px;
+    height: 200px;
 }
 
 /*Estilos Auxiliares*/
