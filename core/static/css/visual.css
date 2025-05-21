@@ -41,7 +41,7 @@
 }
 
 html {
-    background-color: 	#E0D9B7;
+    background-color: #E0D9B7;
 }
 
 a {
@@ -75,19 +75,16 @@ a {
     align-items: flex-start;
 }
 
+.mediobajo{
+    width: 100%;
+    height: 50px;
+}
+
 .bajo{
     width: 100%;
     height: 600px;
     display: flex;
     justify-content: center;
-    align-items: center;
-}
-
-.bajo .interior {
-    width: 1000px;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
@@ -110,10 +107,27 @@ a {
 .medio .interior{
     width: 1000px;
     height: 100%;
+    border: 1px solid #D5CDA3;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+}
+
+.bajo .interior {
+    width: 1000px;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.box{
+    width: 196px;
+    height: 400px;
+    padding-top: 20px;
+    background-color: #E0D9B7;
 }
 
 .carousel-header {
@@ -122,7 +136,7 @@ a {
 
 .carousel-container {
     width: 100%;
-    height: 150px;
+    height: 175px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -150,6 +164,10 @@ a {
     align-items: center;
 }
 
+.carousel-header a{
+    color: gray;
+}
+
 .carousel-book .carousel-section{
     width: 100%;
     height: 100%;
@@ -158,10 +176,11 @@ a {
 .carousel-book .carousel-section .carousel-container {
     width: 1000px;
     height: 270px;
+    border: 1px solid #D5CDA3;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: 	#EBE5CB; /*#E0D9B7*/
+    background-color: #EBE5CB; /*#E0D9B7*/
 }
 
 .carousel-container-block .slash {
@@ -176,7 +195,27 @@ a {
 
 .carousel-section{
     width: 1000px;
-    height: 200px;
+    height: 250px;
+}
+
+.home-stats{
+    width: 1000px;
+    height: 170px;
+    padding-left: 25px;
+    padding-top: 25px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.home-resources{
+    width: 1000px;
+    height: 300px;
+    padding-left: 25px;
+    padding-top: 25px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 /*Estilos Auxiliares*/
@@ -214,8 +253,7 @@ a {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: beige;
-    border: 1px solid #ccc;
+    background-color: #EBE5CB; /*#F5F1DF*/
     width: 300px;
     z-index: 999;
     /* Muy por encima */
@@ -236,10 +274,10 @@ a {
 .custom-select ul li {
     padding: 8px;
     cursor: pointer;
-    border: 1px solid gray;
+    border: 1px solid grey;
     transition: background-color 0.2s ease;
 }
 
 .custom-select ul li:hover {
-    background-color: white;
+    background-color: #F5F1DF;
 }
