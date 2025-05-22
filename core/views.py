@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Autor, Book, Credential, User, Edition
 
 # Create your views here.
 def homepage(request):
-    return render(request, "homepage.html")
+    editions_for_html = Edition.objects.all()
+    return render(request, "homepage.html", {'editions':editions_for_html})
 
 def about(request):
     return HttpResponse("<h3>Aqui esta About</h3>")
@@ -11,9 +13,5 @@ def about(request):
 def misLibro(request):
     return HttpResponse("<h1>Aqui estan tus libros</h1>")
 
-def books(request):
-    #Libros en tendencia
-    #libros clasicos
-    return 
 def reader(request):
     return render(request, 'reader.html')
