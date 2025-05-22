@@ -15,9 +15,6 @@
 </head>
 
 <body>
-    <button onclick="window.location.href='/reader/?book=https://s3.amazonaws.com/moby-dick/moby-dick.epub'">
-         -----------------------------Libro Reader-----------------------
-    </button>
     <!--Barra superior negra-->
     <div class="superior" id="up">
         <div class="interior">
@@ -207,7 +204,7 @@
                                     </a>
                                 </div>
                                 <div class="book-location">
-                                    <a href="/reader/?book={{edition.file}}" class="button is-info">Leer</a>
+                                    <a href="/reader/?book={% static edition.file %}" class="button is-info">Leer</a>
                                 </div>
                             </div>
                             {% endfor %}
