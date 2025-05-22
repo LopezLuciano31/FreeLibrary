@@ -63,7 +63,7 @@
     <div class="superiorbajo">
         <div class="interior">
             <div class="izquierda">
-                <img src="{% static 'img/free.png' %} " style="width: 200px; height: 200px;">
+                <img src="{% static 'img/free.png' %}" style="width: 200px; height: 200px;">
             </div>
             <div class="derecha">
                 <div class="botonDonar" style="width: 120px; color: black;">
@@ -184,7 +184,7 @@
                         </h2>
                     </div>
                     <div class="carousel-container">
-                        <div class="button-prev">
+                        <div class="prev">
                             <button class="button is-info is-small">
                                 <span class="icon">
                                     <i class="fas fa-arrow-left"></i>
@@ -192,13 +192,24 @@
                             </button>
                         </div>
                         <div class="carousel-container-block">
-                            <div class="izquierda" style="height: 100%;">
-                                <div class="carousel-block"></div>
+                            <div class="carousel-block" style="width: 200px; padding-top: 10px;">
+                                <div class="book-cover">
+                                    <a href="">
+                                        <img src="{% static 'img/14927109-M.jpg' %}">
+                                    </a>
+                                </div>
+                                <div class="book-location">
+                                    <button class="button is-info">
+                                        Leer
+                                    </button>
+                                </div>
                             </div>
-                            <div class="slash"></div>
-                            <div class="derecha" style="height: 100%;">
-                                <div class="carousel-block"></div>
-                            </div>
+                            <div class="slash" style="width: 15px;"></div>
+                            <div class="carousel-block" style="width: 200px;"></div>
+                            <div class="slash" style="width: 15px;"></div>
+                            <div class="carousel-block" style="width: 200px;"></div>
+                            <div class="slash" style="width: 15px;"></div>
+                            <div class="carousel-block" style="width: 200px;"></div>
                         </div>
                         <div class="button-post">
                             <button class="button is-info is-small">
