@@ -15,3 +15,5 @@ def books(request):
     #Libros en tendencia
     #libros clasicos
     return 
+def reader(request):
+    return render(request, 'reader.html')

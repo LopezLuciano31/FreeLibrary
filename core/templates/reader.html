@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free LibraryReader</title>
+    <style>
+      #area {
+        width: 100%;
+        height: 100vh;
+      }
+    </style>
+</head>
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/epubjs/dist/epub.min.js"></script>
+<div id="boton">
+    <button onclick="prev()">Previa</button>
+    <button onclick="next()">Proxima</button>
+  </div>
+  <div id="area"></div>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const bookUrl = urlParams.get('book');
+  var book = ePub(bookUrl);
+  var rendition = book.renderTo("area", { method: "default", width: "100%", height: "100%" });
+  var displayed = rendition.display();
+  function next() {
+    rendition.next();
+  }
+  function prev() {
+    rendition.prev();
+  }
+</script>
+    
+
+</body>
+</html>
