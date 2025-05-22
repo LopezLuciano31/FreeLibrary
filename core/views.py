@@ -3,7 +3,6 @@ from django.http import HttpResponse
 
 # Create your views here.
 def homepage(request):
-    books(request)
     return render(request, "homepage.html")
 
 def about(request):
