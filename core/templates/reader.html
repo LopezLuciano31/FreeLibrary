@@ -1,42 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Free LibraryReader</title>
-  <style>
-    #area {
-      width: 100%;
-      height: 100vh;
-    }
-  </style>
-</head>
-
-<body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/epubjs/dist/epub.min.js"></script>
-  <div id="boton">
-    <button onclick="prev()">Previa</button>
-    <button onclick="next()">Proxima</button>
-  </div>
-  <div id="area"></div>
-
+  <style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+</style>
+</head>
+<body>
+  <div id="viewer" class="spreads"></div>
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search)  && new URLSearchParams(document.location.search.substring(1)); 
     const bookUrl = urlParams.get('book');
+    var currentSectionIndex = (urlParams && urlParams.get("loc")) ? urlParams.get("loc") : undefined;
     var book = ePub(bookUrl);
-    var rendition = book.renderTo("area", { method: "default", width: "100%", height: "100%" });
-    var displayed = rendition.display();
-    function next() {
-      rendition.next();
-    }
-    function prev() {
-      rendition.prev();
-    }
+    var rendition = book.renderTo("viewer", {
+      width: "100%",
+      height: "100vh",
+      spread: "always",
+    });
+    rendition.display(currentSectionIndex);
+    book.ready.then(function() {
+      var keyListener = function(e){
+        if ((e.keyCode || e.which) == 37) {
+          book.package.metadata.direction === "rtl" ? rendition.next() : rendition.prev();
+        }
+        if ((e.keyCode || e.which) == 39) {
+          book.package.metadata.direction === "rtl" ? rendition.prev() : rendition.next();
+        }
+      };
+      rendition.on("keyup", keyListener);
+      document.addEventListener("keyup", keyListener, false);
+    });
+
   </script>
 
-
 </body>
-
 </html>
