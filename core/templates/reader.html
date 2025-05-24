@@ -7,14 +7,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/epubjs/dist/epub.min.js"></script>
   <style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-  }
+ 
+    #changemode {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999; 
+    }
+    
 </style>
 </head>
-<button onclick="changeMode()" title="Toggle continuous scroll">
+<button id="changemode" onclick="changeMode()" title="Toggle continuous scroll">
   <!-- Simple continuous page scroll icon (3 stacked lines like a document) -->
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
     <rect x="4" y="5" width="16" height="2" rx="1" fill="white"/>
@@ -23,53 +26,64 @@
   </svg>
 </button>
 <body>
-  <div id="viewer" class="spreads"></div>
   <script>
-    let mode = localStorage.getItem('mode');
+    var mode = localStorage.getItem('mode');
     if (mode == null) {
       localStorage.setItem('mode','paginated');
-      mode = localStorage.getItem('mode');
+      mode =  'paginated';
     }
     const urlParams = new URLSearchParams(window.location.search)  && new URLSearchParams(document.location.search.substring(1)); 
     const bookUrl = urlParams.get('book');
-    var currentSectionIndex = (urlParams && urlParams.get("loc")) ? urlParams.get("loc") : undefined;
     var book = ePub(bookUrl);
-    var rendition = book.renderTo("viewer", {
-      flow: mode,
-      width: "100%",
-      height: "100vh",
+    var rendition = book.renderTo(document.body, {
+         manager: "continuous",
+         flow: mode,
+         width: "100%",
+         height: 600
     });
-    rendition.display(currentSectionIndex);
-    book.ready.then(function() {
+    rendition.display();
+    book.ready.then(() => {
+
+      var next = document.getElementById("next");
+
+      next.addEventListener("click", function(e){
+        book.package.metadata.direction === "rtl" ? rendition.prev() : rendition.next();
+        e.preventDefault();
+      }, false);
+
+      var prev = document.getElementById("prev");
+      prev.addEventListener("click", function(e){
+        book.package.metadata.direction === "rtl" ? rendition.next() : rendition.prev();
+        e.preventDefault();
+      }, false);
+
       var keyListener = function(e){
+
+        // Left Key
         if ((e.keyCode || e.which) == 37) {
           book.package.metadata.direction === "rtl" ? rendition.next() : rendition.prev();
         }
+
+        // Right Key
         if ((e.keyCode || e.which) == 39) {
           book.package.metadata.direction === "rtl" ? rendition.prev() : rendition.next();
         }
+
       };
+
       rendition.on("keyup", keyListener);
       document.addEventListener("keyup", keyListener, false);
-      });
-      const renditionElement = rendition.getContents().document;
-      renditionElement.addEventListener('wheel', function(event) {
-      if (event.deltaY < 0) {
-        rendition.prev();
-      } else if (event.deltaY > 0) {
-        rendition.next();
-      }
-      event.preventDefault();
+
     });
-    
   </script>
   <script>
     function changeMode(){
       var currentFlow = localStorage.getItem('mode');
-      currentFlow = (currentFlow === "paginated") ? "scrolled-doc" : "paginated";
+      var currentMan = localStorage.getItem('manMode');
+      currentFlow = (currentFlow === "paginated") ? "scrolled" : "paginated";
+      localStorage.setItem('manMode',currentMan);
       localStorage.setItem('mode',currentFlow);
       rendition.flow(currentFlow); 
-      rendition.display(); 
    }
   </script>
 
