@@ -1,0 +1,24 @@
+{% extends "basic_html.html" %}
+
+{% block body %}
+
+
+<!--Barra superior negra-->
+{% block barra_superior %}
+	{% include "./components/barra_superior.html" %}
+{% endblock %}
+
+<!--Barra de Busqueda y Logo-->
+{% block barra_busqueda %}
+	{% include "./components/barra_busqueda.html" %}
+{% endblock %}
+
+<!-- bloque de contenido principal de las paginas -->
+{% block principal %}{% endblock %}
+
+{% block barra_inferior %}
+	{% include "./components/barra_inferior.html" %}
+{% endblock %}
+
+{% endblock body %}
+

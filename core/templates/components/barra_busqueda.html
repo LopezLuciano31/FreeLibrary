@@ -1,0 +1,88 @@
+
+{% load static %}
+
+<!--Barra de Busqueda y Logo-->
+<div class="superiorbajo">
+	<div class="interior">
+		<div class="izquierda">
+			<img src="{% static 'img/free.png' %}" style="width: 200px; height: 200px;">
+		</div>
+		<div class="derecha">
+			<div class="botonDonar" style="width: 120px; color: black;">
+				<div class="field">
+					<div class="control">
+						<span class="icon">
+							<i class="fas fa-book"></i>
+						</span>
+						<a href="/misLibros/">Mis Libros</a>
+					</div>
+				</div>
+			</div>
+			<div class="custom-select">
+				<details>
+					<summary>Explorar</summary>
+					<ul style="list-style: none; margin: 0; padding: 0;">
+						<li><a href="#">Temas</a></li>
+						<li><a href="#">Tendencia</a></li>
+						<li><a href="#">Explorador de biblioteca</a></li>
+						<li><a href="#">Listas</a></li>
+						<li><a href="#">Colecciones</a></li>
+						<li><a href="#">Biblioteca de estudiantes k-12</a></li>
+						<li><a href="#">Charlas sobre libros</a></li>
+						<li><a href="#">Libro Aleatorio</a></li>
+						<li><a href="#">Busqueda Avanzada</a></li>
+					</ul>
+				</details>
+			</div>
+			<div class="botonIdioma colorCategoria">
+				<div class="field has-addons">
+					<div class="control">
+						<span class="select" style="width: 100px;">
+							<select name="" id="">
+								<option value="">Todo</option>
+								<option value="">Titulo</option>
+								<option value="">Autor</option>
+								<option value="">Texto</option>
+								<option value="">Tema</option>
+								<option value="">Listas</option>
+								<option value="">Avanzado</option>
+							</select>
+						</span>
+					</div>
+					<div class="control colorInput">
+						<input type="text" class="input" placeholder="Buscar" style="width: 150px;">
+					</div>
+					<div class="control">
+						<button class="button is-white colorBoton">
+							<span class="icon">
+								<i class="fas fa-search"></i>
+							</span>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="botonDonar" style="width: 100px; color: black;">
+				<div class="field">
+					<div class="control">
+						<span class="icon">
+							<i class="fas fa-user"></i>
+						</span>
+						<a href="/admin/">Acceder</a>
+					</div>
+				</div>
+			</div>
+			<div class="botonDonar">
+				<div class="field">
+					<div class="control">
+						<button class="button is-info">
+							<span class="icon">
+								<i class="fas fa-user-plus"></i>
+							</span>
+							<span>Registrarse</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
