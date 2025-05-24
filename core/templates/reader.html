@@ -11,21 +11,33 @@
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden;
   }
 </style>
 </head>
+<button onclick="changeMode()" title="Toggle continuous scroll">
+  <!-- Simple continuous page scroll icon (3 stacked lines like a document) -->
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <rect x="4" y="5" width="16" height="2" rx="1" fill="white"/>
+    <rect x="4" y="11" width="16" height="2" rx="1" fill="white"/>
+    <rect x="4" y="17" width="16" height="2" rx="1" fill="white"/>
+  </svg>
+</button>
 <body>
   <div id="viewer" class="spreads"></div>
   <script>
+    let mode = localStorage.getItem('mode');
+    if (mode == null) {
+      localStorage.setItem('mode','paginated');
+      mode = localStorage.getItem('mode');
+    }
     const urlParams = new URLSearchParams(window.location.search)  && new URLSearchParams(document.location.search.substring(1)); 
     const bookUrl = urlParams.get('book');
     var currentSectionIndex = (urlParams && urlParams.get("loc")) ? urlParams.get("loc") : undefined;
     var book = ePub(bookUrl);
     var rendition = book.renderTo("viewer", {
+      flow: mode,
       width: "100%",
       height: "100vh",
-      spread: "always",
     });
     rendition.display(currentSectionIndex);
     book.ready.then(function() {
@@ -39,8 +51,26 @@
       };
       rendition.on("keyup", keyListener);
       document.addEventListener("keyup", keyListener, false);
+      });
+      const renditionElement = rendition.getContents().document;
+      renditionElement.addEventListener('wheel', function(event) {
+      if (event.deltaY < 0) {
+        rendition.prev();
+      } else if (event.deltaY > 0) {
+        rendition.next();
+      }
+      event.preventDefault();
     });
-
+    
+  </script>
+  <script>
+    function changeMode(){
+      var currentFlow = localStorage.getItem('mode');
+      currentFlow = (currentFlow === "paginated") ? "scrolled-doc" : "paginated";
+      localStorage.setItem('mode',currentFlow);
+      rendition.flow(currentFlow); 
+      rendition.display(); 
+   }
   </script>
 
 </body>
