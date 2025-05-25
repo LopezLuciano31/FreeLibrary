@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
   <meta charset="utf-8">
@@ -6,18 +7,12 @@
   <title>Free LibraryReader</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/epubjs/dist/epub.min.js"></script>
-  <style>
- 
-    #changemode {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 9999; 
-    }
-    
-</style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/reader.css' %}">
+
 </head>
-<button id="changemode" onclick="changeMode()" title="Toggle continuous scroll">
+<button id="openMenu" onclick="openMenu()" title="Toggle continuous scroll">
   <!-- Simple continuous page scroll icon (3 stacked lines like a document) -->
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
     <rect x="4" y="5" width="16" height="2" rx="1" fill="white"/>
@@ -39,7 +34,6 @@
          manager: "continuous",
          flow: mode,
          width: "100%",
-         height: 600
     });
 
     book.ready.then(() => {
@@ -89,12 +83,31 @@
   <script>
     function changeMode(){
       var currentFlow = localStorage.getItem('mode');
-      var currentMan = localStorage.getItem('manMode');
       currentFlow = (currentFlow === "paginated") ? "scrolled" : "paginated";
-      localStorage.setItem('manMode',currentMan);
       localStorage.setItem('mode',currentFlow);
-      rendition.flow(currentFlow); 
+      rendition.flow(currentFlow);
+
    }
   </script>
+
+ <div id="sideMenu">
+   <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
+<aside class="menu">
+  <p class="menu-label">General</p>
+  <ul class="menu-list">
+    <li><a id="changeMode" onclick="changeMode()">Cambiar modo lector</a></li>
+  </ul>
+</aside>
+ </div>
+  <script>
+    function openMenu() {
+      document.getElementById("sideMenu").style.width = "250px";
+    }
+
+    function closeMenu() {
+      document.getElementById("sideMenu").style.width = "0";
+    }
+  </script>
+
 </body>
 </html>
