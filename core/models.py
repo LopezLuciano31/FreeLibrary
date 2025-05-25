@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Autor(models.Model):
@@ -18,15 +19,7 @@ class Book(models.Model):
     genres= models.CharField(max_length=50)
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
 
-class Credential(models.Model):
-    User = models.CharField(max_length=35)
-    passwd =  models.CharField(max_length=35)
-    email = models.CharField(max_length=35)
 
-class User(Credential):
-    nick = models.CharField(max_length=35)
-    joinDate = models.DateTimeField()
- 
 class Edition(models.Model):
     id= models.IntegerField(primary_key=True)
     title= models.CharField(max_length=70)
@@ -39,3 +32,18 @@ class Edition(models.Model):
     cover= models.CharField(max_length=100)
     file= models.CharField(max_length=100)
     of = models.ForeignKey(Book, on_delete=models.CASCADE)
+
+# el modelo 'Profile' se utilizara en remplazo del usuario consumidor,
+# los campos nuevos deben insertarse en esta clase,
+# ya que el modelo 'User' de Django ya realiza las funciones de autenticacion
+# y posee los campos 'email', 'username', 'password', y mas:
+# Fuente:
+# https://docs.djangoproject.com/en/5.2/topics/auth/default/#user-objects
+#
+# por lo que unicamente se extiende en los campos que hacen falta.
+# Fuente:
+# https://docs.djangoproject.com/en/5.2/topics/auth/customizing/#extending-the-existing-user-model
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    email = models.EmailField()
+    joinDate = models.DateTimeField()
