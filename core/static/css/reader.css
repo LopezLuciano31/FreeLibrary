@@ -1,29 +1,35 @@
-
-     #sideMenu {
+    #sideMenu {
       height: 100vh;
       width: 0;
       position: fixed;
       top: 0;
       left: 0;
-      background-color: #111;
-        z-index: 1000;
+      z-index: 1000;
       overflow-x: hidden;
       transition: 0.3s;
       padding-top: 60px;
-      color: white;
-
+      background-color: rgba(252, 242, 242, 0.4);
     }
 
     #sideMenu .menu a {
-      color: white;
+        background: rgba(255, 255, 255, 0.1);  
+        backdrop-filter: blur(10px);         
+        -webkit-backdrop-filter: blur(10px);   
+        border: 1px solid rgba(255, 255, 255, 0.2); 
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 0.5rem;
+        color: black;    
     }
+    aside.menu {
+         background-color: rgba(252, 242, 242, 0.4); }
 
     .closebtn {
       position: absolute;
       top: 10px;
       right: 20px;
       font-size: 30px;
-      color: white;
+      color: black;
       text-decoration: none;
     }
 
@@ -47,7 +53,6 @@
   background: #fafafa;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333;
-
   position: absolute;
   height: 100%;
   width: 100%;
@@ -69,14 +74,13 @@
 }
 
 #viewer.spreads {
-  width: 90%;
-  height: 95vh;
+  width: 98%;
+  height: 98vh;
   box-shadow: 0 0 4px #ccc;
   border-radius: 5px;
+  margin: 1vh 1%;
   padding: 0;
   position: relative;
-  margin: 10px auto;
-  top: 25px;
 }
 
 #viewer.spreads .epub-view > iframe {
