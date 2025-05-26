@@ -311,3 +311,42 @@ svg {
   stroke: #777;
   fill: #777;
 }
+    .ball-container {
+      width: 250px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .color-ball {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+    }
+.epubjs-hl,
+.epubjs-hl g {
+  fill: var(--highlight-color, #48f);
+}
+.blue{
+  fill: #48f;
+}
+.red{
+    fill: #f44;
+}
+.green{
+  fill: #4f4;
+}
+.pink{
+  fill: #f4f;
+}
+.yellow{
+  fill: #ff4;
+}
+.cian{
+  fill: #4ff;
+}

@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="{% static 'css/reader.css' %}">
-
 </head>
 <button id="openMenu" onclick="openMenu()" title="Toggle continuous scroll">
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -22,6 +21,9 @@
 <body>
  <div id="viewer" class="spreads" ></div>
  <div id="sideMenu" class="sideMenu">
+  <a href="#" title="Favorite" class="icon is-large">
+  <i class="far fa-star"></i>
+</a>
    <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
 <aside class="menu">
   <p class="menu-label">General</p>
@@ -34,6 +36,27 @@
       <li>
         <select id="toc"></select>
       </li>
+      <li>
+        <a> Agregar a una lista.</a>
+      </li>
+      <li>
+      <a href="#" class="icon is-large">
+      <i class="fas fa-highlighter"></i>
+      </a>
+      </li>
+      <li>
+      <div class="ball-container">
+        <a> Color del resaltador:</a>
+        <div class="color-ball"  style="background-color:#f44;" onclick="changeColor('red')" ></div>
+        <div class="color-ball"  style="background-color:#48f;" onclick="changeColor('blue')"></div>
+        <div class="color-ball"  style="background-color:#4f4;" onclick="changeColor('green')"></div>
+        <div class="color-ball"  style="background-color:#f4f;" onclick="changeColor('pink')"></div>
+        <div class="color-ball"  style="background-color:#ff4;" onclick="changeColor('yellow')"></div>
+        <div class="color-ball"  style="background-color:#4ff;" onclick="changeColor('cian')"></div>
+      </div>
+    </div>
+      </li>
+
   </ul>
 </aside>
  </div>
@@ -120,8 +143,6 @@
 				option.textContent = chapter.label;
 	      option.value = chapter.href;
 				docfrag.appendChild(option);
-        console.log(chapter.href);
-        console.log(chapter.label);
 			});
 
 			$select.appendChild(docfrag);
@@ -136,6 +157,25 @@
 		});
 
 
+  </script>
+  <script>
+var color = "blue"
+var highlights = JSON.parse(localStorage.getItem("highlights")) || [];
+rendition.on("selected", function(cfiRange, contents) {
+  rendition.annotations.highlight(cfiRange,{}, () => {},color);
+  const higl = {cfiRange, color};
+    highlights.push(higl);
+    localStorage.setItem("highlights", JSON.stringify(highlights));
+});
+highlights.forEach((highlight) => {
+ rendition.annotations.highlight(highlight.cfiRange,{}, () => {},highlight.color);
+ console.log(highlight.cfiRange);
+ console.log(highlight.color);
+
+});
+function changeColor(hex){
+  color=hex;
+}
   </script>
 </body>
 </html>
