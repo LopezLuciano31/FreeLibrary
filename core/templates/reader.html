@@ -34,41 +34,7 @@
               <a> Selector de capitulo:</a>
       </li>
       <li>
-        <select id="toc"></select> Share on social media
-Source code licensed MIT. Website content licensed CC BY-NC-SA 4.0
-
-Primary
-
-Hue
-
-deg
-
-Saturation
-
-%
-
-Lightness
-
-%
-
-Link
-
-Hue
-
-deg
-
-Saturation
-
-%
-
-Lightness
-
-%
-
-Info
-
-Hue
-
+        <select id="toc"></select> 
       </li>
       <li>
         <a> Agregar a una lista.</a>
@@ -110,6 +76,14 @@ Hue
    }
   </script>
     <script>
+          var color = "blue";
+      var modeAno="highlight";
+           function changeColor(hex){
+      color=hex;
+    }
+    function changeModeAnotation(choice){
+      modeAno=choice;
+      }
     var mode = localStorage.getItem('mode');
     if (mode == null) {
       localStorage.setItem('mode','paginated');
@@ -158,6 +132,28 @@ Hue
 
       rendition.on("keyup", keyListener);
       document.addEventListener("keyup", keyListener, false);
+      var highlights = JSON.parse(localStorage.getItem(bkey+"highlights")) || [];
+      rendition.on("selected", function(cfiRange, contents) {
+      if(modeAno=="highlight"){
+        rendition.annotations.highlight(cfiRange,{}, () => {},"fill-"+color);}
+      if(modeAno=="underline"){
+          rendition.annotations.underline(cfiRange,{}, () => {},"stroke-"+color);
+      }
+
+      const higl = {cfiRange, color,modeAno};
+        highlights.push(higl);
+        localStorage.setItem(bkey+"highlights", JSON.stringify(highlights));
+        });
+ 
+      highlights.forEach((highlight) => {
+      if(highlight.modeAno=="highlight"){
+          rendition.annotations.highlight(highlight.cfiRange,{}, () => {},"fill-"+highlight.color);}
+      if(highlight.modeAno=="underline"){
+          rendition.annotations.underline(highlight.cfiRange,{},() => {},"stroke-"+highlight.color);
+      }
+ 
+
+});
 
     });
 
@@ -194,37 +190,6 @@ Hue
 		});
 
 
-  </script>
-  <script>
-var color = "blue";
-var modeAno="highlight";
-var highlights = JSON.parse(localStorage.getItem(bkey+"highlights")) || [];
-rendition.on("selected", function(cfiRange, contents) {
-  if(modeAno=="highlight"){
-  rendition.annotations.highlight(cfiRange,{}, () => {},"fill-"+color);}
-  if(modeAno=="underline"){
-    rendition.annotations.underline(cfiRange,{}, () => {},"stroke-"+color);
-  }
-
-  const higl = {cfiRange, color,modeAno};
-    highlights.push(higl);
-    localStorage.setItem(bkey+"highlights", JSON.stringify(highlights));
-});
-highlights.forEach((highlight) => {
-      if(highlight.modeAno=="highlight"){
-          rendition.annotations.highlight(highlight.cfiRange,{}, () => {},"fill-"+highlight.color);}
-      if(highlight.modeAno=="underline"){
-          rendition.annotations.underline(highlight.cfiRange,{},() => {},"stroke-"+highlight.color);
-      }
- 
-
-});
-function changeColor(hex){
-  color=hex;
-}
-function changeModeAnotation(choice){
-  modeAno=choice;
-}
   </script>
 </body>
 </html>
