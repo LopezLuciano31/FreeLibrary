@@ -40,9 +40,14 @@
         <a> Agregar a una lista.</a>
       </li>
       <li>
-      <a href="#" class="icon is-large">
-      <i class="fas fa-highlighter"></i>
-      </a>
+          <div class="ball-container">
+            <a class="icon is-medium" onclick="changeModeAnotation('highlight')" >
+                <i class="fas fa-highlighter"></i>
+            </a>
+            <a class="icon is-medium" onclick="changeModeAnotation('underline')">
+                <i class="fas fa-underline"></i>
+            </a>
+          </div>
       </li>
       <li>
       <div class="ball-container">
@@ -159,22 +164,34 @@
 
   </script>
   <script>
-var color = "blue"
+var color = "blue";
+var modeAno="highlight";
 var highlights = JSON.parse(localStorage.getItem("highlights")) || [];
 rendition.on("selected", function(cfiRange, contents) {
-  rendition.annotations.highlight(cfiRange,{}, () => {},color);
-  const higl = {cfiRange, color};
+  if(modeAno=="highlight"){
+  rendition.annotations.highlight(cfiRange,{}, () => {},"fill-"+color);}
+  if(modeAno=="underline"){
+    rendition.annotations.underline(cfiRange,{}, () => {},"stroke-"+color);
+  }
+
+  const higl = {cfiRange, color,modeAno};
     highlights.push(higl);
     localStorage.setItem("highlights", JSON.stringify(highlights));
 });
 highlights.forEach((highlight) => {
- rendition.annotations.highlight(highlight.cfiRange,{}, () => {},highlight.color);
- console.log(highlight.cfiRange);
- console.log(highlight.color);
+      if(highlight.modeAno=="highlight"){
+          rendition.annotations.highlight(highlight.cfiRange,{}, () => {},"fill-"+highlight.color);}
+      if(highlight.modeAno=="underline"){
+          rendition.annotations.underline(highlight.cfiRange,{},() => {},"stroke-"+highlight.color);
+      }
+ 
 
 });
 function changeColor(hex){
   color=hex;
+}
+function changeModeAnotation(choice){
+  modeAno=choice;
 }
   </script>
 </body>

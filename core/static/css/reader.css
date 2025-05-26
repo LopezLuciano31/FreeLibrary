@@ -332,21 +332,15 @@ svg {
 .epubjs-hl g {
   fill: var(--highlight-color, #48f);
 }
-.blue{
-  fill: #48f;
-}
-.red{
-    fill: #f44;
-}
-.green{
-  fill: #4f4;
-}
-.pink{
-  fill: #f4f;
-}
-.yellow{
-  fill: #ff4;
-}
-.cian{
-  fill: #4ff;
-}
+.fill-blue   { fill: #48f; }
+.fill-red    { fill: #f44; }
+.fill-green  { fill: #4f4; }
+.fill-pink   { fill: #f4f; }
+.fill-yellow { fill: #ff4; }
+.fill-cian   { fill: #4ff; }
+.stroke-blue   { stroke: #48f; stroke-opacity: 0.8; }
+.stroke-red    { stroke: #f44; stroke-opacity: 0.8; }
+.stroke-green  { stroke: #4f4; stroke-opacity: 0.8; }
+.stroke-pink   { stroke: #f4f; stroke-opacity: 0.8; }
+.stroke-yellow { stroke: #ff4; stroke-opacity: 0.8; }
+.stroke-cian   { stroke: #4ff; stroke-opacity: 0.8; }
