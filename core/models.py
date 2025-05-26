@@ -17,16 +17,7 @@ class Book(models.Model):
     publicationDate =  models.DateTimeField()
     genres= models.CharField(max_length=50)
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
-
-class Credential(models.Model):
-    User = models.CharField(max_length=35)
-    passwd =  models.CharField(max_length=35)
-    email = models.CharField(max_length=35)
-
-class User(Credential):
-    nick = models.CharField(max_length=35)
-    joinDate = models.DateTimeField()
- 
+    
 class Edition(models.Model):
     id= models.IntegerField(primary_key=True)
     title= models.CharField(max_length=70)

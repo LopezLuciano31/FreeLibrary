@@ -62,30 +62,34 @@
 				</div>
 			</div>
 
-			<div class="botonDonar" style="width: 100px; color: black;">
-				<div class="field">
-					<div class="control">
-						<span class="icon">
-							<i class="fas fa-user"></i>
-						</span>
-						<a onclick="toggleLogin()">Acceder</a>
-					</div>
-				</div>
-			</div>
+		       {% if user.is_authenticated %}
+                <div id="loginB" style="display: none;"></div>
+                <div id="regB" style="display: none;"></div>
+            {% else %}
+                <div class="botonDonar" id="loginB" style="width: 100px; color: black;">
+                    <div class="field">
+                        <div class="control">
+                            <span class="icon">
+                                <i class="fas fa-user"></i>
+                            </span>
+                            <a onclick="toggleLogin()">Acceder</a>
+                        </div>
+                    </div>
+                </div>
 
-
-			<div class="botonDonar">
-				<div class="field">
-					<div class="control">
-						<button class="button is-info">
-							<span class="icon">
-								<i class="fas fa-user-plus"></i>
-							</span>
-							<span>Registrarse</span>
-						</button>
-					</div>
-				</div>
-			</div>
+                <div class="botonDonar" id="regB">
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-info">
+                                <span class="icon">
+                                    <i class="fas fa-user-plus"></i>
+                                </span>
+                                <span>Registrarse</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
 		</div>
 	</div>
 </div>
@@ -93,22 +97,24 @@
 <div id="loginOverlay" class="overlay-container">
     <div class="loginBox">
 		<h1 style="color: black; font-size: 36px;">Acceder:</h1>
-        <form>
+        <form method="post" action="{% url 'login' %}" >
+			{% csrf_token %}
             <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="email" placeholder="Email" autofocus>
+                    <input class="input is-large" type="text" name="username" placeholder="User" autofocus>
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="password" placeholder="Password">
+                    <input class="input is-large" type="password" name="password" placeholder="Password">
                 </div>
             </div>
-            <button class="button is-block is-danger is-large is-fullwidth" type="submit">
+            <button  class="button is-block is-danger is-large is-fullwidth" type="submit">
                 Login
             </button>
         </form>
-
+		{% if request.GET.success %}
+        {% endif %}
         <p class="has-text-grey">
             <a href="">Registrarse</a> &nbsp;·&nbsp;
             <a href="">Recuperar contraseña</a> &nbsp;·&nbsp;
