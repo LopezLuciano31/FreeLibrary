@@ -94,12 +94,10 @@
            height: "100%",
     });
     book.ready.then(() => {
-      var bkey = book.key();
+      const bkey = book.key();
       console.log("Book key:", bkey); 
       rendition.on("relocated", (location) => {
       localStorage.setItem(bkey, location.start.cfi);
-      var spineItem = book.spine.get(location.start.cfi);
-
                  }
       );
       var lastPage=localStorage.getItem(bkey);
@@ -166,7 +164,7 @@
   <script>
 var color = "blue";
 var modeAno="highlight";
-var highlights = JSON.parse(localStorage.getItem("highlights")) || [];
+var highlights = JSON.parse(localStorage.getItem(bkey+"highlights")) || [];
 rendition.on("selected", function(cfiRange, contents) {
   if(modeAno=="highlight"){
   rendition.annotations.highlight(cfiRange,{}, () => {},"fill-"+color);}
@@ -176,7 +174,7 @@ rendition.on("selected", function(cfiRange, contents) {
 
   const higl = {cfiRange, color,modeAno};
     highlights.push(higl);
-    localStorage.setItem("highlights", JSON.stringify(highlights));
+    localStorage.setItem(bkey+"highlights", JSON.stringify(highlights));
 });
 highlights.forEach((highlight) => {
       if(highlight.modeAno=="highlight"){

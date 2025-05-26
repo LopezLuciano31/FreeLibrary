@@ -61,16 +61,19 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="botonDonar" style="width: 100px; color: black;">
 				<div class="field">
 					<div class="control">
 						<span class="icon">
 							<i class="fas fa-user"></i>
 						</span>
-						<a href="/admin/">Acceder</a>
+						<a onclick="toggleLogin()">Acceder</a>
 					</div>
 				</div>
 			</div>
+
+
 			<div class="botonDonar">
 				<div class="field">
 					<div class="control">
@@ -86,3 +89,37 @@
 		</div>
 	</div>
 </div>
+
+<div id="loginOverlay" class="overlay-container">
+    <div class="loginBox">
+		<h1 style="color: black; font-size: 36px;">Acceder:</h1>
+        <form>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="email" placeholder="Email" autofocus>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="password" placeholder="Password">
+                </div>
+            </div>
+            <button class="button is-block is-danger is-large is-fullwidth" type="submit">
+                Login
+            </button>
+        </form>
+
+        <p class="has-text-grey">
+            <a href="">Registrarse</a> &nbsp;·&nbsp;
+            <a href="">Recuperar contraseña</a> &nbsp;·&nbsp;
+        </p>
+
+        <button class="closeLogin" onclick="toggleLogin()">Close</button>
+    </div>
+</div>
+
+<script>
+   function toggleLogin(){
+	     document.getElementById('loginOverlay').classList.toggle('show');
+   }
+</script>
