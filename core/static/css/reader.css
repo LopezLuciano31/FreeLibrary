@@ -311,3 +311,36 @@ svg {
   stroke: #777;
   fill: #777;
 }
+    .ball-container {
+      width: 250px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .color-ball {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+    }
+.epubjs-hl,
+.epubjs-hl g {
+  fill: var(--highlight-color, #48f);
+}
+.fill-blue   { fill: #48f; }
+.fill-red    { fill: #f44; }
+.fill-green  { fill: #4f4; }
+.fill-pink   { fill: #f4f; }
+.fill-yellow { fill: #ff4; }
+.fill-cian   { fill: #4ff; }
+.stroke-blue   { stroke: #48f; stroke-opacity: 0.8; }
+.stroke-red    { stroke: #f44; stroke-opacity: 0.8; }
+.stroke-green  { stroke: #4f4; stroke-opacity: 0.8; }
+.stroke-pink   { stroke: #f4f; stroke-opacity: 0.8; }
+.stroke-yellow { stroke: #ff4; stroke-opacity: 0.8; }
+.stroke-cian   { stroke: #4ff; stroke-opacity: 0.8; }
