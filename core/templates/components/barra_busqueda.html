@@ -5,7 +5,9 @@
 <div class="superiorbajo">
 	<div class="interior">
 		<div class="izquierda">
-			<img src="{% static 'img/free.png' %}" style="width: 200px; height: 200px;">
+			<a href="{% url 'homepage' %}">
+				<img src="{% static 'img/free.png' %}" style="width: 200px; height: 200px;">
+			</a>
 		</div>
 		<div class="derecha">
 			<div class="botonDonar" style="width: 120px; color: black;">
@@ -68,7 +70,7 @@
 				      <div class="botonDonar" id="perfil">
                     <div class="field">
                         <div class="control">
-                            <button class="button is-info">
+                            <button class="button is-info" onclick="window.location.href='/profile'">
                                 <span class="icon">
                                     <i class="fas fa-user"></i>
                                 </span>

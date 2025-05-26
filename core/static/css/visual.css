@@ -357,3 +357,19 @@ a {
             display: flex;
             opacity: 1;
         }
+        .container {
+  display: flex;
+  width: 80%;
+  height: 0vh;
+  box-sizing: border-box;
+}
+
+.sidePanel {
+  width: 20%;
+  background-color: #f8c291;
+}
+
+.frontPanel {
+  width: 80%;
+  background-color: #6a89cc;
+}
