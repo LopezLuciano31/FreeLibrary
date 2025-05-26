@@ -8,4 +8,6 @@ urlpatterns = [
     path('misLibros/',views.misLibro),
     path('reader/', views.reader),
     path('login/', loginUserV, name='login'),
+   path('profile/', views.profileUser, name='profile'),
+
 ]

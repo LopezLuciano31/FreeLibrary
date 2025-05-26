@@ -21,6 +21,9 @@ def misLibro(request):
 def reader(request):
     return render(request, 'reader.html')
 
+def profileUser(request):
+     return render(request, 'profile.html')
+     
 def loginUserV(request):
     if request.method == "POST":
         username = request.POST.get("username")
