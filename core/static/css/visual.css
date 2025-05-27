@@ -534,3 +534,56 @@ html {
 .profilereal .box .block a{
     font-size: 13px;
 }
+
+.interiorMen {
+  width: 1000px;
+  height: 100%;
+  border: 1px solid #D5CDA3;
+  background-color: #f0ede6;
+  display: flex;
+  flex-direction: row; 
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+#sideMenu {
+  width: 25%;
+  height: 100%;
+  padding-top: 10px;
+  background-color: #f0ede6;
+}
+
+.contenidoPrincipal {
+  width: 75%;
+  height: 100%;
+  padding: 20px;
+}
+
+    #sideMenu .menu a {
+        background:#d6d3c8;  
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+        color: #7a7763;    
+        display: block;  
+        margin-bottom: 1rem; 
+        
+    }
+    aside.menu {
+         background-color:#d6d3c8;
+        }
+    .menu-label {
+  color: #c1bcb0;          
+  font-size: 1em;         
+  letter-spacing: normal;  
+  font-weight: bold;
+  background-color: #7a7565; 
+}
+.menu-list li {
+  border-bottom: 2px solid #bfbcae;         
+  margin-bottom: 0.6rem;            
+}
+
+.menu-list li:last-child {
+  border-bottom: none;               
+  margin-bottom: 0;                
+}
