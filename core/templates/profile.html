@@ -3,10 +3,35 @@
 {% load static %}
 
 {% block principal %}
-           <div class="medio">
-        <div class="interior" id="down">
-            
-        </div>
-     
+<div class="medio">
+  <div class="interiorMen">
+    <div id="sideMenu" class="sideMenu">
+      <aside class="menu">
+       <p class="menu-label">{{ user.username }}</p>
+        <ul class="menu-list">
+          <li><a>Mi feed.</a></li>
+          <li><a>Historial de lectura.</a></li>
+          <li><a>Mis libros.</a></li>
+        </ul>
+        <p class="menu-label">Log de lectura</p>
+        <ul class="menu-list">
+          <li><a>Leyendo actualmente.</a></li>
+          <li><a>Libros leidos.</a></li>
+          <li><a>Quiero leer.</a></li>
+          <li><a>Mis resenas.</a></li>
+          <li><a>Mis estadisticas.</a></li>
+        </ul>
+       <p class="menu-label">Listas</p>
+        <ul class="menu-list">
+          <li><a>Mis listas</a></li>
+          <li><a>Crear una lista</a></li>
+        </ul>
+      </aside>
     </div>
+    <div class="profile">
+      <p></p>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
