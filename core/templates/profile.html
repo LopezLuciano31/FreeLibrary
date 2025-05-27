@@ -3,35 +3,84 @@
 {% load static %}
 
 {% block principal %}
+<!--
 <div class="medio">
-  <div class="interiorMen">
-    <div id="sideMenu" class="sideMenu">
-      <aside class="menu">
-       <p class="menu-label">{{ user.username }}</p>
-        <ul class="menu-list">
-          <li><a>Mi feed.</a></li>
-          <li><a>Historial de lectura.</a></li>
-          <li><a>Mis libros.</a></li>
-        </ul>
-        <p class="menu-label">Log de lectura</p>
-        <ul class="menu-list">
-          <li><a>Leyendo actualmente.</a></li>
-          <li><a>Libros leidos.</a></li>
-          <li><a>Quiero leer.</a></li>
-          <li><a>Mis resenas.</a></li>
-          <li><a>Mis estadisticas.</a></li>
-        </ul>
-       <p class="menu-label">Listas</p>
-        <ul class="menu-list">
-          <li><a>Mis listas</a></li>
-          <li><a>Crear una lista</a></li>
-        </ul>
-      </aside>
+    <div class="interiorMen">
+        <div id="sideMenu" class="sideMenu">
+            <aside class="menu">
+                <p class="menu-label">{{ user.username }}</p>
+                <ul class="menu-list">
+                    <li><a>Mi feed.</a></li>
+                    <li><a>Historial de lectura.</a></li>
+                    <li><a>Mis libros.</a></li>
+                </ul>
+                <p class="menu-label">Log de lectura</p>
+                <ul class="menu-list">
+                    <li><a>Leyendo actualmente.</a></li>
+                    <li><a>Libros leidos.</a></li>
+                    <li><a>Quiero leer.</a></li>
+                    <li><a>Mis resenas.</a></li>
+                    <li><a>Mis estadisticas.</a></li>
+                </ul>
+                <p class="menu-label">Listas</p>
+                <ul class="menu-list">
+                    <li><a>Mis listas</a></li>
+                    <li><a>Crear una lista</a></li>
+                </ul>
+            </aside>
+        </div>
+        <div class="profile">
+            <p></p>
+        </div>
     </div>
-    <div class="profile">
-      <p></p>
-    </div>
-  </div>
 </div>
-
+-->
+<div class="profilereal">
+    <div class="box" id="down">
+        <div class="block">
+            <h1>{{ user.username }}</h1>
+            <h3>Fecha de Ingreso | <a href="">Ajustes</a> | <a href="">Prestamos</a></h3>
+        </div>
+        <div class="block">
+            <h1>Registro de lectura</h1>
+            <h3>Estas compartiendo los libros que estas 
+                <a href="">actualmente leyendo</a>, 
+                <a href="">ya has leido</a> y 
+                <a href="">quieres leer</a>
+            </h3>
+        </div>
+        <div class="block">
+            <a href="" style="font-size: 18px;">Gestionar tus ajustes de privacidad</a>
+        </div>
+        <div class="block">
+            <h1>Actividad reciente</h1>
+        </div>
+        <div class="box">
+            <div class="toptable">
+                <div class="separator">
+                    <h1>CUANDO</h1>
+                </div>
+                <div class="separator">
+                    <h1>QUE</h1>
+                </div>
+                <div class="separator">
+                    <h1>QUIEN</h1>
+                </div>
+                <div class="separator">
+                    <h1>COMENTARIO</h1>
+                </div>
+            </div>
+            <div class="downtable">
+                <div class="separator">
+                </div>
+                <div class="separator">
+                </div>
+                <div class="separator">
+                </div>
+                <div class="separator">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

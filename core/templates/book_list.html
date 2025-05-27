@@ -1,0 +1,43 @@
+{% extends "base_structure.html" %}
+
+{% load static %}
+
+{% block principal %}
+<div class="books" x-data="{ tam: 300px }" style="height: tam;">
+    <div class="box" id="down">
+        {% if books %}
+            {% for book in books %}
+                {% if book.edition_set.all %}
+                    {% for edition in book.edition_set.all %}
+                        <div class="editons" x-on>
+                            <div class="cover">
+                                <div class="book-cover">
+                                    <a href="">
+                                        <img src="{{ edition.cover }}">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="description">
+                                <div class="book-lore">
+                                    <h2 class="title is-4">{{ book.name }}</h2>
+                                    <p><strong>Autor:</strong> {{ book.autor.name }}</p>
+                                    <p><strong>Géneros:</strong> {{ book.genres }}</p>
+                                    <p>{{ book.description }}</p>
+                                </div>
+                                <div class="book-lore">
+                                    <strong>Edition Infromation</strong><br>
+                                    <strong>{{ edition.title }}</strong> — {{ edition.publicationDate|date:"Y" }} — {{ edition.lang }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p><em>No hay ediciones para este libro.</em></p>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <p>No se encontraron libros.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

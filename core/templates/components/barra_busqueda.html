@@ -36,31 +36,33 @@
 				</details>
 			</div>
 			<div class="botonIdioma colorCategoria">
-				<div class="field has-addons">
-					<div class="control">
-						<span class="select" style="width: 100px;">
-							<select name="" id="">
-								<option value="">Todo</option>
-								<option value="">Titulo</option>
-								<option value="">Autor</option>
-								<option value="">Texto</option>
-								<option value="">Tema</option>
-								<option value="">Listas</option>
-								<option value="">Avanzado</option>
-							</select>
-						</span>
-					</div>
-					<div class="control colorInput">
-						<input type="text" class="input" placeholder="Buscar" style="width: 150px;">
-					</div>
-					<div class="control">
-						<button class="button is-white colorBoton">
-							<span class="icon">
-								<i class="fas fa-search"></i>
+				<form metod="get" action="{% url 'book_list'%}">
+					<div class="field has-addons">
+						<div class="control">
+							<span class="select" style="width: 100px;">
+								<select name="filter_by">
+									<option value="" {% if filter_by == "" %} selected {% endif %}>Todo</option>
+									<option value="title" {% if filter_by == 'title' %} selected {% endif %}>Titulo</option>
+									<option value="author" {% if filter_by == 'author' %} selected {% endif %}>Autor</option>
+									<option value="description" {% if filter_by == 'description' %} selected {% endif %}>Texto</option>
+									<option value="genres" {% if filter_by == 'genres' %} selected {% endif %}>Tema</option>
+									<option value="lits">Listas</option>
+									<option value="advanced">Avanzado</option>
+								</select>
 							</span>
-						</button>
+						</div>
+						<div class="control colorInput">
+							<input type="text" class="input" name="query" placeholder="Buscar" value="{{ query }}" style="width: 150px;">
+						</div>
+						<div class="control">
+							<button class="button is-white colorBoton" type="submit">
+								<span class="icon">
+									<i class="fas fa-search"></i>
+								</span>
+							</button>
+						</div>
 					</div>
-				</div>
+				</form>
 			</div>
 
 			{% if user.is_authenticated %}

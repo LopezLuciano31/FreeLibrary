@@ -295,7 +295,7 @@ html {
     transition: background-color 0.2s ease;
 }
 
-.custom-select ul li a{
+.custom-select ul li a {
     color: black;
 }
 
@@ -381,15 +381,15 @@ html {
 
 /*Mis Libros*/
 
-.profile{
+.profile {
     width: 100%;
     height: 1000px;
     display: flex;
     justify-content: center;
-    align-items: flex-start;    
+    align-items: flex-start;
 }
 
-.profile .box{
+.profile .box {
     width: 1000px;
     height: 100%;
     border: 1px solid #D5CDA3;
@@ -400,20 +400,20 @@ html {
     padding: 0%;
 }
 
-.profile .box .leftlinks{
+.profile .box .leftlinks {
     width: 250px;
     height: 100%;
     background-color: #F9F9F9;
 }
 
-.profile .box .rightinfo{
+.profile .box .rightinfo {
     width: 750px;
     height: 100%;
     background-color: white;
     box-shadow: -8px 0 10px -6px rgba(0, 0, 0, 0.2);
 }
 
-.leftlinks .bar{
+.leftlinks .bar {
     font-size: 15px;
     width: 100%;
     height: 20px;
@@ -424,33 +424,33 @@ html {
     align-items: center;
 }
 
-.bar h1{
+.bar h1 {
     color: grey;
     margin-left: 10px;
 }
 
-.leftlinks .block a{
+.leftlinks .block a {
     margin-left: 10px;
 }
 
-.leftlinks .block{
+.leftlinks .block {
     margin-top: 5px;
 }
 
-.leftlinks .block hr{
+.leftlinks .block hr {
     background-color: #E0E0E0;
     margin-left: 10px;
     margin-right: 10px;
 }
 
-.blockbutton{
+.blockbutton {
     margin-top: 20px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
 }
 
-.is-gray{
+.is-gray {
     color: gray;
     background-color: #F2F2F2;
     border: 1px solid #E0E0E0;
@@ -458,15 +458,15 @@ html {
 
 /*Mis Libros*/
 
-.profilereal{
+.profilereal {
     width: 100%;
     height: 400px;
     display: flex;
     justify-content: center;
-    align-items: flex-start;    
+    align-items: flex-start;
 }
 
-.profilereal .box{
+.profilereal .box {
     width: 1000px;
     height: 100%;
     border: 1px solid #D5CDA3;
@@ -477,23 +477,23 @@ html {
     overflow: hidden;
 }
 
-.profilereal .box .block h1{
+.profilereal .box .block h1 {
     font-size: 20px;
     color: black;
 }
 
-.profilereal .box .block h3{
+.profilereal .box .block h3 {
     font-size: 13px;
     color: gray;
 }
 
-.profilereal .box .box{
+.profilereal .box .box {
     width: 100%;
     height: 100px;
     padding: 0%;
 }
 
-.box .box .toptable{
+.box .box .toptable {
     width: 100%;
     height: 50%;
     display: flex;
@@ -503,7 +503,7 @@ html {
     background-color: #EBE5CB;
 }
 
-.box .box .downtable{
+.box .box .downtable {
     width: 100%;
     height: 50%;
     display: flex;
@@ -512,7 +512,7 @@ html {
     overflow: hidden;
 }
 
-.toptable .separator{
+.toptable .separator {
     width: 25%;
     height: 100%;
     display: flex;
@@ -521,69 +521,122 @@ html {
     border: 1px solid #D5CDA3;
 }
 
-.separator h1{
+.separator h1 {
     color: gray;
     margin-left: 10px;
 }
-.downtable .separator{
+
+.downtable .separator {
     width: 25%;
     height: 100%;
     border: 1px solid #D5CDA3;
 }
 
-.profilereal .box .block a{
+.profilereal .box .block a {
     font-size: 13px;
 }
 
 .interiorMen {
-  width: 1000px;
-  height: 100%;
-  border: 1px solid #D5CDA3;
-  background-color: #f0ede6;
-  display: flex;
-  flex-direction: row; 
-  justify-content: flex-start;
-  align-items: flex-start;
+    width: 1000px;
+    height: 100%;
+    border: 1px solid #D5CDA3;
+    background-color: #f0ede6;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 #sideMenu {
-  width: 25%;
-  height: 100%;
-  padding-top: 10px;
-  background-color: #f0ede6;
+    width: 25%;
+    height: 100%;
+    padding-top: 10px;
+    background-color: #f0ede6;
 }
 
 .contenidoPrincipal {
-  width: 75%;
-  height: 100%;
-  padding: 20px;
+    width: 75%;
+    height: 100%;
+    padding: 20px;
 }
 
-    #sideMenu .menu a {
-        background:#d6d3c8;  
-        border-radius: 8px;
-        margin-bottom: 0.5rem;
-        color: #7a7763;    
-        display: block;  
-        margin-bottom: 1rem; 
-        
-    }
-    aside.menu {
-         background-color:#d6d3c8;
-        }
-    .menu-label {
-  color: #c1bcb0;          
-  font-size: 1em;         
-  letter-spacing: normal;  
-  font-weight: bold;
-  background-color: #7a7565; 
+#sideMenu .menu a {
+    background: #d6d3c8;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    color: #7a7763;
+    display: block;
+    margin-bottom: 1rem;
+
 }
+
+aside.menu {
+    background-color: #d6d3c8;
+}
+
+.menu-label {
+    color: #c1bcb0;
+    font-size: 1em;
+    letter-spacing: normal;
+    font-weight: bold;
+    background-color: #7a7565;
+}
+
 .menu-list li {
-  border-bottom: 2px solid #bfbcae;         
-  margin-bottom: 0.6rem;            
+    border-bottom: 2px solid #bfbcae;
+    margin-bottom: 0.6rem;
 }
 
 .menu-list li:last-child {
-  border-bottom: none;               
-  margin-bottom: 0;                
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+/*Filtro de libros*/
+.books {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.books .box {
+    width: 1000px;
+    height: 100%;
+    border: 1px solid #D5CDA3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.books .box .editons .description{
+    width: 75%;
+    height: 100%;
+    color: black;
+    border: 1px solid #F9F9F9;
+}
+
+.description .book-lore{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.books .box .editons .cover{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #F9F9F9;
+}
+
+.books .box .editons{
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
 }

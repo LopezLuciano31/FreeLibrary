@@ -39,3 +39,26 @@ def loginUserV(request):
             return redirect('homepage')
     else:
         return redirect('homepage')
+    
+def book_list(request):
+    books = Book.objects.prefetch_related('edition_set').all()
+
+    filter_by = request.GET.get("filter_by")
+    query = request.GET.get("query")
+
+    if filter_by and query:
+        if filter_by == "title":
+            books = books.filter(name__icontains=query)
+        elif filter_by == "author":
+            books = books.filter(autor__name__icontains=query)
+        elif filter_by == "description":
+            books = books.filter(description__icontains=query)
+        elif filter_by == "genres":
+            books = books.filter(genres__icontains=query)
+    
+    context = {
+        "books": books,
+        "filter_by": filter_by,
+        "query": query,
+    }
+    return render(request, "book_list.html", context)
