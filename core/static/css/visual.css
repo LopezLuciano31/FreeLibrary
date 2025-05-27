@@ -44,11 +44,6 @@ html {
     background-color: #E0D9B7;
 }
 
-a {
-  color: black;
-  text-decoration: none;
-}
-
 /*Estilos para los componetes*/
 .superior {
     width: 100%;
@@ -75,12 +70,12 @@ a {
     align-items: flex-start;
 }
 
-.mediobajo{
+.mediobajo {
     width: 100%;
     height: 50px;
 }
 
-.bajo{
+.bajo {
     width: 100%;
     height: 600px;
     display: flex;
@@ -104,7 +99,7 @@ a {
     align-items: center;
 }
 
-.medio .interior{
+.medio .box {
     width: 1000px;
     height: 100%;
     border: 1px solid #D5CDA3;
@@ -123,7 +118,7 @@ a {
     align-items: flex-start;
 }
 
-.box{
+.box {
     width: 196px;
     height: 400px;
     padding-top: 20px;
@@ -150,12 +145,12 @@ a {
     align-items: center;
 }
 
-.carousel-book{
+.carousel-book {
     width: 1000px;
     height: 320px;
 }
 
-.carousel-header{
+.carousel-header {
     width: 100%;
     height: 50px;
     padding-left: 25px;
@@ -164,11 +159,11 @@ a {
     align-items: center;
 }
 
-.carousel-header a{
+.carousel-header a {
     color: gray;
 }
 
-.carousel-book .carousel-section{
+.carousel-book .carousel-section {
     width: 100%;
     height: 100%;
 }
@@ -180,7 +175,8 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #EBE5CB; /*#E0D9B7*/
+    background-color: #EBE5CB;
+    /*#E0D9B7*/
 }
 
 .carousel-container-block .slash {
@@ -193,7 +189,7 @@ a {
     height: 100%;
 }
 
-.book-cover{
+.book-cover {
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -201,24 +197,24 @@ a {
     height: 200px;
 }
 
-.book-location{
+.book-location {
     padding-top: 10px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
 }
 
-.book-cover img{
+.book-cover img {
     width: 130px;
     height: 200px;
 }
 
-.carousel-section{
+.carousel-section {
     width: 1000px;
     height: 250px;
 }
 
-.home-stats{
+.home-stats {
     width: 1000px;
     height: 170px;
     padding-left: 25px;
@@ -228,7 +224,7 @@ a {
     align-items: flex-start;
 }
 
-.home-resources{
+.home-resources {
     width: 1000px;
     height: 300px;
     padding-left: 25px;
@@ -273,7 +269,8 @@ a {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #EBE5CB; /*#F5F1DF*/
+    background-color: #EBE5CB;
+    /*#F5F1DF*/
     width: 300px;
     z-index: 999;
     /* Muy por encima */
@@ -298,78 +295,242 @@ a {
     transition: background-color 0.2s ease;
 }
 
+.custom-select ul li a{
+    color: black;
+}
+
 .custom-select ul li:hover {
     background-color: #F5F1DF;
 }
-       
-        .overlay-container {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 1000;
-        }
 
-        .loginBox{
-            background: #fff;
-            padding: 24px;
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-            width: 320px;
-            text-align: center;
-            opacity: 0;
-            transform: scale(0.8);
-            animation: fadeInUp 0.5s ease-out forwards;
-        }
+/*Login*/
+.overlay-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
 
-       .closeLogin {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+.loginBox {
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    width: 320px;
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: fadeInUp 0.5s ease-out forwards;
+}
 
-       .closeLogin{
-            margin-top: 12px;
-            background-color: #e74c3c;
-            color: #fff;
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+.closeLogin {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .overlay-container.show {
-            display: flex;
-            opacity: 1;
-        }
-        .container {
-  display: flex;
-  width: 80%;
-  height: 0vh;
-  box-sizing: border-box;
+.closeLogin {
+    margin-top: 12px;
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.overlay-container.show {
+    display: flex;
+    opacity: 1;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    height: 0vh;
+    box-sizing: border-box;
 }
 
 .sidePanel {
-  width: 20%;
-  background-color: #f8c291;
+    width: 20%;
+    background-color: #f8c291;
 }
 
 .frontPanel {
-  width: 80%;
-  background-color: #6a89cc;
+    width: 80%;
+    background-color: #6a89cc;
+}
+
+/*Mis Libros*/
+
+.profile{
+    width: 100%;
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;    
+}
+
+.profile .box{
+    width: 1000px;
+    height: 100%;
+    border: 1px solid #D5CDA3;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+    padding: 0%;
+}
+
+.profile .box .leftlinks{
+    width: 250px;
+    height: 100%;
+    background-color: #F9F9F9;
+}
+
+.profile .box .rightinfo{
+    width: 750px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -8px 0 10px -6px rgba(0, 0, 0, 0.2);
+}
+
+.leftlinks .bar{
+    font-size: 15px;
+    width: 100%;
+    height: 20px;
+    background-color: #F2F2F2;
+    border: 1px solid #E0E0E0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.bar h1{
+    color: grey;
+    margin-left: 10px;
+}
+
+.leftlinks .block a{
+    margin-left: 10px;
+}
+
+.leftlinks .block{
+    margin-top: 5px;
+}
+
+.leftlinks .block hr{
+    background-color: #E0E0E0;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.blockbutton{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.is-gray{
+    color: gray;
+    background-color: #F2F2F2;
+    border: 1px solid #E0E0E0;
+}
+
+/*Mis Libros*/
+
+.profilereal{
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;    
+}
+
+.profilereal .box{
+    width: 1000px;
+    height: 100%;
+    border: 1px solid #D5CDA3;
+    flex-direction: column;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.profilereal .box .block h1{
+    font-size: 20px;
+    color: black;
+}
+
+.profilereal .box .block h3{
+    font-size: 13px;
+    color: gray;
+}
+
+.profilereal .box .box{
+    width: 100%;
+    height: 100px;
+    padding: 0%;
+}
+
+.box .box .toptable{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+    background-color: #EBE5CB;
+}
+
+.box .box .downtable{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.toptable .separator{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    border: 1px solid #D5CDA3;
+}
+
+.separator h1{
+    color: gray;
+    margin-left: 10px;
+}
+.downtable .separator{
+    width: 25%;
+    height: 100%;
+    border: 1px solid #D5CDA3;
+}
+
+.profilereal .box .block a{
+    font-size: 13px;
 }

@@ -1,4 +1,3 @@
-
 {% load static %}
 
 <!--Barra de Busqueda y Logo-->
@@ -16,7 +15,7 @@
 						<span class="icon">
 							<i class="fas fa-book"></i>
 						</span>
-						<a href="/misLibros/">Mis Libros</a>
+						<a href="/mybooks" style="color: black;">Mis Libros</a>
 					</div>
 				</div>
 			</div>
@@ -64,82 +63,82 @@
 				</div>
 			</div>
 
-		       {% if user.is_authenticated %}
-                <div id="loginB" style="display: none;"></div>
-                <div id="regB" style="display: none;"></div>
-				      <div class="botonDonar" id="perfil">
-                    <div class="field">
-                        <div class="control">
-                            <button class="button is-info" onclick="window.location.href='/profile'">
-                                <span class="icon">
-                                    <i class="fas fa-user"></i>
-                                </span>
-                                <span>Perfil</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            {% else %}
-                <div class="botonDonar" id="loginB" style="width: 100px; color: black;">
-                    <div class="field">
-                        <div class="control">
-                            <span class="icon">
-                                <i class="fas fa-user"></i>
-                            </span>
-                            <a onclick="toggleLogin()">Acceder</a>
-                        </div>
-                    </div>
-                </div>
+			{% if user.is_authenticated %}
+			<div id="loginB" style="display: none;"></div>
+			<div id="regB" style="display: none;"></div>
+			<div class="botonDonar" id="perfil">
+				<div class="field">
+					<div class="control">
+						<button class="button is-info" onclick="window.location.href='/profile'">
+							<span class="icon">
+								<i class="fas fa-user"></i>
+							</span>
+							<span>Perfil</span>
+						</button>
+					</div>
+				</div>
+			</div>
+			{% else %}
+			<div class="botonDonar" id="loginB" style="width: 100px; color: black;">
+				<div class="field">
+					<div class="control">
+						<span class="icon">
+							<i class="fas fa-user"></i>
+						</span>
+						<a onclick="toggleLogin()">Acceder</a>
+					</div>
+				</div>
+			</div>
 
-                <div class="botonDonar" id="regB">
-                    <div class="field">
-                        <div class="control">
-                            <button class="button is-info">
-                                <span class="icon">
-                                    <i class="fas fa-user-plus"></i>
-                                </span>
-                                <span>Registrarse</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
+			<div class="botonDonar" id="regB">
+				<div class="field">
+					<div class="control">
+						<button class="button is-info">
+							<span class="icon">
+								<i class="fas fa-user-plus"></i>
+							</span>
+							<span>Registrarse</span>
+						</button>
+					</div>
+				</div>
+			</div>
+			{% endif %}
 		</div>
 	</div>
 </div>
 
 <div id="loginOverlay" class="overlay-container">
-    <div class="loginBox">
+	<div class="loginBox">
 		<h1 style="color: black; font-size: 36px;">Acceder:</h1>
-        <form method="post" action="{% url 'login' %}" >
+		<form method="post" action="{% url 'login' %}">
 			{% csrf_token %}
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="username" placeholder="User" autofocus>
-                </div>
-            </div>
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="password" name="password" placeholder="Password">
-                </div>
-            </div>
-            <button  class="button is-block is-danger is-large is-fullwidth" type="submit">
-                Login
-            </button>
-        </form>
+			<div class="field">
+				<div class="control">
+					<input class="input is-large" type="text" name="username" placeholder="User" autofocus>
+				</div>
+			</div>
+			<div class="field">
+				<div class="control">
+					<input class="input is-large" type="password" name="password" placeholder="Password">
+				</div>
+			</div>
+			<button class="button is-block is-danger is-large is-fullwidth" type="submit">
+				Login
+			</button>
+		</form>
 		{% if request.GET.success %}
-        {% endif %}
-        <p class="has-text-grey">
-            <a href="">Registrarse</a> &nbsp;·&nbsp;
-            <a href="">Recuperar contraseña</a> &nbsp;·&nbsp;
-        </p>
+		{% endif %}
+		<p class="has-text-grey">
+			<a href="">Registrarse</a> &nbsp;·&nbsp;
+			<a href="">Recuperar contraseña</a> &nbsp;·&nbsp;
+		</p>
 
-        <button class="closeLogin" onclick="toggleLogin()">Close</button>
-    </div>
+		<button class="closeLogin" onclick="toggleLogin()">Close</button>
+	</div>
 </div>
 
 <script>
-   function toggleLogin(){
-	     document.getElementById('loginOverlay').classList.toggle('show');
-   }
+	function toggleLogin() {
+		document.getElementById('loginOverlay').classList.toggle('show');
+	}
 </script>

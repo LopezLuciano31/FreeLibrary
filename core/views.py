@@ -15,8 +15,8 @@ def homepage(request):
 def about(request):
     return HttpResponse("<h3>Aqui esta About</h3>")
 
-def misLibro(request):
-    return HttpResponse("<h1>Aqui estan tus libros</h1>")
+def mybooks(request):
+    return render(request, 'mybooks.html')
 
 def reader(request):
     return render(request, 'reader.html')

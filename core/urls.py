@@ -5,9 +5,8 @@ from .views import loginUserV
 urlpatterns = [
     path('',views.homepage, name='homepage'),
     path('about/',views.about),
-    path('misLibros/',views.misLibro),
     path('reader/', views.reader),
     path('login/', loginUserV, name='login'),
-   path('profile/', views.profileUser, name='profile'),
-
+    path('profile/', views.profileUser, name='profile'),
+    path('mybooks/', views.mybooks),
 ]
