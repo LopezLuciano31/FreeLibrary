@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class Autor(models.Model):
     name= models.CharField(max_length=35)
@@ -8,8 +9,9 @@ class Autor(models.Model):
     birth= models.DateTimeField()
     death= models.DateTimeField()
     prof= models.CharField(max_length=35)
-    portrait= models.CharField(max_length=100)
+    portrait= models.ImageField(upload_to='img/')
 
+    
 class Book(models.Model):
     id= models.IntegerField(primary_key=True)
     name = models.CharField(max_length=70)
@@ -17,6 +19,8 @@ class Book(models.Model):
     publicationDate =  models.DateTimeField()
     genres= models.CharField(max_length=50)
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
+
+
     
 class Edition(models.Model):
     id= models.IntegerField(primary_key=True)
@@ -27,6 +31,7 @@ class Edition(models.Model):
     pages= models.IntegerField()
     notes= models.CharField(max_length=500)
     place= models.CharField(max_length=70)
-    cover= models.CharField(max_length=100)
-    file= models.CharField(max_length=100)
+    cover=  models.ImageField(upload_to='covers/')
+    file= models.FileField(upload_to='books/')
     of = models.ForeignKey(Book, on_delete=models.CASCADE)
+

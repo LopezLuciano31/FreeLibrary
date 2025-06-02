@@ -39,6 +39,27 @@ def loginUserV(request):
             return redirect('homepage')
     else:
         return redirect('homepage')
+
+def registerUserV(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        pwd = request.POST.get("password")
+        pwd2 = request.POST.get("password2")
+        email = request.POST.get("email")
+        if pwd != pwd2:
+            return redirect('homepage')
+        if User.objects.filter(username=username).exists():
+            return redirect('homepage')
+        try:
+            user = User.objects.create_user(username=username, password=pwd, email=email)
+            user.save()
+            login(request, user)  
+            return redirect(reverse('homepage') + '?success=true')
+        except Exception as e:
+            messages.error(request, f"Error al registrar: {str(e)}")
+            return redirect('homepage')
+    else:
+        return redirect('homepage')
     
 def book_list(request):
     books = Book.objects.prefetch_related('edition_set').all()
@@ -62,3 +83,29 @@ def book_list(request):
         "query": query,
     }
     return render(request, "book_list.html", context)
+
+def bookRegister(request):
+    if request.method == "POST":
+     autorName= request.POST.get("autor")
+     book = Book (id= request.POST.get("id"), name = request.POST.get("name"), description = request.POST.get("description"), 
+     publicationDate = request.POST.get("publicationDatename"), genres= request.POST.get("genres"), autor= Autor.objects.get(name=autorNames))
+     book.save()
+
+def autorRegister(request):
+  if request.method == "POST":
+     autor = Autor ( name = request.POST.get("name"), lastName = request.POST.get("lastName"), 
+     bio = request.POST.get("bio"), birth= request.POST.get("birth"), death= request.POST.get("death"),
+     prof = request.POST.get("prof"), portrait= request.POST.get("portrait"))
+     autor.save()
+    
+
+def editionRegister(request):
+    if request.method == "POST":
+     book= request.POST.get("of")
+     edi = Edition (id= request.POST.get("id"), title = request.POST.get("title"), description = request.POST.get("description"), 
+     publicationDate = request.POST.get("publicationDatename"), publisher= request.POST.get("publisher"), 
+     lang = request.POST.get("lang"), pages= request.POST.get("pages"), notes = request.POST.get("notes"), 
+     place= request.POST.get("place"),  cover = request.POST.get("cover"), file= request.POST.get("file"),
+     of= Book.objects.get(id=book)
+     )
+     edi.save()
