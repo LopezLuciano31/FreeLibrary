@@ -39,6 +39,27 @@ def loginUserV(request):
             return redirect('homepage')
     else:
         return redirect('homepage')
+
+def registerUserV(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        pwd = request.POST.get("password")
+        pwd2 = request.POST.get("password2")
+        email = request.POST.get("email")
+        if pwd != pwd2:
+            return redirect('homepage')
+        if User.objects.filter(username=username).exists():
+            return redirect('homepage')
+        try:
+            user = User.objects.create_user(username=username, password=pwd, email=email)
+            user.save()
+            login(request, user)  
+            return redirect(reverse('homepage') + '?success=true')
+        except Exception as e:
+            messages.error(request, f"Error al registrar: {str(e)}")
+            return redirect('homepage')
+    else:
+        return redirect('homepage')
     
 def book_list(request):
     books = Book.objects.prefetch_related('edition_set').all()
