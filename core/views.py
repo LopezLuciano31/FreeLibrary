@@ -6,6 +6,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.urls import reverse
+from .forms import *
+
 
 # Create your views here.
 def homepage(request):
@@ -85,27 +87,39 @@ def book_list(request):
     return render(request, "book_list.html", context)
 
 def bookRegister(request):
-    if request.method == "POST":
-     autorName= request.POST.get("autor")
-     book = Book (id= request.POST.get("id"), name = request.POST.get("name"), description = request.POST.get("description"), 
-     publicationDate = request.POST.get("publicationDatename"), genres= request.POST.get("genres"), autor= Autor.objects.get(name=autorNames))
-     book.save()
+ if request.method == "POST":
+     form = BookForm(request.POST)
+     if form.is_valid():
+        form.save()         
+        return redirect('homepage')
+
+
+ else:
+          form = BookForm()
+ return render(request,"mybooks.html",{'form':form})
+
 
 def autorRegister(request):
   if request.method == "POST":
-     autor = Autor ( name = request.POST.get("name"), lastName = request.POST.get("lastName"), 
-     bio = request.POST.get("bio"), birth= request.POST.get("birth"), death= request.POST.get("death"),
-     prof = request.POST.get("prof"), portrait= request.POST.get("portrait"))
-     autor.save()
+     form = AutorForm(request.POST, request.FILES)
+     if form.is_valid():
+        form.save()
+        return redirect('homepage')
+  else:
+      form = AutorForm()
+      
+  return render(request,"mybooks.html",{'form3':form})
+     
     
 
 def editionRegister(request):
-    if request.method == "POST":
-     book= request.POST.get("of")
-     edi = Edition (id= request.POST.get("id"), title = request.POST.get("title"), description = request.POST.get("description"), 
-     publicationDate = request.POST.get("publicationDatename"), publisher= request.POST.get("publisher"), 
-     lang = request.POST.get("lang"), pages= request.POST.get("pages"), notes = request.POST.get("notes"), 
-     place= request.POST.get("place"),  cover = request.POST.get("cover"), file= request.POST.get("file"),
-     of= Book.objects.get(id=book)
-     )
-     edi.save()
+ if request.method == "POST":
+     form = EditionForm(request.POST, request.FILES)
+     if form.is_valid():
+        form.save()
+        return redirect('homepage')
+ else:         
+     form = EditionForm()
+ return render(request,"mybooks.html",{'form2':form})
+
+

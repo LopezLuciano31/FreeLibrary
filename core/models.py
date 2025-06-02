@@ -6,8 +6,8 @@ class Autor(models.Model):
     name= models.CharField(max_length=35)
     lastName= models.CharField(max_length=35)
     bio= models.CharField(max_length=1250)
-    birth= models.DateTimeField()
-    death= models.DateTimeField()
+    birth= models.DateField()
+    death= models.DateField(blank=True, null=True)
     prof= models.CharField(max_length=35)
     portrait= models.ImageField(upload_to='img/')
 
@@ -16,7 +16,7 @@ class Book(models.Model):
     id= models.IntegerField(primary_key=True)
     name = models.CharField(max_length=70)
     description = models.CharField(max_length=1250)
-    publicationDate =  models.DateTimeField()
+    publicationDate =  models.DateField()
     genres= models.CharField(max_length=50)
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
 
@@ -25,7 +25,7 @@ class Book(models.Model):
 class Edition(models.Model):
     id= models.IntegerField(primary_key=True)
     title= models.CharField(max_length=70)
-    publicationDate=  models.DateTimeField()
+    publicationDate=  models.DateField(blank=True, null=True)
     publisher= models.CharField(max_length=70)
     lang= models.CharField(max_length=10)
     pages= models.IntegerField()
