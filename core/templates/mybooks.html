@@ -34,6 +34,14 @@
                 <a href="">Mis estadisticas de lectura</a><br>
                 <a href="">Importacion y exportacion</a><br>
             </div>
+            {% if user.is_superuser %}
+            <div class="block">
+                <hr>
+                <a href="">Agregar autor</a><br>
+                <a href="">Agregar libro</a><br>
+                <a href="">Agregar edicion</a><br>
+            </div>
+            {% endif %}
             <div class="bar">
                 <h1>Mis Listas</h1>
             </div>
