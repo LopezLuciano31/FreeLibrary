@@ -7,7 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.urls import reverse
 from .forms import *
-
+from django.core.mail import send_mail
+from django.http import JsonResponse
 
 # Create your views here.
 def homepage(request):
@@ -35,12 +36,18 @@ def loginUserV(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect(reverse('homepage') + '?success=true') 
+            return JsonResponse({
+                'success': True,
+                'redirect_url': '/'  #
+            })
         else:
-            messages.error(request, "Credenciales inválidas")
-            return redirect('homepage')
-    else:
-        return redirect('homepage')
+            return JsonResponse({
+                'success': False,
+                'error': "Credenciales inválidas"
+            })
+    return JsonResponse({'success': False, 'error': "Método no permitido"})
+
+
 
 def registerUserV(request):
     if request.method == "POST":
@@ -121,5 +128,4 @@ def editionRegister(request):
  else:         
      form = EditionForm()
  return render(request,"mybooks.html",{'form2':form})
-
 
