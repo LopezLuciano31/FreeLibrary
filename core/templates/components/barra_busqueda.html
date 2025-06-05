@@ -112,7 +112,7 @@
 <div id="loginOverlay" class="overlay-container">
 	<div class="loginBox">
 		<h1 style="color: black; font-size: 36px;">Acceder:</h1>
-		<form method="post" action="{% url 'login' %}">
+		<form method="post" id="logForm">
 			{% csrf_token %}
 			<div class="field">
 				<div class="control">
@@ -124,18 +124,21 @@
 					<input class="input is-large" type="password" name="password" placeholder="Contraseña">
 				</div>
 			</div>
+				<p id="loginError" class="error-text" style="color: red;"></p>
 			<button class="button is-block is-danger is-large is-fullwidth" type="submit">
-				Login
+				Ingresar
 			</button>
 		</form>
 		{% if request.GET.success %}
 		{% endif %}
 		<p class="has-text-grey">
 			<a href="">Registrarse</a> &nbsp;·&nbsp;
-			<a href="">Recuperar contraseña</a> &nbsp;·&nbsp;
-		</p>
+			<a href="{% url 'password_reset' %}">Olvidaste contrasena?</a> &nbsp;·&nbsp;
+		</p>									
+	
 
-		<button class="closeLogin" onclick="toggleLogin()">Close</button>
+
+		<button class="closeLogin" onclick="toggleLogin()">Cerrar</button>
 	</div>
 </div>
 <div id="registerOverlay" class="overlay-container">
@@ -179,4 +182,32 @@
 		function toggleRegister() {
 		document.getElementById('registerOverlay').classList.toggle('show');
 	}
+</script>
+
+<script type="text/javascript">
+  $(document).on('submit', '#logForm', function(e){
+    e.preventDefault();
+
+    $.ajax({
+        type: 'POST',
+        url: '{% url "login" %}', 
+        data: $(this).serialize(),
+        success: function(response) {
+            if (response.success) {
+                window.location.href = response.redirect_url;
+            } else {
+                  $('#loginError').text(response.error); 
+            }
+        },
+        error: function(xhr) {
+            const res = xhr.responseJSON;
+            $('#loginError').text(res.error || "");
+        }
+    });
+});
+  $(document).on('click', function(event) {
+    if (!$(event.target).closest('#logForm, #loginError').length) {
+        $('#loginError').text('');
+    }
+  });
 </script>
