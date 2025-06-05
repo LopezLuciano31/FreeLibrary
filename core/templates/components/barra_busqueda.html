@@ -69,7 +69,7 @@
 			<div id="loginB" style="display: none;"></div>
 			<div id="regB" style="display: none;"></div>
 			<div class="botonDonar" id="perfil">
-				<div class="field">
+				<div class="field is-grouped">
 					<div class="control">
 						<button class="button is-info" onclick="window.location.href='/profile'">
 							<span class="icon">
@@ -78,6 +78,15 @@
 							<span>Perfil</span>
 						</button>
 					</div>
+					<form action="{% url 'logout' %}" method="post">
+						{% csrf_token %}
+						<button type="submit" class="button is-info" onclick="" style="background-color: red;">
+							<span class="icon">
+								<i class="fas fa-user-xmark"></i>
+							</span>
+							<span>Salir</span>
+						</button>
+					  </form>
 				</div>
 			</div>
 			{% else %}

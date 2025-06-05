@@ -22,7 +22,8 @@ urlpatterns = [
     path('editionRegister/', views.editionRegister, name='editionRegister'),
     path('profile/', views.profileUser, name='profile'),
     path('mybooks/', views.mybooks),
-    path('book_list/',views.book_list, name='book_list')
+    path('book_list/',views.book_list, name='book_list'),
+    path('logout/', views.logoutV, name='logout'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
