@@ -27,12 +27,3 @@ class AutorForm(ModelForm):
             'death': forms.DateInput(attrs={'type': 'date'})  
         }
 
-
-class PasswordResetForm(forms.Form):
-    email = forms.EmailField(
-        label="Email",
-        widget=forms.EmailInput(attrs={
-            'class': 'input',
-            'placeholder': 'Enter your email'
-        })
-    )
