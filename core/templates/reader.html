@@ -135,20 +135,54 @@
            
 
       }
-
+      function isCFIRangeIncluded(cfiRange1, cfiRange2) {
+        const match1 = cfiRange1.match(/^epubcfi\(([^,]+),([^,]+),([^)]+)\)$/);
+        const match2 = cfiRange2.match(/^epubcfi\(([^,]+),([^,]+),([^)]+)\)$/);
+        const baseCFI1 = match1[1];       
+        const startCFI1 = `epubcfi(${baseCFI1}${match1[2]})`;
+        const endCFI1 = `epubcfi(${baseCFI1}${match1[3]})`; 
+        const baseCFI2 = match2[1];       
+        const startCFI2 = `epubcfi(${baseCFI2}${match2[2]})`;
+        const endCFI2 = `epubcfi(${baseCFI2}${match2[3]})`; 
+        console.log("StartCFI1:", startCFI1);
+        console.log("StartCFI2:", startCFI2);
+        console.log("EndCFI1:", endCFI1);
+        console.log("EndCFI2:", endCFI2);
+        const resultStart = ePub.CFI.prototype.compare(startCFI1, startCFI2);
+        const resultEnd = ePub.CFI.prototype.compare(endCFI1, endCFI2);
+        console.log(resultStart);
+        console.log(resultEnd);
+        return resultStart >= 0 && resultEnd <= 0;
+}
       rendition.on("keyup", keyListener);
       document.addEventListener("keyup", keyListener, false);
       var highlights = JSON.parse(localStorage.getItem(bkey+"highlights")) || [];
       rendition.on("selected", function(cfiRange, contents) {
-      if(modeAno=="highlight"){
-        rendition.annotations.highlight(cfiRange,{}, () => {},"fill-"+color);}
-      if(modeAno=="underline"){
-          rendition.annotations.underline(cfiRange,{}, () => {},"stroke-"+color);
-      }
+        const higl = {cfiRange, color,modeAno};
+        if (modeAno === "highlight") {
+            rendition.annotations.highlight(cfiRange, {}, () => {}, "fill-" + color);
+            highlights.push(higl);
+            localStorage.setItem(bkey+"highlights", JSON.stringify(highlights));
 
-      const higl = {cfiRange, color,modeAno};
-        highlights.push(higl);
-        localStorage.setItem(bkey+"highlights", JSON.stringify(highlights));
+        } else if (modeAno === "underline") {
+            rendition.annotations.underline(cfiRange, {}, () => {}, "stroke-" + color);
+            highlights.push(higl);
+            localStorage.setItem(bkey+"highlights", JSON.stringify(highlights));
+
+        } else if (modeAno === "remove") {
+
+          highlights.forEach(highlight => {
+            if(isCFIRangeIncluded(highlight.cfiRange, cfiRange)){
+              rendition.annotations.remove(highlight.cfiRange, highlight.modeAno);
+             }  
+                  });
+          const saveLocal = highlights.filter(highlight => !isCFIRangeIncluded(highlights.cfiRange));        
+          localStorage.setItem(bkey+"highlights", JSON.stringify(saveLocal));
+              
+                }
+
+   
+      
         });
  
       highlights.forEach((highlight) => {
@@ -157,8 +191,6 @@
       if(highlight.modeAno=="underline"){
           rendition.annotations.underline(highlight.cfiRange,{},() => {},"stroke-"+highlight.color);
       }
- 
-
 });
 
     });
