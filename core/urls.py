@@ -7,7 +7,6 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-
     path('password_reset/', auth_views.PasswordResetView.as_view(template_name='registration/password_reset.html',  html_email_template_name='registration/password_reset_email.html'), name='password_reset'),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='registration/password_resetDone.html'), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='registration/password_resetConfirm.html'), name='password_reset_confirm'),
@@ -23,6 +22,7 @@ urlpatterns = [
     path('profile/', views.profileUser, name='profile'),
     path('mybooks/', views.mybooks),
     path('book_list/',views.book_list, name='book_list'),
+    path('bookprofile/<str:title>',views.bookprofile),
     path('logout/', views.logoutV, name='logout'),
 ]
 if settings.DEBUG:

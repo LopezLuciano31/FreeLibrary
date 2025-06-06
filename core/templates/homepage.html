@@ -3,12 +3,95 @@
 {% load static %}
 
 {% block principal %}
-	
-    <div class="medio">
-        <div class="box" id="down">
+
+<div class="medio">
+    <div class="box" id="down">
+        <div class="carousel-section">
+            <div class="carousel-header" style="margin-top: 25px;">
+                <h2>Welcome to the Free Library</h2>
+            </div>
+            <div class="carousel-container">
+                <div class="button-prev">
+                    <button class="button is-info is-small">
+                        <span class="icon">
+                            <i class="fas fa-arrow-left"></i>
+                        </span>
+                    </button>
+                </div>
+                <div class="carousel-container-block">
+                    <div class="izquierda" style="height: 100%;">
+                        <div class="carousel-block"></div>
+                    </div>
+                    <div class="slash"></div>
+                    <div class="derecha" style="height: 100%;">
+                        <div class="carousel-block"></div>
+                    </div>
+                </div>
+                <div class="button-post">
+                    <button class="button is-info is-small">
+                        <span class="icon">
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-book">
             <div class="carousel-section">
-                <div class="carousel-header" style="margin-top: 25px;">
-                    <h2>Welcome to the Free Library</h2>
+                <div class="carousel-header">
+                    <h2>
+                        <a href="">Books</a>
+                    </h2>
+                </div>
+                <div class="carousel-container">
+                    <div class="prev">
+                        <button class="button is-info is-small">
+                            <span class="icon">
+                                <i class="fas fa-arrow-left"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="carousel-container-block">
+                        <div class="carousel-block" style="width: 200px; padding-top: 10px;">
+                            <div class="book-cover">
+                                <a href="">
+                                    <img src="https://covers.openlibrary.org/b/id/14927109-M.jpg">
+                                </a>
+                            </div>
+                            <div class="book-location">
+                                <a href="" class="button is-info">Leer</a>
+                            </div>
+                        </div>
+                        {% for edition in editions %}
+                        <div class="slash" style="width: 15px;"></div>
+                        <div class="carousel-block" style="width: 200px; padding-top: 10px;">
+                            <div class="book-cover">
+                                <a href="bookprofile/{{ditions.title}}">
+                                    <img src="{{edition.cover.url}}">
+                                </a>
+                            </div>
+                            <div class="book-location">
+                                <a href="/reader/?book={{ edition.file.url }}" class="button is-info">Leer</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="button-post">
+                        <button class="button is-info is-small">
+                            <span class="icon">
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-book">
+            <div class="carousel-section">
+                <div class="carousel-header">
+                    <h2>
+                        <a href="">Books</a>
+                    </h2>
                 </div>
                 <div class="carousel-container">
                     <div class="button-prev">
@@ -36,166 +119,15 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-book">
-                <div class="carousel-section">
-                    <div class="carousel-header">
-                        <h2>
-                            <a href="">Books</a>
-                        </h2>
-                    </div>
-                    <div class="carousel-container">
-                        <div class="prev">
-                            <button class="button is-info is-small">
-                                <span class="icon">
-                                    <i class="fas fa-arrow-left"></i>
-                                </span>
-                            </button>
-                        </div>
-                        <div class="carousel-container-block">
-                            <div class="carousel-block" style="width: 200px; padding-top: 10px;">
-                                <div class="book-cover">
-                                    <a href="">
-                                        <img src="https://covers.openlibrary.org/b/id/14927109-M.jpg">
-                                    </a>
-                                </div>
-                                <div class="book-location">
-                                    <a href="" class="button is-info">Leer</a>
-                                </div>
-                            </div>
-                            {% for edition in editions %}
-                            <div class="slash" style="width: 15px;"></div>
-                            <div class="carousel-block" style="width: 200px; padding-top: 10px;">
-                                <div class="book-cover">
-                                    <a href="">
-                                        <img src="{{edition.cover.url}}">
-                                    </a>
-                                </div>
-                                <div class="book-location">
-                             <a href="/reader/?book={{ edition.file.url }}" class="button is-info">Leer</a>
-
-                                </div>
-                            </div>
-                            {% endfor %}
-                        </div>
-                        <div class="button-post">
-                            <button class="button is-info is-small">
-                                <span class="icon">
-                                    <i class="fas fa-arrow-right"></i>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
+        </div>
+        <div class="carousel-book">
+            <div class="carousel-section">
+                <div class="carousel-header">
+                    <h2>
+                        <a href="">Books</a>
+                    </h2>
                 </div>
-            </div>
-            <div class="carousel-book">
-                <div class="carousel-section">
-                    <div class="carousel-header">
-                        <h2>
-                            <a href="">Books</a>
-                        </h2>
-                    </div>
-                    <div class="carousel-container">
-                        <div class="button-prev">
-                            <button class="button is-info is-small">
-                                <span class="icon">
-                                    <i class="fas fa-arrow-left"></i>
-                                </span>
-                            </button>
-                        </div>
-                        <div class="carousel-container-block">
-                            <div class="izquierda" style="height: 100%;">
-                                <div class="carousel-block"></div>
-                            </div>
-                            <div class="slash"></div>
-                            <div class="derecha" style="height: 100%;">
-                                <div class="carousel-block"></div>
-                            </div>
-                        </div>
-                        <div class="button-post">
-                            <button class="button is-info is-small">
-                                <span class="icon">
-                                    <i class="fas fa-arrow-right"></i>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-book">
-                <div class="carousel-section">
-                    <div class="carousel-header">
-                        <h2>
-                            <a href="">Books</a>
-                        </h2>
-                    </div>
-                    <div class="carousel-container">
-                        <div class="button-prev">
-                            <button class="button is-info is-small">
-                                <span class="icon">
-                                    <i class="fas fa-arrow-left"></i>
-                                </span>
-                            </button>
-                        </div>
-                        <div class="carousel-container-block">
-                            <div class="izquierda" style="height: 100%;">
-                                <div class="carousel-block"></div>
-                            </div>
-                            <div class="slash"></div>
-                            <div class="derecha" style="height: 100%;">
-                                <div class="carousel-block"></div>
-                            </div>
-                        </div>
-                        <div class="button-post">
-                            <button class="button is-info is-small">
-                                <span class="icon">
-                                    <i class="fas fa-arrow-right"></i>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-book">
-                <div class="carousel-section">
-                    <div class="carousel-header">
-                        <h2>
-                            <a href="">Books</a>
-                        </h2>
-                    </div>
-                    <div class="carousel-container">
-                        <div class="button-prev">
-                            <button class="button is-info is-small">
-                                <span class="icon">
-                                    <i class="fas fa-arrow-left"></i>
-                                </span>
-                            </button>
-                        </div>
-                        <div class="carousel-container-block">
-                            <div class="izquierda" style="height: 100%;">
-                                <div class="carousel-block"></div>
-                            </div>
-                            <div class="slash"></div>
-                            <div class="derecha" style="height: 100%;">
-                                <div class="carousel-block"></div>
-                            </div>
-                        </div>
-                        <div class="button-post">
-                            <button class="button is-info is-small">
-                                <span class="icon">
-                                    <i class="fas fa-arrow-right"></i>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-section" style="height: 200px;">
-                <div class="carousel-header" style="margin-top: 25px;">
-                    <title>
-                        <a href="">Search</a>
-                    </title>
-                </div>
-                <div class="carousel-container" style="height: 125px;">
+                <div class="carousel-container">
                     <div class="button-prev">
                         <button class="button is-info is-small">
                             <span class="icon">
@@ -221,13 +153,80 @@
                     </div>
                 </div>
             </div>
-            <div class="home-stats">
-                <h2 style="color: gray;">Estadistics</h2>
-            </div>
-            <div class="home-resources">
-                <h2 style="color: gray;">Resources</h2>
+        </div>
+        <div class="carousel-book">
+            <div class="carousel-section">
+                <div class="carousel-header">
+                    <h2>
+                        <a href="">Books</a>
+                    </h2>
+                </div>
+                <div class="carousel-container">
+                    <div class="button-prev">
+                        <button class="button is-info is-small">
+                            <span class="icon">
+                                <i class="fas fa-arrow-left"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="carousel-container-block">
+                        <div class="izquierda" style="height: 100%;">
+                            <div class="carousel-block"></div>
+                        </div>
+                        <div class="slash"></div>
+                        <div class="derecha" style="height: 100%;">
+                            <div class="carousel-block"></div>
+                        </div>
+                    </div>
+                    <div class="button-post">
+                        <button class="button is-info is-small">
+                            <span class="icon">
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="carousel-section" style="height: 200px;">
+            <div class="carousel-header" style="margin-top: 25px;">
+                <title>
+                    <a href="">Search</a>
+                </title>
+            </div>
+            <div class="carousel-container" style="height: 125px;">
+                <div class="button-prev">
+                    <button class="button is-info is-small">
+                        <span class="icon">
+                            <i class="fas fa-arrow-left"></i>
+                        </span>
+                    </button>
+                </div>
+                <div class="carousel-container-block">
+                    <div class="izquierda" style="height: 100%;">
+                        <div class="carousel-block"></div>
+                    </div>
+                    <div class="slash"></div>
+                    <div class="derecha" style="height: 100%;">
+                        <div class="carousel-block"></div>
+                    </div>
+                </div>
+                <div class="button-post">
+                    <button class="button is-info is-small">
+                        <span class="icon">
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="home-stats">
+            <h2 style="color: gray;">Estadistics</h2>
+        </div>
+        <div class="home-resources">
+            <h2 style="color: gray;">Resources</h2>
+        </div>
     </div>
+</div>
 
 {% endblock %}

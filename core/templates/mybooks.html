@@ -7,7 +7,7 @@
     <div class="box" id="down">
         <div class="leftlinks">
             <div class="bar" style="margin-top: 20px;">
-
+                <h1>{{ user.username }}</h1>
             </div>
             <div class="block">
                 <a href="">Mis Prestamos</a><br>
@@ -37,7 +37,7 @@
             {% if user.is_superuser %}
             <div class="block">
                 <hr>
-                       <a href="">Agregar autor</a><br>
+                <a href="">Agregar autor</a><br>
                 <a href="">Agregar libro</a><br>
                 <a href="">Agregar edicion</a><br>
             </div>
@@ -53,29 +53,28 @@
         </div>
         <div class="rightinfo">
             <form method="post" action="{% url 'bookRegister' %}">
-             {% csrf_token %}
-              <ul>
-             {{ form.as_ul }}
-            </ul>
-            <input type="submit" value="Registrar libro"/>
-           </form>
-           <form method="post" action="{% url 'editionRegister' %}" enctype="multipart/form-data">         
                 {% csrf_token %}
-              <ul>
-             {{ form2.as_ul }}
-            </ul>
-            <input type="submit" value="Registrar edicion"/>
-           </form>
+                <ul>
+                    {{ form.as_ul }}
+                </ul>
+                <input type="submit" value="Registrar libro" />
+            </form>
+            <form method="post" action="{% url 'editionRegister' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <ul>
+                    {{ form2.as_ul }}
+                </ul>
+                <input type="submit" value="Registrar edicion" />
+            </form>
             <form method="post" action="{% url 'autorRegister' %}" enctype="multipart/form-data">
-             {% csrf_token %}
-              <ul>
-             {{ form3.as_ul }}
-            </ul>
-            <input type="submit" value="Registrar autor"/>
-           </form>
+                {% csrf_token %}
+                <ul>
+                    {{ form3.as_ul }}
+                </ul>
+                <input type="submit" value="Registrar autor" />
+            </form>
         </div>
     </div>
 </div>
-
 
 {% endblock %}
