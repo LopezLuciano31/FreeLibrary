@@ -138,10 +138,10 @@
       function isCFIRangeIncluded(cfiRange1, cfiRange2) {
         const match1 = cfiRange1.match(/^epubcfi\(([^,]+),([^,]+),([^)]+)\)$/);
         const match2 = cfiRange2.match(/^epubcfi\(([^,]+),([^,]+),([^)]+)\)$/);
-        const baseCFI1 = match1[1];       // Start path
+        const baseCFI1 = match1[1];       
         const startCFI1 = `epubcfi(${baseCFI1}${match1[2]})`;
         const endCFI1 = `epubcfi(${baseCFI1}${match1[3]})`; 
-        const baseCFI2 = match2[1];       // Start path
+        const baseCFI2 = match2[1];       
         const startCFI2 = `epubcfi(${baseCFI2}${match2[2]})`;
         const endCFI2 = `epubcfi(${baseCFI2}${match2[3]})`; 
         console.log("StartCFI1:", startCFI1);
