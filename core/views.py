@@ -9,8 +9,13 @@ from django.urls import reverse
 from .forms import *
 from django.core.mail import send_mail
 from django.http import JsonResponse
+from django.contrib.auth import logout
 
 # Create your views here.
+def logoutV(request):
+    logout(request)
+    return redirect('homepage')
+
 def homepage(request):
     editions_for_html = Edition.objects.all()
     return render(request, "homepage.html", {'editions':editions_for_html})
