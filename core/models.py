@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Autor(models.Model):
@@ -35,3 +35,13 @@ class Edition(models.Model):
     file= models.FileField(upload_to='books/')
     of = models.ForeignKey(Book, on_delete=models.CASCADE)
 
+class Review(models.Model):
+    content= models.CharField(max_length=750)
+    user = models.ForeignKey(User)
+    book = models.ForeignKey(Book)
+    rating = models.IntegerField(  
+        validators=[
+            MaxValueValidator(10),
+            MinValueValidator(1)
+        ]) 
+#cada valor del rango equivale a media estrella, 1 seria media, 2 una, 10 seria cinco estrellas
