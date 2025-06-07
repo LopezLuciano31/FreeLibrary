@@ -153,12 +153,13 @@
 <div id="registerOverlay" class="overlay-container">
 	<div class="loginBox">
 		<h1 style="color: black; font-size: 36px;">Registrarse:</h1>
-	<form method="post" action="{% url 'register' %}">
+	<form method="post" id="registerForm">
 			{% csrf_token %}
 			<div class="field">
 				<div class="control">
 					<input class="input is-large" type="text" name="username" placeholder="Nombre de usuario" autofocus>
 				</div>
+				<p id="userExistError" class="error-text" style="color: red;"></p>
 			</div>
 			<div class="field">
 				<div class="control">
@@ -168,11 +169,13 @@
 				<div class="field">
 				<div class="control">
 					<input class="input is-large" type="password" name="password2" placeholder="Confirmar Contraseña">
+					<p id="pwdError" class="error-text" style="color: red;"></p>
 				</div>
 			</div>
 				<div class="field">
 				<div class="control">
 					<input class="input is-large" type="email" name="email" placeholder="email">
+					<p id="emailExistError" class="error-text" style="color: red;"></p>			
 				</div>
 			</div>
 			<button class="button is-block is-danger is-large is-fullwidth" type="submit">
@@ -219,4 +222,39 @@
         $('#loginError').text('');
     }
   });
+
+  $(document).on('submit', '#registerForm', function(e){
+    e.preventDefault();
+
+    $.ajax({
+        type: 'POST',
+        url: '{% url "register" %}', 
+        data: $(this).serialize(),
+        success: function(response) {
+            if (response.success) {
+                window.location.href = response.redirect_url;
+            } else {
+                  errors=(response.error);
+				  errors.forEach(error => {
+					$('#'+error[1]).text(error[0] || '')
+				  }); 
+            }
+        },
+        error: function(xhr) {
+            const res = xhr.responseJSON;
+            //$('#loginError').text(res.error || "");
+        }
+    });
+});
+  $(document).on('click', function(event) {
+    if (!$(event.target).closest('#logForm, #loginError').length) {
+        $('#loginError').text('');
+    }
+	if (!$(event.target).closest('#registerForm, #pwdErorr, #emailExistError, #userError').length) {
+        $('#pwdErorr').text('');
+		$('#emailExistError').text('');
+		$('#userExistError').text('');
+    }
+  });
+
 </script>

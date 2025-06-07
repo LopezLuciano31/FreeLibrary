@@ -60,20 +60,42 @@ def registerUserV(request):
         pwd = request.POST.get("password")
         pwd2 = request.POST.get("password2")
         email = request.POST.get("email")
+        verification = False
+        error = []
+        errorCode= []
         if pwd != pwd2:
-            return redirect('homepage')
+             verfication = True;
+             error.append(["Contrasenas no coinciden","pwdError"])
         if User.objects.filter(username=username).exists():
-            return redirect('homepage')
+             verfication=True
+             error.append(["Nombre de usuario ya registrado","userExistError"])
+        if User.objects.filter(email=email).exists():
+             verification=True;
+             error.append(["Email de usuario ya registrado","emailExistError"])
+        if (verification):
+            return JsonResponse({
+                'success': False,
+                'error': error,
+            })
         try:
             user = User.objects.create_user(username=username, password=pwd, email=email)
             user.save()
             login(request, user)  
-            return redirect(reverse('homepage') + '?success=true')
+            return JsonResponse({
+                'success': True,
+                'redirect_url': '/'  
+            })
         except Exception as e:
             messages.error(request, f"Error al registrar: {str(e)}")
-            return redirect('homepage')
+            return JsonResponse({
+                'success': False,
+                'error': "Error al registrar, intentelo nuevamente"  
+            })
     else:
-        return redirect('homepage')
+         return JsonResponse({
+                'success': False,
+                'error': "Error, metodo de envio invalido"  
+            })
     
 def book_list(request):
     books = Book.objects.prefetch_related('edition_set').all()
