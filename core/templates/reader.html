@@ -176,8 +176,10 @@
               rendition.annotations.remove(highlight.cfiRange, highlight.modeAno);
              }  
                   });
-          const saveLocal = highlights.filter(highlight => !isCFIRangeIncluded(highlights.cfiRange));        
-          localStorage.setItem(bkey+"highlights", JSON.stringify(saveLocal));
+                  const saveLocal = highlights.filter(highlight => !isCFIRangeIncluded(highlight.cfiRange, cfiRange));
+                  console.log(saveLocal);
+                  console.log(highlights)
+                  localStorage.setItem(bkey+"highlights", JSON.stringify(saveLocal));
               
                 }
 
