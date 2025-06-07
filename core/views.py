@@ -63,15 +63,24 @@ def registerUserV(request):
         verification = False
         error = []
         errorCode= []
+        if len(pwd) < 8:
+            verification = True;
+            error.append(["La contrasena debe tener minimo 8 caracteres","pwdLenghtError"])
         if pwd != pwd2:
              verfication = True;
              error.append(["Contrasenas no coinciden","pwdError"])
-        if User.objects.filter(username=username).exists():
+        if username!= "" and User.objects.filter(username=username).exists():
              verfication=True
-             error.append(["Nombre de usuario ya registrado","userExistError"])
-        if User.objects.filter(email=email).exists():
+             error.append(["Nombre de usuario ya registrado","usertError"])
+        if username == "":
              verification=True;
-             error.append(["Email de usuario ya registrado","emailExistError"])
+             error.append(["*Campo obligatorio","userError"])     
+        if email != "" and User.objects.filter(email=email).exists():
+             verification=True;
+             error.append(["Email de usuario ya registrado","emailError"])
+        if email == "":
+             verification=True;
+             error.append(["*Campo obligatorio","emailError"])
         if (verification):
             return JsonResponse({
                 'success': False,
