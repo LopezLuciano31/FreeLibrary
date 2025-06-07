@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 class Autor(models.Model):
@@ -37,11 +38,7 @@ class Edition(models.Model):
 
 class Review(models.Model):
     content= models.CharField(max_length=750)
-    user = models.ForeignKey(User)
-    book = models.ForeignKey(Book)
-    rating = models.IntegerField(  
-        validators=[
-            MaxValueValidator(10),
-            MinValueValidator(1)
-        ]) 
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    rating =  models.IntegerField(validators=[MaxValueValidator(10),MinValueValidator(1)] )
 #cada valor del rango equivale a media estrella, 1 seria media, 2 una, 10 seria cinco estrellas

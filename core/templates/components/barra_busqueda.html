@@ -141,8 +141,8 @@
 		{% if request.GET.success %}
 		{% endif %}
 		<p class="has-text-grey">
-			<a onclick="toggleRegister(), toggleLogin()">Registrarse</a> &nbsp;·&nbsp;
-			<a href="{% url 'password_reset' %}">Olvidaste contrasena?</a> &nbsp;·&nbsp;
+			<a onclick="toggleRegister(), toggleLogin()">No tenes cuenta? Registrarse</a> &nbsp;·&nbsp;
+			<a href="{% url 'password_reset' %}">Olvidaste tu contraseña?</a> &nbsp;·&nbsp;
 		</p>									
 		<button class="closeLogin" onclick="toggleLogin()">Cerrar</button>
 	</div>
@@ -182,7 +182,7 @@
 			</button>
 </form>
        <p class="has-text-grey"></p>
-         <a onclick="toggleRegister(), toggleLogin()">Tiene cuenta? acceder</a> &nbsp;·&nbsp;
+         <a onclick="toggleRegister(), toggleLogin()">Tenes cuenta? acceder</a> &nbsp;·&nbsp;
        </p>
 		<button class="closeLogin" onclick="toggleRegister()">Cerrar</button>
 

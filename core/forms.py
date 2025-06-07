@@ -26,4 +26,3 @@ class AutorForm(ModelForm):
             'birth': forms.DateInput(attrs={'type': 'date'}),
             'death': forms.DateInput(attrs={'type': 'date'})  
         }
-
