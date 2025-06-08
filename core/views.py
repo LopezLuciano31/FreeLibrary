@@ -10,6 +10,8 @@ from .forms import *
 from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.contrib.auth import logout
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 
 # Create your views here.
 def logoutV(request):
@@ -105,9 +107,11 @@ def registerUserV(request):
         verification = False
         error = []
         errorCode= []
-        if len(pwd) < 8:
-            verification = True;
-            error.append(["La contrasena debe tener minimo 8 caracteres","pwdLenghtError"])
+        try:
+            validate_password(pwd)
+        except ValidationError as e:
+            for message in e.messages:
+              error.append([message, "pwdError"])
         if pwd != pwd2:
              verfication = True;
              error.append(["Contrasenas no coinciden","pwdError"])

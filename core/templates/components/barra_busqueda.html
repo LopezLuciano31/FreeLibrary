@@ -161,14 +161,15 @@
 			<div class="field">
 				<div class="control">
 					<input class="input is-large" type="password" name="password" placeholder="Contraseña">
-					<p id="pwdLenghtError" class="error-text" style="color: red;"></p>
+					<div id="pwdError" class="error-text" style="color: red;"></div>
 				</div>
 
 			</div>
 				<div class="field">
 				<div class="control">
 					<input class="input is-large" type="password" name="password2" placeholder="Confirmar Contraseña">
-					<p id="pwdError" class="error-text" style="color: red;"></p>
+					
+					
 				</div>
 			</div>
 				<div class="field">
@@ -236,8 +237,13 @@
                 window.location.href = response.redirect_url;
             } else {
                   errors=(response.error);
+				  $('#pwdError').empty();
 				  errors.forEach(error => {
-					$('#'+error[1]).text(error[0] || '')
+					if(error[1]=="pwdError"){
+						$('#pwdError').append('<p>' + error[0] + '</p>');
+					}
+					else{
+					$('#'+error[1]).text(error[0] || '')}
 				  }); 
             }
         },
@@ -252,7 +258,7 @@
         $('#loginError').text('');
     }
 	if (!$(event.target).closest('#registerForm, #pwdErorr, #emailExistError, #userError').length) {
-        $('#pwdErorr').text('');
+        $('#pwdError').empty();
 		$('#emailError').text('');
 		$('#userError').text('');
 		$('#pwdLenghtError').text('');
