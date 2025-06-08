@@ -640,3 +640,17 @@ aside.menu {
     justify-content: flex-start;
     align-items: flex-start;
 }
+.fa-regular.fa-star {
+    color: #b8860b;
+    font-size: 25px;
+  }
+  .fa-solid.fa-star {
+    color: #b8860b;
+    font-size: 25px;
+  }
+  .fa-solid.fa-star-half-stroke {
+    color: #b8860b;
+    font-size: 25px;
+  
+}
+  

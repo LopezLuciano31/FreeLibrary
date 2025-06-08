@@ -31,7 +31,8 @@ def reader(request):
 
 def profileUser(request):
      return render(request, 'profile.html')
-     
+def review(request):
+    return render(request, 'testTemplate/formReview.html')     
 def loginUserV(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -50,6 +51,30 @@ def loginUserV(request):
                 'error': "Credenciales inválidas"
             })
     return JsonResponse({'success': False, 'error': "Método no permitido"})
+def reviewForm(request):
+        if request.method == "POST":
+         textReview = request.POST.get("review")
+         ratingReview = request.POST.get("rating")
+         bookReview = request.POST.get("book")
+         bookReview = Book.objects.get(id=bookReview)
+         userReview = request.user
+         print(textReview)
+         print(ratingReview)
+         if ratingReview and textReview and float(ratingReview) != 0:
+            review = Review(
+                content=textReview,
+                user=userReview,
+                book=bookReview,  
+                rating=ratingReview
+            )
+            review.save()
+            return JsonResponse({'success': True, 'redirect_url': '/'})
+         else:
+            return JsonResponse({
+                'success': False,
+                'error': "Debe seleccionar una puntuación y escribir una reseña"
+            })
+        return JsonResponse({'success': False, 'error': "Método no permitido"})
 
 def bookprofile(request, title):
     return  render(request, 'bookprofile.html')
@@ -135,8 +160,6 @@ def bookRegister(request):
      if form.is_valid():
         form.save()         
         return redirect('homepage')
-
-
  else:
           form = BookForm()
  return render(request,"mybooks.html",{'form':form})

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+  {% load static %}
+
+<head>
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+ <link rel="stylesheet" href="{% static 'css/visual.css' %}">
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<form id='reviewForm' method="POST">
+  {% csrf_token %}
+  <div id="registerOverlay" style="display: block;" >
+<div class="is-flex is-align-items-center">
+  <span class="has-text-black has-text-weight-bold is-size-6 mr-3">Puntuacion:</span>
+<span class="icon mx-1">
+  <i id="star1" class="fa-regular fa-star"></i>
+</span>
+<span class="icon mr-1">
+  <i  id="star2" class="fa-regular  fa-star"></i>
+</span>
+<span class="icon mr-1">
+  <i  id="star3" class="fa-regular  fa-star"></i>
+</span>
+<span class="icon mr-1">
+  <i  id="star4" class="fa-regular  fa-star"></i>
+</span>
+<span class="icon  mr-1">
+  <i  id="star5" class="fa-regular  fa-star"></i>
+</span>
+</div>
+<textarea id="reviewText" class="textarea"   rows="10" placeholder=""></textarea>
+</div>
+<p id="reviewError" class="error-text" style="color: red;"></p>
+<button class="button is-block is-danger is-large is-fullwidth" type="submit">
+				Enviar
+			</button>
+</form>
+<a onclick="prinRatin()"> imprimir</a>
+</body>
+<script>
+let starRating=0;
+function ratingStar(rating){
+  starRating=0; // pongo valor de rating en 0 por si el usuario decide poner solo media estrella
+ for (let i = 1; i <= 5; i++) {
+    const $star = $('#star' + i);
+    $star.removeClass('fa-solid fa-star fa-solid fa-star-half-stroke fa-regular fa-star');
+    if (i <= Math.floor(rating / 2)) {
+      $star.addClass('fa-solid fa-star');
+      starRating=i;
+    } else if (i === Math.ceil(rating / 2) && rating % 2 !== 0) {
+      $star.addClass('fa-solid fa-star-half-stroke');
+      starRating=starRating+0.5;
+    } else {
+      $star.addClass('fa-regular fa-star');
+    }
+  }
+}
+function halfStar(event,i){
+    const rect = event.target.getBoundingClientRect();
+    const click = event.clientX;
+    const middle = rect.left + rect.width / 2;
+    if (click < middle) {
+      ratingStar(i)
+    } else {
+      ratingStar(i+1)
+        }
+}
+for(let i = 1, j = 1; i <= 5; i++, j += 2){
+ const star = document.getElementById('star' + i);
+  if (star) {
+    star.addEventListener('click', function(event) {
+      halfStar(event, j);
+    });
+  }  }
+  function prinRatin(){
+    console.log(starRating);
+  }
+  const urlParams = new URLSearchParams(window.location.search)  && new URLSearchParams(document.location.search.substring(1)); 
+    $(document).on('submit', '#reviewForm', function(e){
+    e.preventDefault();
+    let cookie = document.cookie
+    let csrfToken = cookie.substring(cookie.indexOf('=') + 1)
+    $.ajax({
+        type: 'POST',
+        headers: {
+           'X-CSRFToken': csrfToken
+         },
+        url: '{% url "reviewForm" %}', 
+        data: { review: $('#reviewText').val(),
+                rating: starRating,
+                book: urlParams.get('book'),},
+        success: function(response) {
+            if (response.success) {
+                window.location.href = response.redirect_url;
+            } else {
+                  $('#reviewError').text(response.error); 
+            }
+        },
+        error: function(xhr) {
+            const res = xhr.responseJSON;
+            $('#reviewError').text(res.error || "");
+        }
+    });
+});
+</script>
+</html>
