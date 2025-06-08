@@ -30,7 +30,7 @@
   <i  id="star5" class="fa-regular  fa-star"></i>
 </span>
 </div>
-<textarea id="reviewText" class="textarea"   rows="10" placeholder=""></textarea>
+<textarea id="reviewText" class="textarea" rows="10" placeholder="">{% if review %}{{ review.content }}{% endif %}</textarea>
 </div>
 <p id="reviewError" class="error-text" style="color: red;"></p>
 <button class="button is-block is-danger is-large is-fullwidth" type="submit">
@@ -48,10 +48,10 @@ function ratingStar(rating){
     $star.removeClass('fa-solid fa-star fa-solid fa-star-half-stroke fa-regular fa-star');
     if (i <= Math.floor(rating / 2)) {
       $star.addClass('fa-solid fa-star');
-      starRating=i;
+      starRating=i*2;
     } else if (i === Math.ceil(rating / 2) && rating % 2 !== 0) {
       $star.addClass('fa-solid fa-star-half-stroke');
-      starRating=starRating+0.5;
+      starRating=starRating+1;
     } else {
       $star.addClass('fa-regular fa-star');
     }
@@ -105,4 +105,9 @@ for(let i = 1, j = 1; i <= 5; i++, j += 2){
     });
 });
 </script>
+{% if review %}
+  <script>
+    ratingStar({{ review.rating }});
+  </script>
+{% endif %}
 </html>

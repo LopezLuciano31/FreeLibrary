@@ -31,8 +31,7 @@ def reader(request):
 
 def profileUser(request):
      return render(request, 'profile.html')
-def review(request):
-    return render(request, 'testTemplate/formReview.html')     
+
 def loginUserV(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -51,6 +50,16 @@ def loginUserV(request):
                 'error': "Credenciales inválidas"
             })
     return JsonResponse({'success': False, 'error': "Método no permitido"})
+
+def review(request):
+    try:
+        review= Review.objects.get(user=request.user)
+        return render(request, 'testTemplate/formReview.html', {'review': review})
+    except Review.DoesNotExist:
+        return render(request, 'testTemplate/formReview.html')
+ 
+
+ 
 def reviewForm(request):
         if request.method == "POST":
          textReview = request.POST.get("review")
@@ -58,15 +67,21 @@ def reviewForm(request):
          bookReview = request.POST.get("book")
          bookReview = Book.objects.get(id=bookReview)
          userReview = request.user
-         print(textReview)
-         print(ratingReview)
+         try:
+             review = Review.objects.get(user=userReview)
+         except Review.DoesNotExist:
+             review = None 
          if ratingReview and textReview and float(ratingReview) != 0:
-            review = Review(
-                content=textReview,
-                user=userReview,
-                book=bookReview,  
-                rating=ratingReview
-            )
+            if review is not None:
+              review.rating=ratingReview
+              review.content=textReview
+            else:
+              review = Review(
+                  content=textReview,
+                  user=userReview,
+                  book=bookReview,  
+                  rating=ratingReview
+                    )
             review.save()
             return JsonResponse({'success': True, 'redirect_url': '/'})
          else:
