@@ -107,7 +107,7 @@ for(let i = 1, j = 1; i <= 5; i++, j += 2){
 </script>
 {% if review %}
   <script>
-    ratingStar({{ review.rating }});
+    ratingStar({{ review.rating }}); // si les marca esta linea como error no hay ninguno, por ahi el editor considera correciones para js cuando es django.
   </script>
 {% endif %}
 </html>

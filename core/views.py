@@ -53,7 +53,9 @@ def loginUserV(request):
 
 def review(request):
     try:
-        review= Review.objects.get(user=request.user)
+        bookReview = request.GET.get('book')
+        bookReview = Book.objects.get(id=bookReview)
+        review= Review.objects.get(user=request.user, book=bookReview)
         return render(request, 'testTemplate/formReview.html', {'review': review})
     except Review.DoesNotExist:
         return render(request, 'testTemplate/formReview.html')
@@ -68,7 +70,7 @@ def reviewForm(request):
          bookReview = Book.objects.get(id=bookReview)
          userReview = request.user
          try:
-             review = Review.objects.get(user=userReview)
+             review = Review.objects.get(user=userReview, book=bookReview)
          except Review.DoesNotExist:
              review = None 
          if ratingReview and textReview and float(ratingReview) != 0:
