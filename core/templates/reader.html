@@ -26,23 +26,22 @@
 </a>
    <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
 <aside class="menu">
-  <p class="menu-label">General</p>
   <ul class="menu-list">
       <li><a id="changeMode" onclick="changeMode()">Cambiar modo lector</a>
       </li>
       <li>
-              <a> Selector de capitulo:</a>
-      </li>
-      <li>
+        <a>Capitulo:</a>
         <select id="toc"></select> 
       </li>
       <li>
         <a> Agregar a una lista.</a>
       </li>
       <li>
+        <a>Modo:</a>
           <div class="ball-container">
+            
             <a class="icon is-medium" onclick="changeModeAnotation('highlight')" >
-                <i class="fas fa-highlighter"></i>
+              <i class="fas fa-highlighter"></i>
             </a>
             <a class="icon is-medium" onclick="changeModeAnotation('underline')">
                 <i class="fas fa-underline"></i>
@@ -54,10 +53,10 @@
             <i class="fas fa-xmark"></i>
         </a>
           </div>
-      </li>
+        </li>
       <li>
       <div class="ball-container">
-        <a> Color del resaltador:</a>
+        <a> Color:</a>
         <div class="color-ball"  style="background-color:#f44;" onclick="changeColor('red')" ></div>
         <div class="color-ball"  style="background-color:#48f;" onclick="changeColor('blue')"></div>
         <div class="color-ball"  style="background-color:#4f4;" onclick="changeColor('green')"></div>

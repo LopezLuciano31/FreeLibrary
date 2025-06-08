@@ -8,22 +8,18 @@
       overflow-x: hidden;
       transition: 0.3s;
       padding-top: 60px;
-      background-color: rgba(252, 242, 242, 0.4);
+      background-color: rgba(221, 165, 112, 0.3);
     }
 
     #sideMenu .menu a {
-        background: rgba(255, 255, 255, 0.1);  
-        backdrop-filter: blur(10px);         
-        -webkit-backdrop-filter: blur(10px);   
-        border: 1px solid rgba(255, 255, 255, 0.2); 
-        border-radius: 8px;
+      background-color: rgba(221, 165, 112, 0.0);
         padding: 1rem;
         margin-bottom: 0.5rem;
         color: black;    
     }
-    aside.menu {
-         background-color: rgba(252, 242, 242, 0.4); }
 
+    aside.menu {
+      background-color: rgb(221, 165, 112);}
     .closebtn {
       position: absolute;
       top: 10px;
@@ -49,14 +45,13 @@
       fill: white;
     }
  body {
+  overflow-y: hidden;
   margin: 0;
-  background: #fafafa;
+  background: white;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333;
-  position: absolute;
   height: 100%;
   width: 100%;
-  min-height: 800px;
 }
 
 #title {
@@ -75,12 +70,13 @@
 
 #viewer.spreads {
   width: 98%;
-  height: 98vh;
+  height: 96vh;
   box-shadow: 0 0 4px #ccc;
   border-radius: 5px;
   margin: 1vh 1%;
   padding: 0;
   position: relative;
+  overflow-y: hidden;
 }
 
 #viewer.spreads .epub-view > iframe {
