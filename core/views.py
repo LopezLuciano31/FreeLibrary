@@ -16,7 +16,8 @@ from django.db.models import Avg
 # Create your views here.
 def logoutV(request):
     logout(request)
-    return redirect('homepage')
+    url = request.POST.get('returnUrl', '/')
+    return redirect(url)
 
 def homepage(request):
     editions_for_html = Edition.objects.all()
