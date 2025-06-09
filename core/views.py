@@ -12,7 +12,7 @@ from django.http import JsonResponse
 from django.contrib.auth import logout
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
-
+from django.db.models import Avg
 # Create your views here.
 def logoutV(request):
     logout(request)
@@ -65,9 +65,9 @@ def review(request):
         return JsonResponse({'success': True, 'review':response})
     except Review.DoesNotExist:
         return JsonResponse({'success': False})
- 
 
- 
+    
+
 def reviewForm(request):
         if request.method == "POST":
          textReview = request.POST.get("review")
@@ -101,7 +101,10 @@ def reviewForm(request):
 
 def bookprofile(request, title):
     edition = Edition.objects.filter(title__icontains=title)
-    return render(request, 'bookprofile.html', {'edition': edition})
+    bookReview = request.GET.get('book')
+    bookReview = Book.objects.get(id=bookReview)
+    ratingBook= Review.objects.filter(book=bookReview).aggregate(avg=Avg('rating'))['avg']
+    return render(request, 'bookprofile.html', {'edition': edition, 'ratingBookProfile': int(ratingBook)})
 
 def registerUserV(request):
     if request.method == "POST":
