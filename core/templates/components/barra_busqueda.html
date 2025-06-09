@@ -125,12 +125,12 @@
 			{% csrf_token %}
 			<div class="field">
 				<div class="control">
-					<input class="input is-large" type="text" name="username" placeholder="Nombre de usuario" autofocus>
+					<input class="input is-large" maxlength="32" type="text" name="username" placeholder="Nombre de usuario" autofocus>
 				</div>
 			</div>
 			<div class="field">
 				<div class="control">
-					<input class="input is-large" type="password" name="password" placeholder="Contraseña">
+					<input class="input is-large" maxlength="32" type="password" name="password" placeholder="Contraseña">
 				</div>
 			</div>
 				<p id="loginError" class="error-text" style="color: red;"></p>
@@ -154,27 +154,27 @@
 			{% csrf_token %}
 			<div class="field">
 				<div class="control">
-					<input class="input is-large" type="text" name="username" placeholder="Nombre de usuario" autofocus>
+					<input class="input is-large" type="text" maxlength="32" name="username" placeholder="Nombre de usuario" autofocus>
 				</div>
 				<p id="userError" class="error-text" style="color: red;"></p>
 			</div>
 			<div class="field">
 				<div class="control">
-					<input class="input is-large" type="password" name="password" placeholder="Contraseña">
+					<input class="input is-large" type="password" maxlength="32" name="password" placeholder="Contraseña">
 					<div id="pwdError" class="error-text" style="color: red;"></div>
 				</div>
 
 			</div>
 				<div class="field">
 				<div class="control">
-					<input class="input is-large" type="password" name="password2" placeholder="Confirmar Contraseña">
+					<input class="input is-large" type="password" maxlength="32" name="password2" placeholder="Confirmar Contraseña">
 					
 					
 				</div>
 			</div>
 				<div class="field">
 				<div class="control">
-					<input class="input is-large" type="email" name="email" placeholder="email">
+					<input class="input is-large" type="email" maxlength="64" name="email" placeholder="email">
 					<p id="emailError" class="error-text" style="color: red;"></p>			
 				</div>
 			</div>
