@@ -104,7 +104,7 @@ def bookprofile(request, title):
     edition = Edition.objects.filter(title__icontains=title)
     bookReview = request.GET.get('book')
     bookReview = Book.objects.get(id=bookReview)
-    ratingBook= Review.objects.filter(book=bookReview).aggregate(avg=Avg('rating'))['avg']
+    ratingBook= Review.objects.filter(book=bookReview).aggregate(avg=Avg('rating'))['avg'] or 0.0
     return render(request, 'bookprofile.html', {'edition': edition, 'ratingBookProfile': int(ratingBook)})
 
 def registerUserV(request):
