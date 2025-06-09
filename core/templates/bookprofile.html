@@ -3,9 +3,102 @@
 {% load static %}
 
 {% block principal %}
-<div class="medio">
-    <div class="box">
-        
+<div class="bookpro">
+    <div class="box" id="down">
+        {% if edition %}
+        {% for edi in edition%}
+        <div class="block1">
+            <div class="box">
+                <div class="book-cover">
+                    <a href="">
+                        <img src="{{ edi.cover }}">
+                    </a>
+                </div>
+                <div class="book-location">
+                    <button class="button is-info">
+                        Leer
+                    </button>
+                </div>
+                <div class="clasi">
+                    Estrellas
+                </div>
+                <hr style="width: 150px; background-color: #D5CDA3;">
+                Reseña <br>
+                Notas <br>
+                Compartir <br>
+            </div>
+            <div class="box" style="height: 350px;">
+                <ol>
+                    Buscar en bilbiotecas cercanas
+                    <li><a href=""> Hola mundo</a></li>
+                    Comparar este libro
+                    <li><a href=""> hola mundo</a></li>
+                    <li><a href=""> hola mundo</a></li>
+                    Cuando compras libros usando estos enlaces, el Archivo de Internet puede ganar una pequeña comision
+                </ol>
+            </div>
+        </div>
+        <div class="block2">
+            <div class="box">
+                <div class="super">
+                    <div class="box"><h1>Resumen</h1></div>
+                    <div class="box"><h1>Ediciones</h1></div>
+                    <div class="box"><h1>Detalles</h1></div>
+                    <div class="box"><h1>Reseñas</h1></div>
+                    <div class="box"><h1>Listas</h1></div>
+                </div>
+                <div class="booklore">
+                    <h3>Una edicion de <strong>{{ edi.title }}</strong> ({{ edi.publicationDate|date:"Y" }})</h3>
+                    <h2>{{ edi.title }}</h2>
+                    <h3>De <a href="">{{ edi.of.autor.name }}</a></h3>
+                    <div class="clasi">
+                        Estrellas
+                    </div>
+                    <hr style="width: 680px; background-color: #D5CDA3;">
+                    <h3>Descripcion: </h3>
+                    <p>{{ edi.of.description }}</p>
+                    <hr style="width: 680px; background-color: #D5CDA3;">
+                    <div class="chart">
+                        <div class="box">
+                            <h1>Fecha de Publicacion</h1>
+                            <h1>{{ edi.publicationDate|date:"Y" }}</h1>
+                        </div>
+                        <div class="box">
+                            <h1>Editorial</h1>
+                            <h1>{{ edi.publisher }}</h1>
+                        </div>
+                        <div class="box">
+                            <h1>Idioma</h1>
+                            <h1>{{ edi.lang }}</h1>
+                        </div>
+                        <div class="box">
+                            <h1>Paginas</h1>
+                            <h1>{{ edi.pages }}</h1>
+                        </div>
+                    </div>
+                    <hr style="width: 680px; background-color: #D5CDA3;">
+                    <div class="edtions-page">
+                        <h1>Ediciones</h1>
+                    </div>
+                    <hr style="width: 680px; background-color: #D5CDA3;">
+                    <div class="details-book">
+                        <h1>Detalles del Libro</h1>
+                    </div>
+                    <hr style="width: 680px; background-color: #D5CDA3;">
+                    <div class="res-book">
+                        <h1>Reseñas</h1>
+                    </div>
+                    <hr style="width: 680px; background-color: #D5CDA3;">
+                    <div class="list">
+                        <h1>Listas</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>No se encontraron libros.</p>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

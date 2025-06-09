@@ -96,7 +96,8 @@ def reviewForm(request):
         return JsonResponse({'success': False, 'error': "Método no permitido"})
 
 def bookprofile(request, title):
-    return  render(request, 'bookprofile.html')
+    edition = Edition.objects.filter(title__icontains=title)
+    return render(request, 'bookprofile.html', {'edition': edition})
 
 def registerUserV(request):
     if request.method == "POST":

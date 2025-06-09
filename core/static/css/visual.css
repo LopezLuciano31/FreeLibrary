@@ -379,7 +379,7 @@ html {
     background-color: #6a89cc;
 }
 
-/*Mis Libros*/
+/*Perfil de Usuario*/
 
 .profile {
     width: 100%;
@@ -640,6 +640,7 @@ aside.menu {
     justify-content: flex-start;
     align-items: flex-start;
 }
+
 .fa-regular.fa-star {
     color: #b8860b;
     font-size: 25px;
@@ -653,4 +654,177 @@ aside.menu {
     font-size: 25px;
   
 }
-  
+
+
+/* Perfil de Libros */
+
+.bookpro {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.bookpro .box {
+    width: 1000px;
+    height: 100%;
+    border: 1px solid #D5CDA3;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.box .block1{
+    width: 250px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.block1 .box{
+    width: 200px;
+    height: 500px;
+    border: 1px solid #D5CDA3;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.block1 .box .clasi{
+    margin-top: 20px;
+}
+
+.box .block2{
+    width: 750px;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.block2 .box{
+    width: 750px;
+    height: 2200px;
+    border: 1px solid #D5CDA3;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.block2 .box .booklore{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.block2 .box .booklore h2{
+    font-family: 'Times New Roman', sans-serif;
+    font-size: 35px;
+    color: black;
+}
+
+.block2 .box .booklore h3{
+    color: gray;
+}
+
+.booklore .chart{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.booklore .chart .box{
+    width: 150px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.chart .box h1{
+    color: black;
+    font-size: 13px;
+}
+
+.block2 .super{
+    width: 100%;
+    height: 50px;
+    border: 1px solid #D5CDA3;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.block2 .super .box{
+    width: 120px;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.block2 .edtions-page{
+    width: 100%;
+    height: 300px;
+    border: 1px solid #D5CDA3;
+}
+
+.block2 .edtions-page h1{
+    color: black;
+    font-size: 20px;
+    font-family: 'Times New Roman', sans-serif;
+}
+
+.block2 .details-book{
+    width: 100%;
+    height: 450px;
+    border: 1px solid #D5CDA3;
+}
+
+.block2 .details-book h1{
+    color: black;
+    font-size: 20px;
+    font-family: 'Times New Roman', sans-serif;
+}
+
+.block2 .res-book{
+    width: 100%;
+    height: 200px;
+    border: 1px solid #D5CDA3;
+}
+
+.block2 .res-book h1{
+    color: black;
+    font-size: 20px;
+    font-family: 'Times New Roman', sans-serif;
+}
+
+.block2 .list{
+    width: 100%;
+    height: 200px;
+    border: 1px solid #D5CDA3;
+}
+
+.block2 .list h1{
+    color: black;
+    font-size: 20px;
+    font-family: 'Times New Roman', sans-serif;
+}
