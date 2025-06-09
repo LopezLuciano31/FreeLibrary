@@ -58,9 +58,13 @@ def review(request):
         bookReview = request.GET.get('book')
         bookReview = Book.objects.get(id=bookReview)
         review= Review.objects.get(user=request.user, book=bookReview)
-        return render(request, 'testTemplate/formReview.html', {'review': review})
+        response = {
+        'content': review.content,
+        'rating': review.rating
+        }
+        return JsonResponse({'success': True, 'review':response})
     except Review.DoesNotExist:
-        return render(request, 'testTemplate/formReview.html')
+        return JsonResponse({'success': False})
  
 
  

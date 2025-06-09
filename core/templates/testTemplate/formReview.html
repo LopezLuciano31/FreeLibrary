@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html lang="es">
-  {% load static %}
 
-<head>
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
- <link rel="stylesheet" href="{% static 'css/visual.css' %}">
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
 <form id='reviewForm' method="POST">
   {% csrf_token %}
-  <div id="registerOverlay" style="display: block;" >
 <div class="is-flex is-align-items-center">
   <span class="has-text-black has-text-weight-bold is-size-6 mr-3">Puntuacion:</span>
 <span class="icon mx-1">
@@ -31,7 +20,6 @@
 </span>
 </div>
 <textarea id="reviewText" class="textarea" rows="10" placeholder="">{% if review %}{{ review.content }}{% endif %}</textarea>
-</div>
 <p id="reviewError" class="error-text" style="color: red;"></p>
 <button class="button is-block is-danger is-large is-fullwidth" type="submit">
 				Enviar
@@ -93,7 +81,7 @@ for(let i = 1, j = 1; i <= 5; i++, j += 2){
                 book: urlParams.get('book'),},
         success: function(response) {
             if (response.success) {
-                window.location.href = response.redirect_url;
+                toggleReviewForm();
             } else {
                   $('#reviewError').text(response.error); 
             }
@@ -110,4 +98,3 @@ for(let i = 1, j = 1; i <= 5; i++, j += 2){
     ratingStar({{ review.rating }}); // si les marca esta linea como error no hay ninguno, por ahi el editor considera correciones para js cuando es django.
   </script>
 {% endif %}
-</html>
