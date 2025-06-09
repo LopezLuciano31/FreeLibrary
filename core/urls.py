@@ -13,7 +13,7 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_resetComplete.html'), name='password_reset_complete'),
     path('',views.homepage, name='homepage'),
     path('reader/', views.reader),
-    path('review/', views.review),
+    path('review/', views.review, name='review'),
     path('login/', loginUserV, name='login'),
     path('register/', registerUserV, name='register'),
     path('reviewForm/', views.reviewForm, name='reviewForm'),
@@ -23,7 +23,7 @@ urlpatterns = [
     path('profile/', views.profileUser, name='profile'),
     path('mybooks/', views.mybooks),
     path('book_list/',views.book_list, name='book_list'),
-    path('bookprofile/<str:title>',views.bookprofile),
+    path('bookprofile/<str:title>/',views.bookprofile),
     path('logout/', views.logoutV, name='logout'),
 ]
 if settings.DEBUG:
