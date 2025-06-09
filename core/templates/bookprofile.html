@@ -11,19 +11,33 @@
             <div class="box">
                 <div class="book-cover">
                     <a href="">
-                        <img src="{{ edi.cover }}">
+                        <img src="{{ edi.cover.url }}">
                     </a>
                 </div>
                 <div class="book-location">
-                    <button class="button is-info">
-                        Leer
-                    </button>
+                     <a href="/reader/?book={{ edi.file.url }}" class="button is-link">Leer</a>
                 </div>
                 <div class="clasi">
-                    Estrellas
+                    <div class="is-flex is-align-items-center">
+                    <span class="icon mx-1">
+                        <i id="starProfile1" class="fa-regular fa-star"></i>
+                    </span>
+                    <span class="icon mr-1">
+                            <i  id="starProfile2" class="fa-regular  fa-star"></i>
+                    </span>
+                    <span class="icon mr-1">
+                        <i  id="starProfile3" class="fa-regular  fa-star"></i>
+                        </span>
+                    <span class="icon mr-1">
+                        <i  id="starProfile4" class="fa-regular  fa-star"></i>
+                    </span>
+                    <span class="icon  mr-1">
+                        <i  id="starProfile5" class="fa-regular  fa-star"></i>
+                    </span>
+                    </div>
                 </div>
                 <hr style="width: 150px; background-color: #D5CDA3;">
-               <a id="reviewButton" dataBook="{{ edi.of.id }}" class="button is-link">Reseñar</a>  <br>  
+               <a id="reviewButton"  class="button is-link">Reseñar</a>  <br>  
                 Notas <br>
                 Compartir <br>
             </div>
@@ -126,7 +140,7 @@ document.getElementById('reviewButton').addEventListener('click', function(event
     success: function(response) {
       if (response.success) {
          $('#reviewText').val(response.review.content); 
-         ratingStar( response.review.rating );
+         ratingStar( response.review.rating,"star" );
          toggleReviewForm()
       } else {
         toggleReviewForm()
@@ -137,6 +151,10 @@ document.getElementById('reviewButton').addEventListener('click', function(event
     }
   });
 });
+{% if ratingBookProfile %}
+    ratingStar({{ratingBookProfile}},"starProfile") ;
+    console.log({{ratingBookProfile}});
+{% endif %}
 
 </script>
 {% endblock %}

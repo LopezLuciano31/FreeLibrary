@@ -19,7 +19,7 @@
   <i  id="star5" class="fa-regular  fa-star"></i>
 </span>
 </div>
-<textarea id="reviewText" class="textarea" rows="10" placeholder="">{% if review %}{{ review.content }}{% endif %}</textarea>
+<textarea id="reviewText" class="textarea" rows="10" placeholder=""></textarea>
 <p id="reviewError" class="error-text" style="color: red;"></p>
 <button class="button is-block is-danger is-large is-fullwidth" type="submit">
 				Enviar
@@ -29,10 +29,10 @@
 </body>
 <script>
 let starRating=0;
-function ratingStar(rating){
+function ratingStar(rating,name){
   starRating=0; // pongo valor de rating en 0 por si el usuario decide poner solo media estrella
  for (let i = 1; i <= 5; i++) {
-    const $star = $('#star' + i);
+    const $star = $('#'+name + i);
     $star.removeClass('fa-solid fa-star fa-solid fa-star-half-stroke fa-regular fa-star');
     if (i <= Math.floor(rating / 2)) {
       $star.addClass('fa-solid fa-star');
@@ -50,9 +50,9 @@ function halfStar(event,i){
     const click = event.clientX;
     const middle = rect.left + rect.width / 2;
     if (click < middle) {
-      ratingStar(i)
+      ratingStar(i,"star")
     } else {
-      ratingStar(i+1)
+      ratingStar(i+1,"star")
         }
 }
 for(let i = 1, j = 1; i <= 5; i++, j += 2){
@@ -81,6 +81,7 @@ for(let i = 1, j = 1; i <= 5; i++, j += 2){
                 book: urlParams.get('book'),},
         success: function(response) {
             if (response.success) {
+                location.reload();
                 toggleReviewForm();
             } else {
                   $('#reviewError').text(response.error); 
@@ -93,8 +94,3 @@ for(let i = 1, j = 1; i <= 5; i++, j += 2){
     });
 });
 </script>
-{% if review %}
-  <script>
-    ratingStar({{ review.rating }}); // si les marca esta linea como error no hay ninguno, por ahi el editor considera correciones para js cuando es django.
-  </script>
-{% endif %}
