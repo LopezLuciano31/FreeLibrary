@@ -3,6 +3,14 @@ from .models import *
 from django import forms
 
 class EditionForm(ModelForm):
+    publicationDate = forms.DateField(
+        widget=forms.DateInput(format='%d/%m/%y', attrs={
+            'type': 'text',
+            'placeholder': 'dd/mm/yy',
+            'autocomplete': 'off',
+        }),
+        input_formats=['%d/%m/%y']
+    )
     class Meta:
         model = Edition
         fields = ["id","title", "publicationDate","publisher","lang","pages","notes","place","cover","file","of"]
@@ -24,6 +32,14 @@ class EditionForm(ModelForm):
 
       
 class BookForm(ModelForm):
+    publicationDate = forms.DateField(
+        widget=forms.DateInput(format='%d/%m/%y', attrs={
+            'type': 'text',
+            'placeholder': 'dd/mm/yy',
+            'autocomplete': 'off',
+        }),
+        input_formats=['%d/%m/%y']
+    )
     class Meta:
         model = Book
         fields = ["id","name", "description", "publicationDate","genres","autor"]
@@ -40,6 +56,23 @@ class BookForm(ModelForm):
 
 
 class AutorForm(ModelForm):
+    death = forms.DateField(
+        widget=forms.DateInput(format='%d/%m/%y', attrs={
+            'type': 'text',
+            'placeholder': 'dd/mm/yy',
+            'autocomplete': 'off',
+        }),
+        input_formats=['%d/%m/%y']
+    )
+    birth = forms.DateField(
+        widget=forms.DateInput(format='%d/%m/%y', attrs={
+            'class': 'input',
+            'type': 'text',
+            'placeholder': 'dd/mm/yy',
+            'autocomplete': 'off',
+        }),
+        input_formats=['%d/%m/%y']
+    )
     class Meta:
         model = Autor
         fields = ["name", "lastName", "bio","birth","death","prof","portrait"]
@@ -52,7 +85,3 @@ class AutorForm(ModelForm):
             'birth': 'Fecha de nacimiento',
             'death': 'Fecha de defuncion',
         }
-        widgets = {
-            'birth': forms.DateInput(attrs={  'type': 'date' }),
-            'death': forms.DateInput(attrs={  'type': 'date' }),
-        } 
