@@ -77,16 +77,11 @@ WSGI_APPLICATION = 'home.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
 DATABASES = {
-   'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv("DBNAME"),        
-        'USER': os.getenv("USER_FREELIBRARY"),
-        'PASSWORD': os.getenv("PWD_FREELIBRARY"),     
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 
 # Password validation
@@ -129,7 +124,6 @@ STATIC_URL = '/static/'
 if not DEBUG:
     # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
     # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
     # and renames the files with unique names for each version to support long-term caching
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
