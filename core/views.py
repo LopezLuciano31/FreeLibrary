@@ -1,15 +1,13 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from .models import Autor, Book, Edition
+from django.http import HttpResponse, JsonResponse
+from .models import Autor, Book, Edition, Review
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.urls import reverse
 from .forms import *
 from django.core.mail import send_mail
-from django.http import JsonResponse
-from django.contrib.auth import logout
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.db.models import Avg
