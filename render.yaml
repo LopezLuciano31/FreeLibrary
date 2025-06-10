@@ -1,0 +1,22 @@
+databases:
+  - name: freelibraryPostgres
+    plan: free
+    databaseName: freelibrarypostgres
+    user: freelibrarypostgres_user
+
+services:
+  - type: web
+    plan: free
+    name: freelibraryUNSL
+    runtime: python
+    buildCommand: './build.sh'
+    startCommand: 'python -m gunicorn home.asgi:application -k uvicorn.workers.UvicornWorker'
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: freelibrarypostgres
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
