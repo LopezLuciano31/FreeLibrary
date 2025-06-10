@@ -51,6 +51,7 @@
                 </button>
             </div>
         </div>
+        {% if user.is_superuser %}
         <div class="rightinfo">
             <form method="post" action="{% url 'bookRegister' %}">
                 {% csrf_token %}
@@ -74,6 +75,7 @@
                 <input type="submit" value="Registrar autor" />
             </form>
         </div>
+        (% endif %)
     </div>
 </div>
 
