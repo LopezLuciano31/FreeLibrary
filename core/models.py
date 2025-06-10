@@ -1,8 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.postgres.fields import ArrayField
 
 # Create your models here.
+class Profile(models.Model):
+    user = models.OneToOneField(User)
+    reading = ArrayField(models.IntegerField(), blank=True, default=list)
+    readed = ArrayField(models.IntegerField(), blank=True, default=list)
+    favorites = ArrayField(models.IntegerField(), blank=True, default=list)
 class Autor(models.Model):
     name= models.CharField(max_length=35)
     lastName= models.CharField(max_length=35)

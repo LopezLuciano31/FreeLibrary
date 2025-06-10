@@ -145,7 +145,9 @@ def registerUserV(request):
             })
         try:
             user = User.objects.create_user(username=username, password=pwd, email=email)
+            profile= Profile.objects.create_user(user)
             user.save()
+            profile.save()
             subject = "Bienvenido a FreeLibrary"
             from_email = settings.EMAIL_HOST_USER
             to = [email]
