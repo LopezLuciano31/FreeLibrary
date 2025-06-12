@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
-from .models import Autor, Book, Edition, Review
+from .models import Autor, Book, Edition, Review, Profile
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -32,6 +32,12 @@ def mybooks(request):
     return render(request, 'mybooks.html')
 
 def reader(request):
+    if request.user.is_authenticated:
+        user = request.user
+        profile = Profile.objects.get(user=user)
+        bookEdition = request.GET.get('edition')
+        bookEdition = Edition.objects.get(id=bookEdition)
+        profile.reading.add(bookEdition)
     return render(request, 'reader.html')
 
 def profileUser(request):
@@ -41,7 +47,6 @@ def loginUserV(request):
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
-        print("DEBUG:", username, password)
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
@@ -145,7 +150,9 @@ def registerUserV(request):
             })
         try:
             user = User.objects.create_user(username=username, password=pwd, email=email)
-            user.save()
+            profile= Profile(user=user)
+            profile.save()
+            login(request, user) 
             subject = "Bienvenido a FreeLibrary"
             from_email = settings.EMAIL_HOST_USER
             to = [email]
@@ -154,8 +161,7 @@ def registerUserV(request):
             text_content = f"Hola {username}, bienvenido a FreeLibrary!"
             msg = EmailMultiAlternatives(subject, text_content, from_email, to)
             msg.attach_alternative(html_content, "text/html")
-            msg.send()
-            login(request, user)  
+            msg.send() 
             return JsonResponse({
                 'success': True,
                 'redirect_url': '/'  
