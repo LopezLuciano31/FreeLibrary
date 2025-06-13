@@ -22,8 +22,16 @@ def logoutV(request):
     return redirect(url)
 
 def homepage(request):
-    editions_for_html = Edition.objects.all()
-    return render(request, "homepage.html", {'editions':editions_for_html})
+    books_fiction = Book.objects.filter(genres__icontains='fiction')
+    books_fantasy = Book.objects.filter(genres__icontains='fantasy')
+    books_mystery = Book.objects.filter(genres__icontains='mystery')
+    books_romance = Book.objects.filter(genres__icontains='romance')
+    return render(request, "homepage.html", {
+        'books_fiction':books_fiction,
+        'books_mystery':books_mystery,
+        'books_fantasy':books_fantasy,
+        'books_romance':books_romance
+    })
 
 def about(request):
     return HttpResponse("<h3>Aqui esta About</h3>")
@@ -68,8 +76,6 @@ def review(request):
         return JsonResponse({'success': True, 'review':response})
     except Review.DoesNotExist:
         return JsonResponse({'success': False})
-
-    
 
 def reviewForm(request):
         if request.method == "POST":

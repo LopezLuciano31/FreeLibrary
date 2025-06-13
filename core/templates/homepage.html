@@ -40,7 +40,7 @@
             <div class="carousel-section">
                 <div class="carousel-header">
                     <h2>
-                        <a href="">Books</a>
+                        <a href="">Books of Fiction</a>
                     </h2>
                 </div>
                 <div class="carousel-container">
@@ -52,34 +52,31 @@
                         </button>
                     </div>
                     <div class="carousel-container-block">
+                        {% if books_fiction %}
+                        {% for book in books_fiction %}
+                        {% if book.edition_set.all %}
+                        {% for edition in book.edition_set.all %}
                         <div class="carousel-block" style="width: 200px; padding-top: 10px;">
                             <div class="book-cover">
-                                <a href="">
-                                    <img src="https://covers.openlibrary.org/b/id/14927109-M.jpg">
-                                </a>
-                            </div>
-                            <div class="book-location">
-                                <a href="" class="button is-info">Leer</a>
-                            </div>
-                        </div>
-                        {% for edition in editions %}
-                        <div class="slash" style="width: 15px;"></div>
-                        <div class="carousel-block" style="width: 200px; padding-top: 10px;">
-                            <div class="book-cover">
-                               <a href="/bookprofile/{{ edition.title }}/?book={{ edition.of.id }}">
+                                <a href="/bookprofile/{{ edition.title }}/?book={{ edition.of.id }}">
                                     <img src="{{edition.cover.url}}">
                                 </a>
                             </div>
                             <div class="book-location">
                                 <a href="/reader/?book={{ edition.file.url }}" class="button is-info">Leer</a>
                             </div>
-
                             <div class="book-location">
                                 <a href="/review/?book={{ edition.of.id }}" class="button is-info">Reseñar</a>
                             </div>
-
                         </div>
                         {% endfor %}
+                        {% else %}
+                        <h1>No se encontraron ediciones con este genero</h1>
+                        {% endif %}
+                        {% endfor %}
+                        {% else %}
+                        <h1>No se encontraron libros con este genero</h1>
+                        {% endif %}
                     </div>
                     <div class="button-post">
                         <button class="button is-info is-small">
@@ -95,7 +92,7 @@
             <div class="carousel-section">
                 <div class="carousel-header">
                     <h2>
-                        <a href="">Books</a>
+                        <a href="">Books of Fantasy</a>
                     </h2>
                 </div>
                 <div class="carousel-container">
@@ -107,13 +104,31 @@
                         </button>
                     </div>
                     <div class="carousel-container-block">
-                        <div class="izquierda" style="height: 100%;">
-                            <div class="carousel-block"></div>
+                        {% if books_fantasy %}
+                        {% for book in books_fantasy %}
+                        {% if book.edition_set.all %}
+                        {% for edition in book.edition_set.all %}
+                        <div class="carousel-block" style="width: 200px; padding-top: 10px;">
+                            <div class="book-cover">
+                                <a href="/bookprofile/{{ edition.title }}/?book={{ edition.of.id }}">
+                                    <img src="{{edition.cover.url}}">
+                                </a>
+                            </div>
+                            <div class="book-location">
+                                <a href="/reader/?book={{ edition.file.url }}" class="button is-info">Leer</a>
+                            </div>
+                            <div class="book-location">
+                                <a href="/review/?book={{ edition.of.id }}" class="button is-info">Reseñar</a>
+                            </div>
                         </div>
-                        <div class="slash"></div>
-                        <div class="derecha" style="height: 100%;">
-                            <div class="carousel-block"></div>
-                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <h1>No se encontraron ediciones con este genero</h1>
+                        {% endif %}
+                        {% endfor %}
+                        {% else %}
+                        <h1>No se encontraron libros con este genero</h1>
+                        {% endif %}
                     </div>
                     <div class="button-post">
                         <button class="button is-info is-small">
@@ -129,7 +144,7 @@
             <div class="carousel-section">
                 <div class="carousel-header">
                     <h2>
-                        <a href="">Books</a>
+                        <a href="">Books of Mystery</a>
                     </h2>
                 </div>
                 <div class="carousel-container">
@@ -141,13 +156,31 @@
                         </button>
                     </div>
                     <div class="carousel-container-block">
-                        <div class="izquierda" style="height: 100%;">
-                            <div class="carousel-block"></div>
+                        {% if books_mystery %}
+                        {% for book in books_mystery %}
+                        {% if book.edition_set.all %}
+                        {% for edition in book.edition_set.all %}
+                        <div class="carousel-block" style="width: 200px; padding-top: 10px;">
+                            <div class="book-cover">
+                                <a href="/bookprofile/{{ edition.title }}/?book={{ edition.of.id }}">
+                                    <img src="{{edition.cover.url}}">
+                                </a>
+                            </div>
+                            <div class="book-location">
+                                <a href="/reader/?book={{ edition.file.url }}" class="button is-info">Leer</a>
+                            </div>
+                            <div class="book-location">
+                                <a href="/review/?book={{ edition.of.id }}" class="button is-info">Reseñar</a>
+                            </div>
                         </div>
-                        <div class="slash"></div>
-                        <div class="derecha" style="height: 100%;">
-                            <div class="carousel-block"></div>
-                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <h1>No se encontraron ediciones con este genero</h1>
+                        {% endif %}
+                        {% endfor %}
+                        {% else %}
+                        <h1>No se encontraron libros con este genero</h1>
+                        {% endif %}
                     </div>
                     <div class="button-post">
                         <button class="button is-info is-small">
@@ -163,7 +196,7 @@
             <div class="carousel-section">
                 <div class="carousel-header">
                     <h2>
-                        <a href="">Books</a>
+                        <a href="">Books of Romance</a>
                     </h2>
                 </div>
                 <div class="carousel-container">
@@ -175,13 +208,31 @@
                         </button>
                     </div>
                     <div class="carousel-container-block">
-                        <div class="izquierda" style="height: 100%;">
-                            <div class="carousel-block"></div>
+                        {% if books_romance %}
+                        {% for book in books_romance %}
+                        {% if book.edition_set.all %}
+                        {% for edition in book.edition_set.all %}
+                        <div class="carousel-block" style="width: 200px; padding-top: 10px;">
+                            <div class="book-cover">
+                                <a href="/bookprofile/{{ edition.title }}/?book={{ edition.of.id }}">
+                                    <img src="{{edition.cover.url}}">
+                                </a>
+                            </div>
+                            <div class="book-location">
+                                <a href="/reader/?book={{ edition.file.url }}" class="button is-info">Leer</a>
+                            </div>
+                            <div class="book-location">
+                                <a href="/review/?book={{ edition.of.id }}" class="button is-info">Reseñar</a>
+                            </div>
                         </div>
-                        <div class="slash"></div>
-                        <div class="derecha" style="height: 100%;">
-                            <div class="carousel-block"></div>
-                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <h1>No se encontraron ediciones con este genero</h1>
+                        {% endif %}
+                        {% endfor %}
+                        {% else %}
+                        <h1>No se encontraron libros con este genero</h1>
+                        {% endif %}
                     </div>
                     <div class="button-post">
                         <button class="button is-info is-small">
@@ -233,5 +284,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}
