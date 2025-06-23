@@ -33,9 +33,6 @@ def homepage(request):
         'books_romance':books_romance
     })
 
-def about(request):
-    return HttpResponse("<h3>Aqui esta About</h3>")
-
 def mybooks(request):
     return render(request, 'mybooks.html')
 
@@ -110,10 +107,12 @@ def reviewForm(request):
 
 def bookprofile(request, title):
     edition = Edition.objects.filter(title__icontains=title)
+    for edi in edition:
+        bookediton = Book.objects.filter(id=edi.of.id)
     bookReview = request.GET.get('book')
     bookReview = Book.objects.get(id=bookReview)
     ratingBook= Review.objects.filter(book=bookReview).aggregate(avg=Avg('rating'))['avg'] or 0.0
-    return render(request, 'bookprofile.html', {'edition': edition, 'ratingBookProfile': int(ratingBook)})
+    return render(request, 'bookprofile.html', {'edition': edition, 'book_edition':bookediton, 'ratingBookProfile': int(ratingBook)})
 
 def registerUserV(request):
     if request.method == "POST":

@@ -12,7 +12,9 @@ class Autor(models.Model):
     prof= models.CharField(max_length=35)
     portrait= models.ImageField(upload_to='img/')
 
-    
+    def __str__(self):
+        return self.name
+
 class Book(models.Model):
     id= models.IntegerField(primary_key=True)
     name = models.CharField(max_length=70)
@@ -21,8 +23,9 @@ class Book(models.Model):
     genres= models.CharField(max_length=50)
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
 
-    
 class Edition(models.Model):
     id= models.IntegerField(primary_key=True)
     title= models.CharField(max_length=70)
@@ -36,9 +39,15 @@ class Edition(models.Model):
     file= models.FileField(upload_to='books/')
     of = models.ForeignKey(Book, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.title
+
 class Review(models.Model):
     content= models.CharField(max_length=750)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     rating =  models.IntegerField(validators=[MaxValueValidator(10),MinValueValidator(1)] )
+
+    def __str__(self):
+        return self.user.username + ' - ' + self.book.name
 #cada valor del rango equivale a media estrella, 1 seria media, 2 una, 10 seria cinco estrellas

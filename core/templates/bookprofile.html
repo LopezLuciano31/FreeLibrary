@@ -44,14 +44,7 @@
                 Compartir <br>
             </div>
             <div class="box" style="height: 350px;">
-                <ol>
-                    Buscar en bilbiotecas cercanas
-                    <li><a href=""> Hola mundo</a></li>
-                    Comparar este libro
-                    <li><a href=""> hola mundo</a></li>
-                    <li><a href=""> hola mundo</a></li>
-                    Cuando compras libros usando estos enlaces, el Archivo de Internet puede ganar una pequeña comision
-                </ol>
+                <h1>Todo contenido de esta pagina se puede encontrar en librerias cercanas</h1>
             </div>
         </div>
         <div class="block2">
@@ -94,19 +87,121 @@
                     </div>
                     <hr style="width: 680px; background-color: #D5CDA3;">
                     <div class="edtions-page">
-                        <h1>Ediciones</h1>
+                        <div class="editions-bar">
+                            <h6>Ediciones</h6>
+                        </div>
+                        <div class="bock-general">
+                            {% if book_edition %}
+                            {% for book in book_edition %}
+                            {% if book.edition_set.all %}
+                            {% for edition in book.edition_set.all %}
+                                <div class="bock">
+                                    <div class="book-cover">
+                                        <a href="/bookprofile/{{ edition.title }}/?book={{ edition.of.id }}">
+                                            <img src="{{ edition.cover.url }}">
+                                        </a>
+                                    </div>
+                                    <div class="book-lore">
+                                        <h5><strong>{{ edition.title }}</strong></h5>
+                                        <h5>{{ edition.publicationDate|date:"Y" }}, {{ edition.publisher }}</h5>
+                                        <h5>{{ edition.lang }}</h5>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            {% else %}
+                            <p>Ediciones del Libro no disponibles</p>
+                            {% endif %}
+                            {% endfor %}
+                            {% else %}
+                            <p>Libro no disponible</p>
+                            {% endif %}
+                        </div>
                     </div>
                     <hr style="width: 680px; background-color: #D5CDA3;">
                     <div class="details-book">
-                        <h1>Detalles del Libro</h1>
+                        <div class="editions-bar">
+                            <h1>Detalles del Libro</h1>
+                        </div>
+                        <div class="bock-general" style="margin-left: 10px;">
+                            {% if edition %}
+                            {% for edi in edition%}
+                            <h3>Notas de la edicion</h3>
+                            <p style="margin-left: 10px;">Idioma Original &nbsp;&nbsp;Ingles</p><br>
+                            <h3>Contribuidores</h3>
+                            <p style="margin-left: 10px;">Autor &nbsp;&nbsp;{{edi.of.autor.name}}</p><br>
+                            <h3>Objeto Fisico</h3>
+                            <p style="margin-left: 10px;">Paginas &nbsp;&nbsp;{{edi.pages}}</p><br>
+                            <h3>Identificador de la Edicion</h3>
+                            <p style="margin-left: 10px;">Id de la edicion &nbsp;&nbsp;&nbsp;{{edi.id}}</p><br>
+                            <h3>Identificador del Libro</h3>
+                            <p style="margin-left: 10px;">Id del libro &nbsp;&nbsp;&nbsp;{{edi.of.id}}</p><br>
+                            <h3>Descripcion de la obra</h3>
+                            <p style="margin-left: 10px;">{{edi.of.description}}</p><br>
+                            {% endfor %}
+                            {% else %}
+                            <p style="padding: 20px;">No se encontro el libro</p><br>
+                            {% endif %}
+                        </div>
                     </div>
                     <hr style="width: 680px; background-color: #D5CDA3;">
                     <div class="res-book">
-                        <h1>Reseñas</h1>
+                        <div class="editions-bar">
+                            <h1>Reseñas</h1>
+                        </div>
+                        <div class="bock-general">
+                            {% if book_edition %}
+                            {% for book in book_edition %}
+                            {% if book.review_set.all %}
+                            {% for review in book.review_set.all %}
+                            <div class="bock">
+                                <h1 style="margin-left: 10px;">Usuario</h1>
+                                <p style="margin-left: 20px;">{{review.user.username}}</p><br>
+                                <h1 style="margin-left: 10px;">Calificacion</h1>
+                                <div class="is-flex is-align-items-center" style="margin-left: 20px; font-size: 24px; color: gold;">
+                                    <div class="clasi" x-data ="{
+                                            rating: {{ review.rating }},
+                                            estrellasLlenas(){
+                                                return Math.floor(this.rating / 2)
+                                            },
+                                            mediaEstrella(){
+                                                return this.rating % 2 !== 0
+                                            }
+                                        }">
+                                        <div class="is-flex is-align-items-center">
+                                            <template x-for="i in 5" :key="i">
+                                                <div>
+                                                    <span class="icon mx-1" x-show="i <= estrellasLlenas()">
+                                                        <i id="starProfile" class="fa-solid fa-star"></i>
+                                                    </span>
+                                                    <span class="icon mx-1" x-show="i === estrellasLlenas()+1 && mediaEstrella()">
+                                                        <i id="starProfile" class="fa-solid fa-star-half-stroke"></i>
+                                                    </span>
+                                                    <span class="icon mx-1" x-show="i > estrellasLlenas() + mediaEstrella()">
+                                                        <i id="starProfile" class="fa-regular fa-star"></i>
+                                                    </span>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </div><br>
+                                <h1 style="margin-left: 10px;">Reseña</h1>
+                                <p style="margin-left: 20px;">{{review.content}}</p><br>
+                            </div>
+                            {% endfor %}
+                            {% else %}
+                            <p style="padding: 20px;">No se encontraron reviews</p>
+                            {% endif %}
+                            {% endfor %}
+                            {% else %}
+                            <p style="padding: 20px;">No se encontro el libro</p>
+                            {% endif %}
+                        </div>
                     </div>
                     <hr style="width: 680px; background-color: #D5CDA3;">
                     <div class="list">
-                        <h1>Listas</h1>
+                        <div class="editions-bar">
+                            <h1>Listas</h1>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -124,7 +219,7 @@
     </div>
 </div>
 <script>
-		function toggleReviewForm() {
+	function toggleReviewForm() {
 		document.getElementById('ReviewFormOverlay').classList.toggle('show');
 	}
 </script>
