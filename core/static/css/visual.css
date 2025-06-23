@@ -697,7 +697,7 @@ aside.menu {
 
 .box .block1{
     width: 250px;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -706,7 +706,7 @@ aside.menu {
 
 .block1 .box{
     width: 200px;
-    height: 500px;
+    height: auto;
     border: 1px solid #D5CDA3;
     background-color: white;
     display: flex;
