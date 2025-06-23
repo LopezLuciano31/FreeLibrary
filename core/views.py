@@ -1,22 +1,25 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from .models import Autor, Book, Edition
+from django.http import HttpResponse, JsonResponse
+from .models import Autor, Book, Edition, Review, Profile
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.urls import reverse
 from .forms import *
 from django.core.mail import send_mail
-from django.http import JsonResponse
-from django.contrib.auth import logout
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.db.models import Avg
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.conf import settings
+
 # Create your views here.
 def logoutV(request):
     logout(request)
-    return redirect('homepage')
+    url = request.POST.get('returnUrl', '/')
+    return redirect(url)
 
 def homepage(request):
     editions_for_html = Edition.objects.all()
@@ -29,6 +32,12 @@ def mybooks(request):
     return render(request, 'mybooks.html')
 
 def reader(request):
+    if request.user.is_authenticated:
+        user = request.user
+        profile = Profile.objects.get(user=user)
+        bookEdition = request.GET.get('edition')
+        bookEdition = Edition.objects.get(id=bookEdition)
+        profile.reading.add(bookEdition)
     return render(request, 'reader.html')
 
 def profileUser(request):
@@ -38,7 +47,6 @@ def loginUserV(request):
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
-        print("DEBUG:", username, password)
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
@@ -103,7 +111,7 @@ def bookprofile(request, title):
     edition = Edition.objects.filter(title__icontains=title)
     bookReview = request.GET.get('book')
     bookReview = Book.objects.get(id=bookReview)
-    ratingBook= Review.objects.filter(book=bookReview).aggregate(avg=Avg('rating'))['avg']
+    ratingBook= Review.objects.filter(book=bookReview).aggregate(avg=Avg('rating'))['avg'] or 0.0
     return render(request, 'bookprofile.html', {'edition': edition, 'ratingBookProfile': int(ratingBook)})
 
 def registerUserV(request):
@@ -142,8 +150,18 @@ def registerUserV(request):
             })
         try:
             user = User.objects.create_user(username=username, password=pwd, email=email)
-            user.save()
-            login(request, user)  
+            profile= Profile(user=user)
+            profile.save()
+            login(request, user) 
+            subject = "Bienvenido a FreeLibrary"
+            from_email = settings.EMAIL_HOST_USER
+            to = [email]
+            context = {'username': username}
+            html_content = render_to_string('registration/register_Email.html', context)
+            text_content = f"Hola {username}, bienvenido a FreeLibrary!"
+            msg = EmailMultiAlternatives(subject, text_content, from_email, to)
+            msg.attach_alternative(html_content, "text/html")
+            msg.send() 
             return JsonResponse({
                 'success': True,
                 'redirect_url': '/'  

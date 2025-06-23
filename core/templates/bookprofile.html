@@ -15,7 +15,7 @@
                     </a>
                 </div>
                 <div class="book-location">
-                     <a href="/reader/?book={{ edi.file.url }}" class="button is-link">Leer</a>
+                     <a href="/reader/?book={{ edi.file.url }}&edition={{ edi.id }}" class="button is-link">Leer</a>
                 </div>
                 <div class="clasi">
                     <div class="is-flex is-align-items-center">
@@ -37,7 +37,36 @@
                     </div>
                 </div>
                 <hr style="width: 150px; background-color: #D5CDA3;">
-               <a id="reviewButton"  class="button is-link">Reseñar</a>  <br>  
+               	{% if user.is_authenticated %}
+                <a id="reviewButton"  class="button is-link">Reseñar</a>  <br>  
+                <script>
+document.getElementById('reviewButton').addEventListener('click', function(event) {
+  event.preventDefault();  
+  const params = new URLSearchParams(window.location.search);
+  const book = params.get('book');
+  $.ajax({
+    url: '/review/',
+    type: 'GET',
+    data: { book: book },
+    dataType: 'json',
+    success: function(response) {
+      if (response.success) {
+         $('#reviewText').val(response.review.content); 
+         ratingStar( response.review.rating,"star" );
+         toggleReviewForm()
+      } else {
+        toggleReviewForm()
+      }
+    },
+    error: function(xhr, status, error) {
+      alert('AJAX error: ' + error);
+    }
+  });
+});
+
+
+</script>
+                {% endif %}
                 Notas <br>
                 Compartir <br>
             </div>
@@ -128,34 +157,10 @@
 </script>
 
 <script>
-document.getElementById('reviewButton').addEventListener('click', function(event) {
-  event.preventDefault();  
-  const params = new URLSearchParams(window.location.search);
-  const book = params.get('book');
-  $.ajax({
-    url: '/review/',
-    type: 'GET',
-    data: { book: book },
-    dataType: 'json',
-    success: function(response) {
-      if (response.success) {
-         $('#reviewText').val(response.review.content); 
-         ratingStar( response.review.rating,"star" );
-         toggleReviewForm()
-      } else {
-        toggleReviewForm()
-      }
-    },
-    error: function(xhr, status, error) {
-      alert('AJAX error: ' + error);
-    }
-  });
-});
 {% if ratingBookProfile %}
-    ratingStar({{ratingBookProfile}},"starProfile") ;
+    ratingStar({{ratingBookProfile}},"starProfile") ; 
     console.log({{ratingBookProfile}});
 {% endif %}
-
 </script>
 {% endblock %}
 

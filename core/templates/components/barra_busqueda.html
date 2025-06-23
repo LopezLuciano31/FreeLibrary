@@ -80,6 +80,7 @@
 					</div>
 					<form action="{% url 'logout' %}" method="post">
 						{% csrf_token %}
+						<input type="hidden" name="returnUrl" value="{{ request.get_full_path }}">
 						<button type="submit" class="button is-info" onclick="" style="background-color: red;">
 							<span class="icon">
 								<i class="fas fa-user-xmark"></i>
@@ -208,7 +209,7 @@
         data: $(this).serialize(),
         success: function(response) {
             if (response.success) {
-                window.location.href = response.redirect_url;
+                location.reload();
             } else {
                   $('#loginError').text(response.error); 
             }
@@ -234,7 +235,7 @@
         data: $(this).serialize(),
         success: function(response) {
             if (response.success) {
-                window.location.href = response.redirect_url;
+                location.reload();
             } else {
                   errors=(response.error);
 				  $('#pwdError').empty();

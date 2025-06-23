@@ -1,0 +1,830 @@
+/*Estilos para los select*/
+.colorIdioma .select select {
+    background-color: #2f2f2f;
+    color: white;
+    border: 1px solid white;
+}
+
+.colorIdioma .select select:focus {
+    border-color: white;
+    box-shadow: none;
+}
+
+.colorCategoria .select select {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+
+.colorCategoria .select select:focus {
+    border-color: black;
+    box-shadow: none;
+}
+
+.colorInput input {
+    background-color: white;
+    color: black;
+}
+
+.colorBoton {
+    border: 1px solid black;
+    height: 2.5em;
+}
+
+/*Estilos por identificador*/
+#up {
+    background-color: #2f2f2f;
+}
+
+#down {
+    background-color: white;
+}
+
+html {
+    background-color: #E0D9B7;
+}
+
+/*Estilos para los componetes*/
+.superior {
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.superiorbajo {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.medio {
+    width: 100%;
+    height: 2200px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.mediobajo {
+    width: 100%;
+    height: 50px;
+}
+
+.bajo {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.superiorbajo .interior {
+    width: 1000px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.superior .interior {
+    width: 1000px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.medio .box {
+    width: 1000px;
+    height: 100%;
+    border: 1px solid #D5CDA3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.bajo .interior {
+    width: 1000px;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.box {
+    width: 196px;
+    height: 400px;
+    padding-top: 20px;
+    background-color: #E0D9B7;
+}
+
+.carousel-header {
+    color: grey;
+}
+
+.carousel-container {
+    width: 100%;
+    height: 175px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-container-block {
+    width: 860px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-book {
+    width: 1000px;
+    height: 320px;
+}
+
+.carousel-header {
+    width: 100%;
+    height: 50px;
+    padding-left: 25px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.carousel-header a {
+    color: gray;
+}
+
+.carousel-book .carousel-section {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-book .carousel-section .carousel-container {
+    width: 1000px;
+    height: 270px;
+    border: 1px solid #D5CDA3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EBE5CB;
+    /*#E0D9B7*/
+}
+
+.carousel-container-block .slash {
+    width: 30px;
+    height: 100%;
+}
+
+.carousel-block {
+    width: 400px;
+    height: 100%;
+}
+
+.book-cover {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 200px;
+}
+
+.book-location {
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.book-cover img {
+    width: 130px;
+    height: 200px;
+}
+
+.carousel-section {
+    width: 1000px;
+    height: 250px;
+}
+
+.home-stats {
+    width: 1000px;
+    height: 170px;
+    padding-left: 25px;
+    padding-top: 25px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.home-resources {
+    width: 1000px;
+    height: 300px;
+    padding-left: 25px;
+    padding-top: 25px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+/*Estilos Auxiliares*/
+.botonDonar,
+.botonIdioma,
+
+.izquierda {
+    margin: 0;
+}
+
+.derecha {
+    display: flex;
+    gap: 10px;
+    /* espacio entre botón y selector */
+    align-items: center;
+}
+
+/*Estilos para listas*/
+.custom-select {
+    position: relative;
+    width: 100px;
+    z-index: 10;
+    /* Asegura que esté encima */
+}
+
+.custom-select details {
+    color: black;
+    position: relative;
+    background-color: transparent;
+    font-family: sans-serif;
+}
+
+.custom-select details[open] ul {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #EBE5CB;
+    /*#F5F1DF*/
+    width: 300px;
+    z-index: 999;
+    /* Muy por encima */
+}
+
+.custom-select summary {
+    cursor: pointer;
+    padding: 8px;
+}
+
+.custom-select ul {
+    display: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.custom-select ul li {
+    padding: 8px;
+    cursor: pointer;
+    border: 1px solid grey;
+    transition: background-color 0.2s ease;
+}
+
+.custom-select ul li a {
+    color: black;
+}
+
+.custom-select ul li:hover {
+    background-color: #F5F1DF;
+}
+
+/*Login*/
+.overlay-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.loginBox {
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    width: 500px;
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.closeLogin {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.closeLogin {
+    margin-top: 12px;
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.overlay-container.show {
+    display: flex;
+    opacity: 1;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    height: 0vh;
+    box-sizing: border-box;
+}
+
+.sidePanel {
+    width: 20%;
+    background-color: #f8c291;
+}
+
+.frontPanel {
+    width: 80%;
+    background-color: #6a89cc;
+}
+
+/*Perfil de Usuario*/
+
+.profile {
+    width: 100%;
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.profile .box {
+    width: 1000px;
+    height: 100%;
+    border: 1px solid #D5CDA3;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+    padding: 0%;
+}
+
+.profile .box .leftlinks {
+    width: 250px;
+    height: 100%;
+    background-color: #F9F9F9;
+}
+
+.profile .box .rightinfo {
+    width: 750px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -8px 0 10px -6px rgba(0, 0, 0, 0.2);
+}
+
+.leftlinks .bar {
+    font-size: 15px;
+    width: 100%;
+    height: 20px;
+    background-color: #F2F2F2;
+    border: 1px solid #E0E0E0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.bar h1 {
+    color: grey;
+    margin-left: 10px;
+}
+
+.leftlinks .block a {
+    margin-left: 10px;
+}
+
+.leftlinks .block {
+    margin-top: 5px;
+}
+
+.leftlinks .block hr {
+    background-color: #E0E0E0;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.blockbutton {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.is-gray {
+    color: gray;
+    background-color: #F2F2F2;
+    border: 1px solid #E0E0E0;
+}
+
+/*Mis Libros*/
+
+.profilereal {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.profilereal .box {
+    width: 1000px;
+    height: 100%;
+    border: 1px solid #D5CDA3;
+    flex-direction: column;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.profilereal .box .block h1 {
+    font-size: 20px;
+    color: black;
+}
+
+.profilereal .box .block h3 {
+    font-size: 13px;
+    color: gray;
+}
+
+.profilereal .box .box {
+    width: 100%;
+    height: 100px;
+    padding: 0%;
+}
+
+.box .box .toptable {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+    background-color: #EBE5CB;
+}
+
+.box .box .downtable {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.toptable .separator {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    border: 1px solid #D5CDA3;
+}
+
+.separator h1 {
+    color: gray;
+    margin-left: 10px;
+}
+
+.downtable .separator {
+    width: 25%;
+    height: 100%;
+    border: 1px solid #D5CDA3;
+}
+
+.profilereal .box .block a {
+    font-size: 13px;
+}
+
+.interiorMen {
+    width: 1000px;
+    height: 100%;
+    border: 1px solid #D5CDA3;
+    background-color: #f0ede6;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#sideMenu {
+    width: 25%;
+    height: 100%;
+    padding-top: 10px;
+    background-color: #f0ede6;
+}
+
+.contenidoPrincipal {
+    width: 75%;
+    height: 100%;
+    padding: 20px;
+}
+
+#sideMenu .menu a {
+    background: #d6d3c8;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    color: #7a7763;
+    display: block;
+    margin-bottom: 1rem;
+
+}
+
+aside.menu {
+    background-color: #d6d3c8;
+}
+
+.menu-label {
+    color: #c1bcb0;
+    font-size: 1em;
+    letter-spacing: normal;
+    font-weight: bold;
+    background-color: #7a7565;
+}
+
+.menu-list li {
+    border-bottom: 2px solid #bfbcae;
+    margin-bottom: 0.6rem;
+}
+
+.menu-list li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+/*Filtro de libros*/
+.books {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.books .box {
+    width: 1000px;
+    height: 100%;
+    border: 1px solid #D5CDA3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.books .box .editons .description{
+    width: 75%;
+    height: 100%;
+    color: black;
+    border: 1px solid #F9F9F9;
+}
+
+.description .book-lore{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.books .box .editons .cover{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #F9F9F9;
+}
+
+.books .box .editons{
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.fa-regular.fa-star {
+    color: #b8860b;
+    font-size: 25px;
+  }
+  .fa-solid.fa-star {
+    color: #b8860b;
+    font-size: 25px;
+  }
+  .fa-solid.fa-star-half-stroke {
+    color: #b8860b;
+    font-size: 25px;
+  
+}
+
+
+/* Perfil de Libros */
+
+.bookpro {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.bookpro .box {
+    width: 1000px;
+    height: 100%;
+    border: 1px solid #D5CDA3;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.box .block1{
+    width: 250px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.block1 .box{
+    width: 200px;
+    height: 500px;
+    border: 1px solid #D5CDA3;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.block1 .box .clasi{
+    margin-top: 20px;
+}
+
+.box .block2{
+    width: 750px;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.block2 .box{
+    width: 750px;
+    height: 2200px;
+    border: 1px solid #D5CDA3;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.block2 .box .booklore{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.block2 .box .booklore h2{
+    font-family: 'Times New Roman', sans-serif;
+    font-size: 35px;
+    color: black;
+}
+
+.block2 .box .booklore h3{
+    color: gray;
+}
+
+.booklore .chart{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.booklore .chart .box{
+    width: 150px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.chart .box h1{
+    color: black;
+    font-size: 13px;
+}
+
+.block2 .super{
+    width: 100%;
+    height: 50px;
+    border: 1px solid #D5CDA3;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.block2 .super .box{
+    width: 120px;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.block2 .edtions-page{
+    width: 100%;
+    height: 300px;
+    border: 1px solid #D5CDA3;
+}
+
+.block2 .edtions-page h1{
+    color: black;
+    font-size: 20px;
+    font-family: 'Times New Roman', sans-serif;
+}
+
+.block2 .details-book{
+    width: 100%;
+    height: 450px;
+    border: 1px solid #D5CDA3;
+}
+
+.block2 .details-book h1{
+    color: black;
+    font-size: 20px;
+    font-family: 'Times New Roman', sans-serif;
+}
+
+.block2 .res-book{
+    width: 100%;
+    height: 200px;
+    border: 1px solid #D5CDA3;
+}
+
+.block2 .res-book h1{
+    color: black;
+    font-size: 20px;
+    font-family: 'Times New Roman', sans-serif;
+}
+
+.block2 .list{
+    width: 100%;
+    height: 200px;
+    border: 1px solid #D5CDA3;
+}
+
+.block2 .list h1{
+    color: black;
+    font-size: 20px;
+    font-family: 'Times New Roman', sans-serif;
+}
