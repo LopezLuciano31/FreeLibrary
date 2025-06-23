@@ -47,6 +47,7 @@ class Review(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
+    description = models.CharField(max_length=1250, null=True)
     favorites = models.ManyToManyField(Edition, related_name="favorited", blank=True)
     readed = models.ManyToManyField(Edition, related_name="readed", blank=True)
     reading = models.ManyToManyField(Edition, related_name="reading", blank=True)

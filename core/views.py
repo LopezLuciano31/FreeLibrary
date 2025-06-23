@@ -16,6 +16,23 @@ from django.template.loader import render_to_string
 from django.conf import settings
 
 # Create your views here.
+def bookfav(request):
+    user = request.user
+    profile = Profile.objects.get(user=user)
+    bookEdition = request.GET.get('edition')
+    edition = Edition.objects.get(id=bookEdition)
+    if (profile.favorites.filter(id=bookEdition).exists()):
+        profile.favorites.remove(edition)
+        return JsonResponse({
+                'success': False,
+            })
+    else:
+        profile.favorites.add(edition)
+        return JsonResponse({
+                'success': True,
+            })
+ 
+
 def logoutV(request):
     logout(request)
     url = request.POST.get('returnUrl', '/')
@@ -234,4 +251,3 @@ def editionRegister(request):
  else:         
      form = EditionForm()
  return render(request,"mybooks.html",{'form2':form})
-

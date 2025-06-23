@@ -22,7 +22,7 @@
  <div id="viewer" class="spreads" ></div>
  <div id="sideMenu" class="sideMenu">
   <a href="#" title="Favorite" class="icon is-large">
-  <i class="far fa-star"></i>
+  <i id="star" class="far fa-star"></i>
 </a>
    <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
 <aside class="menu">
@@ -227,6 +227,29 @@
 			};
 
 		});
+
+    $(document).on('submit', '#addFavorites', function(e){
+    e.preventDefault();
+
+    $.ajax({
+        type: 'GET',
+        url: '{% url "favorites" %}', 
+        data: $(this).serialize(),
+        success: function(response) {
+            if (response.success) {
+              $star.removeClass('fa-regular fa-star');
+              $star.addClass('fa-solid fa-star');
+            } else {
+              $star.removeClass('fa-solid fa-star ');
+              $star.addClass('fa-regular fa-star');
+            }
+        },
+        error: function(xhr) {
+            const res = xhr.responseJSON;
+            
+        }
+    });
+});
 
 
   </script>
