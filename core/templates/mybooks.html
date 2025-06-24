@@ -24,9 +24,10 @@
                 <h1>Registro de Lectura</h1>
             </div>
             <div class="block">
-                <a href="">Leyendo</a><br>
-                <a href="">Quiero leer</a><br>
-                <a href="">Ya leido</a><br>
+                <a href="{% url 'readingMybooks' %}">Leyendo</a><br>
+                <a href="{% url 'readedMybooks' %}">Ya leido</a><br>
+                <a href="{% url 'favsMybooks' %}">Favoritos</a><br>
+                <a href="{% url 'formMybooks' %}">Formularios</a><br>
                 <hr>
                 <a href="">Mis notas</a><br>
                 <a href="">Mis reseñas</a><br>
@@ -34,14 +35,6 @@
                 <a href="">Mis estadisticas de lectura</a><br>
                 <a href="">Importacion y exportacion</a><br>
             </div>
-            {% if user.is_superuser %}
-            <div class="block">
-                <hr>
-                <a href="">Agregar autor</a><br>
-                <a href="">Agregar libro</a><br>
-                <a href="">Agregar edicion</a><br>
-            </div>
-            {% endif %}
             <div class="bar">
                 <h1>Mis Listas</h1>
             </div>
@@ -53,28 +46,9 @@
         </div>
 
         <div class="rightinfo">
-            <form method="post" action="{% url 'bookRegister' %}">
-                {% csrf_token %}
-                <ul>
-                    {{ form.as_ul }}
-                </ul>
-                <input type="submit" value="Registrar libro" />
-            </form>
-            <form method="post" action="{% url 'editionRegister' %}" enctype="multipart/form-data">
-                {% csrf_token %}
-                <ul>
-                    {{ form2.as_ul }}
-                </ul>
-                <input type="submit" value="Registrar edicion" />
-            </form>
-            <form method="post" action="{% url 'autorRegister' %}" enctype="multipart/form-data">
-                {% csrf_token %}
-                <ul>
-                    {{ form3.as_ul }}
-                </ul>
-                <input type="submit" value="Registrar autor" />
-            </form>
-        </div>4
+         {% block info %}   
+         {% endblock %}
+        </div>
 
     </div>
 </div>

@@ -26,6 +26,12 @@ urlpatterns = [
     path('book_list/',views.book_list, name='book_list'),
     path('bookprofile/<str:title>/',views.bookprofile),
     path('logout/', views.logoutV, name='logout'),
+    path('favsMybooks/', views.seeFavorites, name='favsMybooks'),
+    path('readingMybooks/', views.seeReading, name='readingMybooks'),
+    path('readedMybooks/', views.seeReaded, name='readedMybooks'),
+    path('formMybooks/', views.formMybooks, name='formMybooks'),
+
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
