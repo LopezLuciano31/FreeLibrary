@@ -19,19 +19,38 @@ from django.conf import settings
 def bookfav(request):
     user = request.user
     profile = Profile.objects.get(user=user)
-    bookEdition = request.GET.get('edition')
-    edition = Edition.objects.get(id=bookEdition)
-    if (profile.favorites.filter(id=bookEdition).exists()):
-        profile.favorites.remove(edition)
+    idEdition = request.GET.get('edition')
+    bookEdition = Edition.objects.get(id=idEdition)
+    if (profile.favorites.filter(id=idEdition).exists()):
+        profile.favorites.remove(bookEdition)
         return JsonResponse({
                 'success': False,
             })
     else:
-        profile.favorites.add(edition)
+        profile.favorites.add(bookEdition)
         return JsonResponse({
                 'success': True,
             })
- 
+def formMybooks(request):
+    return render(request, 'testTemplate/profileForms.html')
+
+def seeFavorites(request):
+    user = request.user
+    profile = Profile.objects.get(user=user)
+    favs = profile.favorites.all()
+    return render(request, 'testTemplate/booksProfile.html',{'editions': favs,'head':'Libros favoritos:'})
+
+def seeReading(request):
+    user = request.user
+    profile = Profile.objects.get(user=user)
+    read = profile.reading.all()
+    return render(request, 'testTemplate/booksProfile.html',{'editions': read,'head':'Libros en curso:'})
+
+def seeReaded(request):
+    user = request.user
+    profile = Profile.objects.get(user=user)
+    read = profile.readed.all()
+    return render(request, 'testTemplate/booksProfile.html',{'editions': read,'head':'Libros leidos:'})
 
 def logoutV(request):
     logout(request)
@@ -53,8 +72,10 @@ def reader(request):
         user = request.user
         profile = Profile.objects.get(user=user)
         bookEdition = request.GET.get('edition')
+        fav = profile.favorites.filter(id=bookEdition).exists()
         bookEdition = Edition.objects.get(id=bookEdition)
         profile.reading.add(bookEdition)
+        return render(request, 'reader.html' ,{'fav': fav})
     return render(request, 'reader.html')
 
 def profileUser(request):
@@ -226,7 +247,8 @@ def bookRegister(request):
         return redirect('homepage')
  else:
           form = BookForm()
- return render(request,"mybooks.html",{'form':form})
+ return render(request,'testTemplate/profileForms.html',{'form':form})
+
 
 
 def autorRegister(request):
@@ -237,8 +259,7 @@ def autorRegister(request):
         return redirect('homepage')
   else:
       form = AutorForm()
-      
-  return render(request,"mybooks.html",{'form3':form})
+  return render(request,'testTemplate/profileForms.html',{'form3':form})
      
     
 
@@ -250,4 +271,4 @@ def editionRegister(request):
         return redirect('homepage')
  else:         
      form = EditionForm()
- return render(request,"mybooks.html",{'form2':form})
+ return render(request,'testTemplate/profileForms.html',{'form2':form})

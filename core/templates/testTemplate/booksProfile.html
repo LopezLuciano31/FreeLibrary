@@ -1,0 +1,16 @@
+{% extends "mybooks.html" %} 
+
+                 {% block info %}   
+                          <h1>{{ head }}</h1>
+<div class="grid">
+  {% for edition in editions %}
+                        <div class="cell" style="width: 200px; padding-top: 10px;">
+                            <div class="book-cover">
+                               <a href="/bookprofile/{{ edition.title }}/?book={{ edition.of.id }}">
+                                    <img src="{{edition.cover.url}}">
+                                </a>
+                            </div>
+                        </div>
+  {% endfor %}
+</div>
+            {% endblock %}

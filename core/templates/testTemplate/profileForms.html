@@ -1,0 +1,25 @@
+{% extends "mybooks.html" %}    
+
+    {% block info %}  
+<form method="post" action="{% url 'bookRegister' %}">
+                {% csrf_token %}
+                <ul>
+                    {{ form.as_ul }}
+                </ul>
+                <input type="submit" value="Registrar libro" />
+            </form>
+            <form method="post" action="{% url 'editionRegister' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <ul>
+                    {{ form2.as_ul }}
+                </ul>
+                <input type="submit" value="Registrar edicion" />
+            </form>
+            <form method="post" action="{% url 'autorRegister' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <ul>
+                    {{ form3.as_ul }}
+                </ul>
+                <input type="submit" value="Registrar autor" />
+            </form>
+                {%  endblock %}  
