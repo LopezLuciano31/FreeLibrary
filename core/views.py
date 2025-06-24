@@ -19,15 +19,15 @@ from django.conf import settings
 def bookfav(request):
     user = request.user
     profile = Profile.objects.get(user=user)
-    bookEdition = request.GET.get('edition')
-    edition = Edition.objects.get(id=bookEdition)
-    if (profile.favorites.filter(id=bookEdition).exists()):
-        profile.favorites.remove(edition)
+    idEdition = request.GET.get('edition')
+    bookEdition = Edition.objects.get(id=idEdition)
+    if (profile.favorites.filter(id=idEdition).exists()):
+        profile.favorites.remove(bookEdition)
         return JsonResponse({
                 'success': False,
             })
     else:
-        profile.favorites.add(edition)
+        profile.favorites.add(bookEdition)
         return JsonResponse({
                 'success': True,
             })
@@ -53,8 +53,10 @@ def reader(request):
         user = request.user
         profile = Profile.objects.get(user=user)
         bookEdition = request.GET.get('edition')
+        fav = profile.favorites.filter(id=bookEdition).exists()
         bookEdition = Edition.objects.get(id=bookEdition)
         profile.reading.add(bookEdition)
+        return render(request, 'reader.html' ,{'fav': fav})
     return render(request, 'reader.html')
 
 def profileUser(request):

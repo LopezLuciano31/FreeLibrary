@@ -6,10 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Free LibraryReader</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/epubjs/dist/epub.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="{% static 'css/reader.css' %}">
+  
+
 </head>
 <button id="openMenu" onclick="openMenu()" title="Toggle continuous scroll">
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -21,9 +24,13 @@
 <body>
  <div id="viewer" class="spreads" ></div>
  <div id="sideMenu" class="sideMenu">
-  <a href="#" title="Favorite" class="icon is-large">
-  <i id="star" class="far fa-star"></i>
+  	{% if user.is_authenticated %}
+  <a id='starFav' href="#" title="Favorite" class="icon is-large">
+    <span class="icon mx-1">
+   <i id="star" class="fa-regular fa-star"></i>
+   </span>
 </a>
+ 	{% endif  %}
    <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
 <aside class="menu">
   <ul class="menu-list">
@@ -33,9 +40,11 @@
         <a>Capitulo:</a>
         <select id="toc"></select> 
       </li>
+    	{% if user.is_authenticated %}
       <li>
         <a> Agregar a una lista.</a>
       </li>
+      {% endif %}
       <li>
         <a>Modo:</a>
           <div class="ball-container">
@@ -227,31 +236,34 @@
 			};
 
 		});
-
-    $(document).on('submit', '#addFavorites', function(e){
+    {% if user.is_authenticated %}
+        $('#starFav').on('click', function(e){
     e.preventDefault();
-
     $.ajax({
         type: 'GET',
         url: '{% url "favorites" %}', 
-        data: $(this).serialize(),
+        data: {
+            edition: urlParams.get('edition'),
+        },
         success: function(response) {
             if (response.success) {
-              $star.removeClass('fa-regular fa-star');
-              $star.addClass('fa-solid fa-star');
+                $('#star').removeClass('fa-regular fa-star').addClass('fa-solid fa-star');
             } else {
-              $star.removeClass('fa-solid fa-star ');
-              $star.addClass('fa-regular fa-star');
+                $('#star').removeClass('fa-solid fa-star').addClass('fa-regular fa-star');
             }
         },
         error: function(xhr) {
             const res = xhr.responseJSON;
-            
+            alert(res?.error || 'An error occurred.');
         }
     });
 });
-
+{% if fav %}
+  $('#star').removeClass('fa-regular fa-star').addClass('fa-solid fa-star');   
+{% endif %}
+ 	{% endif  %}
 
   </script>
+  
 </body>
 </html>

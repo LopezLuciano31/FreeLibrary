@@ -20,6 +20,7 @@ urlpatterns = [
     path('autorRegister/', views.autorRegister, name='autorRegister'),
     path('bookRegister/', views.bookRegister, name='bookRegister'),
     path('editionRegister/', views.editionRegister, name='editionRegister'),
+    path('favorites/',views.bookfav,name='favorites'),
     path('profile/', views.profileUser, name='profile'),
     path('mybooks/', views.mybooks),
     path('book_list/',views.book_list, name='book_list'),
